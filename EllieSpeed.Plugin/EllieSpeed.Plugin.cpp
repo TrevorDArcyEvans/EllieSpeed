@@ -15,7 +15,7 @@ If compiled as C++, extern "C" must be added to declaration of functions to expo
 X+ is right, Y+ is top and Z+ is forward.
 */
 
-extern "C" char *GetModID()
+extern "C" char* GetModID()
 {
   return "gpbikes";
 }
@@ -90,6 +90,11 @@ extern "C" void RunTelemetry(void *_pData, int _iDataSize, float _fTime, float _
   SPluginsBikeData_t *psBikeData = static_cast<SPluginsBikeData_t*>(_pData);
 }
 
+/* This function is optional */
+extern "C" void TrackCenterline(int _iNumSegments, SPluginsTrackSegment_t *_pasSegment, void *_pRaceData)
+{
+}
+
 #if 0
 
 /* called when software is started. This function is optional */
@@ -99,11 +104,6 @@ extern "C" int DrawInit(int *_piNumSprites, char **_pszSpriteName, int *_piNumFo
     return 0 if pointers are set
   */
   return -1;
-}
-
-/* This function is optional */
-extern "C" void TrackCenterline(int _iNumSegments, SPluginsTrackSegment_t *_pasSegment, void *_pRaceData)
-{
 }
 
 /* This function is optional */
