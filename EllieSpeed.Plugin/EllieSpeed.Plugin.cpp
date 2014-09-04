@@ -43,13 +43,13 @@ extern "C" void Shutdown()
 /* called when event is initialized */
 extern "C" void EventInit(void *_pData, int _iDataSize)
 {
-  SPluginsBikeEvent_t *psEventData = (SPluginsBikeEvent_t*)_pData;
+  SPluginsBikeEvent_t *psEventData = static_cast<SPluginsBikeEvent_t*>(_pData);
 }
 
 /* called when bike goes to track */
 extern "C" void RunInit(void *_pData, int _iDataSize)
 {
-  SPluginsBikeSession_t *psSessionData = (SPluginsBikeSession_t*)_pData;
+  SPluginsBikeSession_t *psSessionData = static_cast<SPluginsBikeSession_t*>(_pData);
 }
 
 /* called when bike leaves the track */
@@ -70,19 +70,19 @@ extern "C" void RunStop()
 /* called when a new lap is recorded. This function is optional */
 extern "C" void RunLap(void *_pData, int _iDataSize)
 {
-  SPluginsBikeLap_t *psLapData = (SPluginsBikeLap_t*)_pData;
+  SPluginsBikeLap_t *psLapData = static_cast<SPluginsBikeLap_t*>(_pData);
 }
 
 /* called when a split is crossed. This function is optional */
 extern "C" void RunSplit(void *_pData, int _iDataSize)
 {
-  SPluginsBikeSplit_t *psSplitData = (SPluginsBikeSplit_t*)_pData;
+  SPluginsBikeSplit_t *psSplitData = static_cast<SPluginsBikeSplit_t*>(_pData);
 }
 
 /* _fTime is the ontrack time, in seconds. _fPos is the position on centerline, from 0 to 1 */
 extern "C" void RunTelemetry(void *_pData, int _iDataSize, float _fTime, float _fPos)
 {
-  SPluginsBikeData_t *psBikeData = (SPluginsBikeData_t*)_pData;
+  SPluginsBikeData_t *psBikeData = static_cast<SPluginsBikeData_t*>(_pData);
 }
 
 #if 0
