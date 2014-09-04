@@ -1,4 +1,11 @@
-// dllmain.cpp : Defines the entry point for the DLL application.
+//
+//  Copyright (C) 2014 EllieWare
+//
+//  All rights reserved
+//
+//  www.EllieWare.com
+//
+
 #include "stdafx.h"
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)

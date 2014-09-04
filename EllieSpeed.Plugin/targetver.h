@@ -1,3 +1,11 @@
+//
+//  Copyright (C) 2014 EllieWare
+//
+//  All rights reserved
+//
+//  www.EllieWare.com
+//
+
 #pragma once
 
 // Including SDKDDKVer.h defines the highest available Windows platform.
