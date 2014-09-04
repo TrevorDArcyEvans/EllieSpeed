@@ -1,5 +1,11 @@
 
-typedef  struct
+/*
+If compiled as C++, extern "C" must be added to declaration of functions to export
+
+X+ is right, Y+ is top and Z+ is forward.
+*/
+
+typedef struct
 {
   char  m_szRiderName[100];
   char  m_szBikeID[100];
@@ -17,7 +23,7 @@ typedef  struct
   float m_fTrackLength;                   /*  centerline length. meters  */
 } SPluginsBikeEvent_t;
 
-typedef  struct
+typedef struct
 {
   int   m_iSession;                       /*  0 = testing; 1 = practice; 2 = qualify; 3 = warmup; 4 = race  */
   int   m_iConditions;                    /*  0 = sunny; 1 = cloudy; 2 = rainy  */
@@ -26,7 +32,7 @@ typedef  struct
   char  m_szSetupFileName[100];
 } SPluginsBikeSession_t;
 
-typedef  struct
+typedef struct
 {
   float m_fRPM;                           /*  engine rpm  */
   float m_fEngineTemperature;             /*  degrees Celsius  */
@@ -62,14 +68,14 @@ typedef  struct
   char  m_szEngineMapping[100];
 } SPluginsBikeData_t;
 
-typedef  struct
+typedef struct
 {
   int  m_iLapTime;                        /*  milliseconds  */
   int  m_iBest;                           /*  1 = best lap  */
   int  m_iLapNum;
 } SPluginsBikeLap_t;
 
-typedef  struct
+typedef struct
 {
   int  m_iSplit;
   int  m_iSplitTime;                     /*  milliseconds  */
