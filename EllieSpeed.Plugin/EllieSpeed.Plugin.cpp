@@ -102,12 +102,12 @@ EXTERN_DLL_EXPORT void RunTelemetry(void *pData, int _iDataSize, float _fTime, f
   mBroadcaster->OnRunTelemetry(*psBikeData);
 }
 
+#if 0
+
 /* This function is optional */
 EXTERN_DLL_EXPORT void TrackCenterline(int _iNumSegments, SPluginsTrackSegment_t *pasSegment, void *pRaceData)
 {
 }
-
-#if 0
 
 /* called when software is started. This function is optional */
 EXTERN_DLL_EXPORT int DrawInit(int *piNumSprites, char **pszSpriteName, int *piNumFonts, char **pszFontName)

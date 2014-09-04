@@ -93,14 +93,6 @@ namespace EllieSpeed.Plugin.Test
     [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "RunTelemetry")]
     public static extern void RunTelemetry(IntPtr pData, int iDataSize, float fTime, float fPos);
 
-    /// Return Type: void
-    /// iNumSegments: int
-    /// pasSegment: SPluginsTrackSegment_t*
-    /// pRaceData: void*
-    /* This function is optional */
-    [DllImport("EllieSpeed.Plugin.dlo", EntryPoint = "TrackCenterline")]
-    public static extern void TrackCenterline(int iNumSegments, ref GPBikes.SPluginsTrackSegment_t pasSegment, IntPtr pRaceData);
-
     #endregion
 
     [Test]
@@ -207,14 +199,6 @@ namespace EllieSpeed.Plugin.Test
       Marshal.StructureToPtr(data, ptr, true);
 
       RunTelemetry(ptr, default(int), default(float), default(float));
-    }
-
-    [Test]
-    public void TrackCenterline_Completes()
-    {
-      var data = new GPBikes.SPluginsTrackSegment_t[10];
-
-      TrackCenterline(data.Length, ref data[0], IntPtr.Zero);
     }
   }
 }
