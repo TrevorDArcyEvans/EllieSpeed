@@ -14,24 +14,25 @@ If compiled as C++, extern "C" must be added to declaration of functions to expo
 
 X+ is right, Y+ is top and Z+ is forward.
 */
+#define EXTERN_DLL_EXPORT extern "C" __declspec(dllexport)
 
-extern "C" char* GetModID()
+EXTERN_DLL_EXPORT char* GetModID()
 {
   return "gpbikes";
 }
 
-extern "C" int GetModDataVersion()
+extern "C" int __declspec(dllexport) GetModDataVersion()
 {
   return 2;
 }
 
-extern "C" int GetInterfaceVersion()
+EXTERN_DLL_EXPORT int GetInterfaceVersion()
 {
   return 8;
 }
 
 /* called when software is started */
-extern "C" int Startup(char *_szSavePath)
+EXTERN_DLL_EXPORT int Startup(char *_szSavePath)
 {
   /*
     return value is requested rate
@@ -41,64 +42,64 @@ extern "C" int Startup(char *_szSavePath)
 }
 
 /* called when software is closed */
-extern "C" void Shutdown()
+EXTERN_DLL_EXPORT void Shutdown()
 {
 }
 
 /* called when event is initialized */
-extern "C" void EventInit(void *_pData, int _iDataSize)
+EXTERN_DLL_EXPORT void EventInit(void *_pData, int _iDataSize)
 {
   SPluginsBikeEvent_t *psEventData = static_cast<SPluginsBikeEvent_t*>(_pData);
 }
 
 /* called when bike goes to track */
-extern "C" void RunInit(void *_pData, int _iDataSize)
+EXTERN_DLL_EXPORT void RunInit(void *_pData, int _iDataSize)
 {
   SPluginsBikeSession_t *psSessionData = static_cast<SPluginsBikeSession_t*>(_pData);
 }
 
 /* called when bike leaves the track */
-extern "C" void RunDeinit()
+EXTERN_DLL_EXPORT void RunDeinit()
 {
 }
 
 /* called when simulation is started / resumed */
-extern "C" void RunStart()
+EXTERN_DLL_EXPORT void RunStart()
 {
 }
 
 /* called when simulation is paused */
-extern "C" void RunStop()
+EXTERN_DLL_EXPORT void RunStop()
 {
 }
 
 /* called when a new lap is recorded. This function is optional */
-extern "C" void RunLap(void *_pData, int _iDataSize)
+EXTERN_DLL_EXPORT void RunLap(void *_pData, int _iDataSize)
 {
   SPluginsBikeLap_t *psLapData = static_cast<SPluginsBikeLap_t*>(_pData);
 }
 
 /* called when a split is crossed. This function is optional */
-extern "C" void RunSplit(void *_pData, int _iDataSize)
+EXTERN_DLL_EXPORT void RunSplit(void *_pData, int _iDataSize)
 {
   SPluginsBikeSplit_t *psSplitData = static_cast<SPluginsBikeSplit_t*>(_pData);
 }
 
 /* _fTime is the ontrack time, in seconds. _fPos is the position on centerline, from 0 to 1 */
-extern "C" void RunTelemetry(void *_pData, int _iDataSize, float _fTime, float _fPos)
+EXTERN_DLL_EXPORT void RunTelemetry(void *_pData, int _iDataSize, float _fTime, float _fPos)
 {
   SPluginsBikeData_t *psBikeData = static_cast<SPluginsBikeData_t*>(_pData);
 }
 
 /* This function is optional */
-extern "C" void TrackCenterline(int _iNumSegments, SPluginsTrackSegment_t *_pasSegment, void *_pRaceData)
+EXTERN_DLL_EXPORT void TrackCenterline(int _iNumSegments, SPluginsTrackSegment_t *_pasSegment, void *_pRaceData)
 {
 }
 
 #if 0
 
 /* called when software is started. This function is optional */
-extern "C" int DrawInit(int *_piNumSprites, char **_pszSpriteName, int *_piNumFonts, char **_pszFontName)
+EXTERN_DLL_EXPORT int DrawInit(int *_piNumSprites, char **_pszSpriteName, int *_piNumFonts, char **_pszFontName)
 {
   /*
     return 0 if pointers are set
@@ -107,7 +108,7 @@ extern "C" int DrawInit(int *_piNumSprites, char **_pszSpriteName, int *_piNumFo
 }
 
 /* This function is optional */
-extern "C" void Draw(int *_piNumQuads, void **_ppQuad, int *_piNumString, void **_ppString)
+EXTERN_DLL_EXPORT void Draw(int *_piNumQuads, void **_ppQuad, int *_piNumString, void **_ppString)
 {
   *_piNumQuads = 0;
   *_ppQuad = NULL;
