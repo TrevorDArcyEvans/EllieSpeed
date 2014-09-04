@@ -32,7 +32,7 @@ EXTERN_DLL_EXPORT int GetInterfaceVersion()
 }
 
 /* called when software is started */
-EXTERN_DLL_EXPORT int Startup(char *_szSavePath)
+EXTERN_DLL_EXPORT int Startup(char *szSavePath)
 {
   /*
     return value is requested rate
@@ -47,15 +47,15 @@ EXTERN_DLL_EXPORT void Shutdown()
 }
 
 /* called when event is initialized */
-EXTERN_DLL_EXPORT void EventInit(void *_pData, int _iDataSize)
+EXTERN_DLL_EXPORT void EventInit(void *pData, int _iDataSize)
 {
-  SPluginsBikeEvent_t *psEventData = static_cast<SPluginsBikeEvent_t*>(_pData);
+  SPluginsBikeEvent_t *psEventData = static_cast<SPluginsBikeEvent_t*>(pData);
 }
 
 /* called when bike goes to track */
-EXTERN_DLL_EXPORT void RunInit(void *_pData, int _iDataSize)
+EXTERN_DLL_EXPORT void RunInit(void *pData, int _iDataSize)
 {
-  SPluginsBikeSession_t *psSessionData = static_cast<SPluginsBikeSession_t*>(_pData);
+  SPluginsBikeSession_t *psSessionData = static_cast<SPluginsBikeSession_t*>(pData);
 }
 
 /* called when bike leaves the track */
@@ -74,32 +74,32 @@ EXTERN_DLL_EXPORT void RunStop()
 }
 
 /* called when a new lap is recorded. This function is optional */
-EXTERN_DLL_EXPORT void RunLap(void *_pData, int _iDataSize)
+EXTERN_DLL_EXPORT void RunLap(void *pData, int _iDataSize)
 {
-  SPluginsBikeLap_t *psLapData = static_cast<SPluginsBikeLap_t*>(_pData);
+  SPluginsBikeLap_t *psLapData = static_cast<SPluginsBikeLap_t*>(pData);
 }
 
 /* called when a split is crossed. This function is optional */
-EXTERN_DLL_EXPORT void RunSplit(void *_pData, int _iDataSize)
+EXTERN_DLL_EXPORT void RunSplit(void *pData, int _iDataSize)
 {
-  SPluginsBikeSplit_t *psSplitData = static_cast<SPluginsBikeSplit_t*>(_pData);
+  SPluginsBikeSplit_t *psSplitData = static_cast<SPluginsBikeSplit_t*>(pData);
 }
 
 /* _fTime is the ontrack time, in seconds. _fPos is the position on centerline, from 0 to 1 */
-EXTERN_DLL_EXPORT void RunTelemetry(void *_pData, int _iDataSize, float _fTime, float _fPos)
+EXTERN_DLL_EXPORT void RunTelemetry(void *pData, int _iDataSize, float _fTime, float _fPos)
 {
-  SPluginsBikeData_t *psBikeData = static_cast<SPluginsBikeData_t*>(_pData);
+  SPluginsBikeData_t *psBikeData = static_cast<SPluginsBikeData_t*>(pData);
 }
 
 /* This function is optional */
-EXTERN_DLL_EXPORT void TrackCenterline(int _iNumSegments, SPluginsTrackSegment_t *_pasSegment, void *_pRaceData)
+EXTERN_DLL_EXPORT void TrackCenterline(int _iNumSegments, SPluginsTrackSegment_t *pasSegment, void *pRaceData)
 {
 }
 
 #if 0
 
 /* called when software is started. This function is optional */
-EXTERN_DLL_EXPORT int DrawInit(int *_piNumSprites, char **_pszSpriteName, int *_piNumFonts, char **_pszFontName)
+EXTERN_DLL_EXPORT int DrawInit(int *piNumSprites, char **pszSpriteName, int *piNumFonts, char **pszFontName)
 {
   /*
     return 0 if pointers are set
@@ -108,12 +108,12 @@ EXTERN_DLL_EXPORT int DrawInit(int *_piNumSprites, char **_pszSpriteName, int *_
 }
 
 /* This function is optional */
-EXTERN_DLL_EXPORT void Draw(int *_piNumQuads, void **_ppQuad, int *_piNumString, void **_ppString)
+EXTERN_DLL_EXPORT void Draw(int *piNumQuads, void **ppQuad, int *piNumString, void **ppString)
 {
-  *_piNumQuads = 0;
-  *_ppQuad = NULL;
-  *_piNumString = 0;
-  *_ppString = NULL;
+  *piNumQuads = 0;
+  *ppQuad = NULL;
+  *piNumString = 0;
+  *ppString = NULL;
 }
 
 #endif
