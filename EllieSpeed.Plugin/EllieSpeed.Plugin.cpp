@@ -7,7 +7,6 @@
 //
 
 #include "stdafx.h"
-#include "GPBikes.h"
 
 /*
 If compiled as C++, extern "C" must be added to declaration of functions to export
@@ -34,6 +33,8 @@ EXTERN_DLL_EXPORT int GetInterfaceVersion()
 /* called when software is started */
 EXTERN_DLL_EXPORT int Startup(char *szSavePath)
 {
+  mBroadcaster->OnStartup();
+
   /*
     return value is requested rate
     0 = 100hz; 1 = 50hz; 2 = 20hz; 3 = 10hz; -1 = disable
@@ -44,51 +45,61 @@ EXTERN_DLL_EXPORT int Startup(char *szSavePath)
 /* called when software is closed */
 EXTERN_DLL_EXPORT void Shutdown()
 {
+  mBroadcaster->OnShutdown();
 }
 
 /* called when event is initialized */
 EXTERN_DLL_EXPORT void EventInit(void *pData, int _iDataSize)
 {
   SPluginsBikeEvent_t *psEventData = static_cast<SPluginsBikeEvent_t*>(pData);
+
+  mBroadcaster->OnEventInit(*psEventData);
 }
 
 /* called when bike goes to track */
 EXTERN_DLL_EXPORT void RunInit(void *pData, int _iDataSize)
 {
   SPluginsBikeSession_t *psSessionData = static_cast<SPluginsBikeSession_t*>(pData);
+  mBroadcaster->OnRunInit(*psSessionData);
 }
 
 /* called when bike leaves the track */
 EXTERN_DLL_EXPORT void RunDeinit()
 {
+  mBroadcaster->OnRunDeinit();
 }
 
 /* called when simulation is started / resumed */
 EXTERN_DLL_EXPORT void RunStart()
 {
+  mBroadcaster->OnRunStart();
 }
 
 /* called when simulation is paused */
 EXTERN_DLL_EXPORT void RunStop()
 {
+  mBroadcaster->OnRunStop();
 }
 
 /* called when a new lap is recorded. This function is optional */
 EXTERN_DLL_EXPORT void RunLap(void *pData, int _iDataSize)
 {
   SPluginsBikeLap_t *psLapData = static_cast<SPluginsBikeLap_t*>(pData);
+  mBroadcaster->OnRunLap(*psLapData);
 }
 
 /* called when a split is crossed. This function is optional */
 EXTERN_DLL_EXPORT void RunSplit(void *pData, int _iDataSize)
 {
   SPluginsBikeSplit_t *psSplitData = static_cast<SPluginsBikeSplit_t*>(pData);
+  mBroadcaster->OnRunSplit(*psSplitData);
 }
 
 /* _fTime is the ontrack time, in seconds. _fPos is the position on centerline, from 0 to 1 */
 EXTERN_DLL_EXPORT void RunTelemetry(void *pData, int _iDataSize, float _fTime, float _fPos)
 {
   SPluginsBikeData_t *psBikeData = static_cast<SPluginsBikeData_t*>(pData);
+  mBroadcaster->OnRunTelemetry(*psBikeData);
 }
 
 /* This function is optional */
