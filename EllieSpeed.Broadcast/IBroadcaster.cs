@@ -26,5 +26,6 @@ namespace EllieSpeed.Broadcast
     void OnRunLap(GPBikes.SPluginsBikeLap_t data);
     void OnRunSplit(GPBikes.SPluginsBikeSplit_t data);
     void OnRunTelemetry(GPBikes.SPluginsBikeData_t data);
+    void OnTrackCenterline(IPluginsTrackSegmentInfo[] data);
   }
 }

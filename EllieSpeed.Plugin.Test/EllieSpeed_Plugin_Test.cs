@@ -7,6 +7,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using EllieSpeed.Interfaces;
 using NUnit.Framework;
@@ -92,6 +93,14 @@ namespace EllieSpeed.Plugin.Test
     /* fTime is the ontrack time, in seconds. fPos is the position on centerline, from 0 to 1 */
     [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "RunTelemetry")]
     public static extern void RunTelemetry(IntPtr pData, int iDataSize, float fTime, float fPos);
+
+    /// Return Type: void
+    /// iNumSegments: int
+    /// pasSegment: SPluginsTrackSegment_t*
+    /// pRaceData: void*
+    /* This function is optional */
+    [DllImport("EllieSpeed.Plugin.dlo", EntryPoint = "TrackCenterline")]
+    public static extern void TrackCenterline(int iNumSegments, [MarshalAs(UnmanagedType.LPArray)] GPBikes.SPluginsTrackSegment_t[] pasSegment, IntPtr pRaceData);
 
     #endregion
 
@@ -199,6 +208,43 @@ namespace EllieSpeed.Plugin.Test
       Marshal.StructureToPtr(data, ptr, true);
 
       RunTelemetry(ptr, default(int), default(float), default(float));
+    }
+
+    // cannot have a default constructor for a struct so have this factory
+    // so we initialise Start array
+    private static GPBikes.SPluginsTrackSegment_t CreatePluginsTrackSegment()
+    {
+      return new GPBikes.SPluginsTrackSegment_t
+                  {
+                    Start = new float[2]
+                  };
+    }
+
+    private void Randomise(ref GPBikes.SPluginsTrackSegment_t seg, int seq)
+    {
+      seg.Angle = seq * 36f;
+      seg.Length = seq * 50f;
+      seg.Radius = seq * 10f;
+      seg.Type = seq * 1;
+      seg.Start[0] = seq * 10f;
+      seg.Start[1] = seq * 10f;
+    }
+
+    [Test]
+    public void TrackCenterline_Completes()
+    {
+      const int NumTrackSegs = 10;
+
+      var data = new List<GPBikes.SPluginsTrackSegment_t>(NumTrackSegs);
+
+      for (var i = 0; i < NumTrackSegs; i++)
+      {
+        var currData = CreatePluginsTrackSegment();
+        Randomise(ref currData, i);
+        data.Add(currData);
+      }
+
+      TrackCenterline(data.Count, data.ToArray(), IntPtr.Zero);
     }
   }
 }

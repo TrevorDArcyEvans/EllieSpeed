@@ -23,6 +23,7 @@
 // TODO: reference additional headers your program requires here
 
 #include <stdio.h>
+#include <atlsafe.h>
 #include "GPBikes.h"
 #import "EllieSpeed.Broadcast.tlb" no_namespace raw_interfaces_only named_guids
 

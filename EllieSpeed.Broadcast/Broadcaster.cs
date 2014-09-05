@@ -67,5 +67,10 @@ namespace EllieSpeed.Broadcast
     {
       Console.WriteLine("OnRunTelemetry");
     }
+
+    public void OnTrackCenterline(IPluginsTrackSegmentInfo[] data)
+    {
+      Console.WriteLine("OnTrackCenterline");
+    }
   }
 }

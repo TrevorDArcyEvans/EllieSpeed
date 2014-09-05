@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Broadcaster.cs" />
     <Compile Include="IBroadcaster.cs" />
+    <Compile Include="IPluginsTrackSegmentInfo.cs" />
+    <Compile Include="PluginsTrackSegmentInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
