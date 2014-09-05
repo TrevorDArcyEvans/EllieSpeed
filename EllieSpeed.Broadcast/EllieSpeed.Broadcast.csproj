@@ -60,7 +60,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Broadcast.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Broadcast.Designer.cs</LastGenOutput>
