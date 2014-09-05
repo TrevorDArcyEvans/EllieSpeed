@@ -89,7 +89,7 @@ namespace EllieSpeed.Interfaces
       /*  0 = Neutral  */
       public int Gear;
 
-     /*  liters  */
+      /*  liters  */
       public float Fuel;
 
       /*  meters/second  */
@@ -225,7 +225,7 @@ namespace EllieSpeed.Interfaces
       public float Radius;
       public float Angle;
       [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.R4)]
-      public float[] fStart;
+      public float[] Start;
     }
   }
 }
