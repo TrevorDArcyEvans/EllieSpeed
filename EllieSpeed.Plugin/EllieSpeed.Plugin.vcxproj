@@ -43,13 +43,13 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
     <TargetExt>.dlo</TargetExt>
-    <IncludePath>$(OutDir);$(IncludePath)</IncludePath>
+    <IncludePath>..\Ref;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
     <TargetExt>.dlo</TargetExt>
-    <IncludePath>$(OutDir);$(IncludePath)</IncludePath>
+    <IncludePath>..\Ref;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
