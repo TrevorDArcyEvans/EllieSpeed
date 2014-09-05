@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{33CB6B1E-0A4C-4DD3-9EDA-D1EB85D58A86}</ProjectGuid>
+    <ProjectGuid>{6501D7FC-E71A-4BF9-A585-56126183883B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EllieSpeed.Plugin.Test</RootNamespace>
-    <AssemblyName>EllieSpeed.Plugin.Test</AssemblyName>
+    <RootNamespace>EllieSpeed.Receive</RootNamespace>
+    <AssemblyName>EllieSpeed.Receive</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -21,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,12 +29,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Stash\test-repository\AVEVA NET\Ref\nUnit\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,7 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EllieSpeed_Plugin_Test.cs" />
+    <Compile Include="DataEventArgs.cs" />
+    <Compile Include="Receiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,10 +52,6 @@
     <ProjectReference Include="..\EllieSpeed.Interfaces\EllieSpeed.Interfaces.csproj">
       <Project>{6876CD48-53D2-44C7-A077-2BF6A73CB366}</Project>
       <Name>EllieSpeed.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EllieSpeed.Receive\EllieSpeed.Receive.csproj">
-      <Project>{6501D7FC-E71A-4BF9-A585-56126183883B}</Project>
-      <Name>EllieSpeed.Receive</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

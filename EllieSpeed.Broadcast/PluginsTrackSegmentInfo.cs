@@ -6,10 +6,12 @@
 //  www.EllieWare.com
 //
 
+using System;
 using System.Runtime.InteropServices;
 
 namespace EllieSpeed.Broadcast
 {
+  [Serializable]
   [ComVisible(true)]
   [Guid("323A4BA9-E942-49F8-A0E3-C57857C8158B")]
   [ClassInterface(ClassInterfaceType.None)]

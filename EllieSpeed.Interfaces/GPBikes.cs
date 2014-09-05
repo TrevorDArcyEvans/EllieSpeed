@@ -6,12 +6,14 @@
 //  www.EllieWare.com
 //
 
+using System;
 using System.Runtime.InteropServices;
 
 namespace EllieSpeed.Interfaces
 {
   public class GPBikes
   {
+    [Serializable]
     [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct SPluginsBikeEvent_t
     {
@@ -55,6 +57,7 @@ namespace EllieSpeed.Interfaces
       public float TrackLength;
     }
 
+    [Serializable]
     [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct SPluginsBikeSession_t
     {
@@ -74,6 +77,7 @@ namespace EllieSpeed.Interfaces
       public string SetupFileName;
     }
 
+    [Serializable]
     [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct SPluginsBikeData_t
     {
@@ -157,6 +161,7 @@ namespace EllieSpeed.Interfaces
       public string EngineMapping;
     }
 
+    [Serializable]
     [StructLayoutAttribute(LayoutKind.Sequential)]
     public struct SPluginsBikeLap_t
     {
@@ -169,6 +174,7 @@ namespace EllieSpeed.Interfaces
       public int LapNum;
     }
 
+    [Serializable]
     [StructLayoutAttribute(LayoutKind.Sequential)]
     public struct SPluginsBikeSplit_t
     {
@@ -181,6 +187,7 @@ namespace EllieSpeed.Interfaces
       public int BestDiff;
     }
 
+    [Serializable]
     [StructLayoutAttribute(LayoutKind.Sequential)]
     public struct SPluginQuad_t
     {
@@ -195,6 +202,7 @@ namespace EllieSpeed.Interfaces
       public uint Color;
     }
 
+    [Serializable]
     [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct SPluginString_t
     {
@@ -217,6 +225,7 @@ namespace EllieSpeed.Interfaces
       public uint Color;
     }
 
+    [Serializable]
     [StructLayoutAttribute(LayoutKind.Sequential)]
     public struct SPluginsTrackSegment_t
     {
