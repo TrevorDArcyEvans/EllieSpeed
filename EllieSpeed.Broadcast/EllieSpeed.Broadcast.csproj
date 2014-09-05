@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Broadcast.cs" />
+    <Compile Include="Broadcast.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Broadcast.settings</DependentUpon>
+    </Compile>
     <Compile Include="Broadcaster.cs" />
     <Compile Include="IBroadcaster.cs" />
     <Compile Include="IPluginsTrackSegmentInfo.cs" />
@@ -52,6 +58,13 @@
       <Project>{6876CD48-53D2-44C7-A077-2BF6A73CB366}</Project>
       <Name>EllieSpeed.Interfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Broadcast.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Broadcast.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

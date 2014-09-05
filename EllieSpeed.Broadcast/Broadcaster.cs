@@ -28,10 +28,7 @@ namespace EllieSpeed.Broadcast
 
     public Broadcaster()
     {
-      // TODO   read from config file
-      const int BroadcastPort = 11000;
-
-      mEndPt = new IPEndPoint(IPAddress.Broadcast, BroadcastPort);
+      mEndPt = new IPEndPoint(IPAddress.Broadcast, Broadcast.Default.BroadcastPort);
       mSender = new UdpClient();
     }
 
