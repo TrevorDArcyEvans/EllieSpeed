@@ -31,7 +31,7 @@ namespace EllieSpeed.Receive
     public event EventHandler<DataEventArgs<GPBikes.SPluginsBikeData_t>> OnRunTelemetry;
     public event EventHandler<DataEventArgs<IPluginsTrackSegmentInfo[]>> OnTrackCenterline;
 
-    private UdpClient mReceiver;
+    private readonly UdpClient mReceiver;
 
     public Receiver(int port)
     {
