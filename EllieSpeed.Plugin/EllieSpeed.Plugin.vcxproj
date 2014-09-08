@@ -41,13 +41,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
+    <OutDir>C:\Program Files\GP Bikes\gpbikes\plugins\</OutDir>
     <TargetExt>.dlo</TargetExt>
     <IncludePath>..\Ref;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
+    <OutDir>C:\Program Files\GP Bikes\gpbikes\plugins\</OutDir>
     <TargetExt>.dlo</TargetExt>
     <IncludePath>..\Ref;$(IncludePath)</IncludePath>
   </PropertyGroup>
