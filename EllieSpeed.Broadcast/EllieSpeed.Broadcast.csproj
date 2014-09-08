@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\EllieSpeed.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -41,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\AssemblyInfoCommon.cs">
+      <Link>Properties\AssemblyInfoCommon.cs</Link>
+    </Compile>
     <Compile Include="Broadcast.cs" />
     <Compile Include="Broadcast.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -60,6 +69,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\EllieSpeed.snk">
+      <Link>EllieSpeed.snk</Link>
+    </None>
     <None Include="Broadcast.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Broadcast.Designer.cs</LastGenOutput>
