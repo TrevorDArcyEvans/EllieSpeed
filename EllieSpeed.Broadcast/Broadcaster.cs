@@ -29,7 +29,10 @@ namespace EllieSpeed.Broadcast
     public Broadcaster()
     {
       mEndPt = new IPEndPoint(IPAddress.Broadcast, Broadcast.Default.BroadcastPort);
-      mSender = new UdpClient();
+      mSender = new UdpClient
+                      {
+                        EnableBroadcast = true
+                      };
     }
 
     private void SendMessage(byte[] msg)

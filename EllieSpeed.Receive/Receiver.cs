@@ -32,18 +32,27 @@ namespace EllieSpeed.Receive
     public event EventHandler<DataEventArgs<IPluginsTrackSegmentInfo[]>> OnTrackCenterline;
 
     private readonly UdpClient mReceiver;
+    private IPEndPoint mEndPt;
 
     public Receiver(int port)
     {
-      var endPt = new IPEndPoint(IPAddress.Any, port);
-      mReceiver = new UdpClient(endPt);
-      mReceiver.BeginReceive(
-        ar =>
-        {
-          var msgBytes = mReceiver.EndReceive(ar, ref endPt);
-          ProcessMessage(msgBytes);
-        },
-        null);
+      mEndPt = new IPEndPoint(IPAddress.Any, port);
+      mReceiver = new UdpClient();
+      mReceiver.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+      mReceiver.Client.Bind(mEndPt);
+      StartListening();
+    }
+
+    private void StartListening()
+    {
+      mReceiver.BeginReceive(Receive, null);
+    }
+
+    private void Receive(IAsyncResult ar)
+    {
+      var msgBytes = mReceiver.EndReceive(ar, ref mEndPt);
+      ProcessMessage(msgBytes);
+      StartListening();
     }
 
     private Object ByteArrayToObject(byte[] arrBytes)
