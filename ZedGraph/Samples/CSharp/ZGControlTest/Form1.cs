@@ -42,7 +42,7 @@ namespace ZGControlTest
 			// Make up some data points based on the Sine function
 			PointPairList list = new PointPairList();
 			PointPairList list2 = new PointPairList();
-			for ( int i = 0; i < 36; i++ )
+			for ( int i = 0; i < 36000; i++ )
 			{
 				double x = (double)i * 5.0;
 				double y = Math.Sin( (double)i * Math.PI / 15.0 ) * 16.0;
