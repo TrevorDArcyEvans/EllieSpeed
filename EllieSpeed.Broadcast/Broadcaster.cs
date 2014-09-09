@@ -10,16 +10,11 @@ using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace EllieSpeed.Broadcast
 {
-  [ComVisible(true)]
-  [Guid("2FC343DE-970F-46B8-8C66-C66A92E70A7B")]
-  [ClassInterface(ClassInterfaceType.None)]
-  [ProgId("EllieSpeed.Broadcaster")]
   public class Broadcaster : IBroadcaster, IDisposable
   {
     private readonly IPEndPoint mEndPt;
