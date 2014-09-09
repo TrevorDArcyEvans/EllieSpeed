@@ -14,7 +14,7 @@ using namespace System::IO;
 using namespace System::Reflection;
 using namespace System::Runtime::InteropServices;
 
-#using "C:\Program Files\GP Bikes\gpbikes\plugins\EllieSpeed.Broadcast.dll"
+#using "EllieSpeed.Broadcast.dll"
 
 EllieSpeed::Broadcast::IBroadcaster^ CreateBroadcaster()
 {
