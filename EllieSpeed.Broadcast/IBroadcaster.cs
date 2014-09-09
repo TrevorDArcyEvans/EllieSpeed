@@ -6,14 +6,8 @@
 //  www.EllieWare.com
 //
 
-using System.Runtime.InteropServices;
-using EllieSpeed.Interfaces;
-
 namespace EllieSpeed.Broadcast
 {
-  [ComVisible(true)]
-  [Guid("4E134DDD-DC1D-4BFC-8B8F-5D12D4769B8F")]
-  [InterfaceType(ComInterfaceType.InterfaceIsDual)]
   public interface IBroadcaster
   {
     void OnStartup();
@@ -26,6 +20,6 @@ namespace EllieSpeed.Broadcast
     void OnRunLap(GPBikes.SPluginsBikeLap_t data);
     void OnRunSplit(GPBikes.SPluginsBikeSplit_t data);
     void OnRunTelemetry(GPBikes.SPluginsBikeData_t data);
-    void OnTrackCenterline(IPluginsTrackSegmentInfo[] data);
+    void OnTrackCenterline(GPBikes.SPluginsTrackSegment_t[] data);
   }
 }

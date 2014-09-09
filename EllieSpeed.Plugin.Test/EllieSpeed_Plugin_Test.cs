@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading;
-using EllieSpeed.Interfaces;
+using EllieSpeed.Broadcast;
 using EllieSpeed.Receive;
 using NUnit.Framework;
 
@@ -575,8 +575,8 @@ namespace EllieSpeed.Plugin.Test
             Assert.AreEqual(recData[i].Length, data[i].Length);
             Assert.AreEqual(recData[i].Radius, data[i].Radius);
             Assert.AreEqual(recData[i].Angle, data[i].Angle);
-            Assert.AreEqual(recData[i].Start1, data[i].Start[0]);
-            Assert.AreEqual(recData[i].Start2, data[i].Start[1]);
+            Assert.AreEqual(recData[i].Start[0], data[i].Start[0]);
+            Assert.AreEqual(recData[i].Start[1], data[i].Start[1]);
           }
         };
 

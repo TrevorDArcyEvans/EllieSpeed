@@ -5,8 +5,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EllieSpeed.Plugin", "EllieS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.Plugin.Test", "EllieSpeed.Plugin.Test\EllieSpeed.Plugin.Test.csproj", "{33CB6B1E-0A4C-4DD3-9EDA-D1EB85D58A86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.Interfaces", "EllieSpeed.Interfaces\EllieSpeed.Interfaces.csproj", "{6876CD48-53D2-44C7-A077-2BF6A73CB366}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.Broadcast", "EllieSpeed.Broadcast\EllieSpeed.Broadcast.csproj", "{180EA89E-CB8D-4889-B70E-4F5A77B219ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.Receive", "EllieSpeed.Receive\EllieSpeed.Receive.csproj", "{6501D7FC-E71A-4BF9-A585-56126183883B}"
@@ -51,18 +49,6 @@ Global
 		{33CB6B1E-0A4C-4DD3-9EDA-D1EB85D58A86}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{33CB6B1E-0A4C-4DD3-9EDA-D1EB85D58A86}.Release|Win32.ActiveCfg = Release|Any CPU
 		{33CB6B1E-0A4C-4DD3-9EDA-D1EB85D58A86}.Release|x86.ActiveCfg = Release|Any CPU
-		{6876CD48-53D2-44C7-A077-2BF6A73CB366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6876CD48-53D2-44C7-A077-2BF6A73CB366}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6876CD48-53D2-44C7-A077-2BF6A73CB366}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{6876CD48-53D2-44C7-A077-2BF6A73CB366}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{6876CD48-53D2-44C7-A077-2BF6A73CB366}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{6876CD48-53D2-44C7-A077-2BF6A73CB366}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6876CD48-53D2-44C7-A077-2BF6A73CB366}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6876CD48-53D2-44C7-A077-2BF6A73CB366}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6876CD48-53D2-44C7-A077-2BF6A73CB366}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{6876CD48-53D2-44C7-A077-2BF6A73CB366}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{6876CD48-53D2-44C7-A077-2BF6A73CB366}.Release|Win32.ActiveCfg = Release|Any CPU
-		{6876CD48-53D2-44C7-A077-2BF6A73CB366}.Release|x86.ActiveCfg = Release|Any CPU
 		{180EA89E-CB8D-4889-B70E-4F5A77B219ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{180EA89E-CB8D-4889-B70E-4F5A77B219ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{180EA89E-CB8D-4889-B70E-4F5A77B219ED}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

@@ -21,6 +21,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>Static</UseOfAtl>
+    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -28,6 +29,7 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfAtl>Static</UseOfAtl>
+    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -43,13 +45,15 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>C:\Program Files\GP Bikes\gpbikes\plugins\</OutDir>
     <TargetExt>.dlo</TargetExt>
-    <IncludePath>..\Ref;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>C:\Program Files\GP Bikes\gpbikes\plugins\</OutDir>
     <TargetExt>.dlo</TargetExt>
-    <IncludePath>..\Ref;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\GP Bikes\gpbikes\plugins;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -104,9 +108,6 @@
   <ItemGroup>
     <ProjectReference Include="..\EllieSpeed.Broadcast\EllieSpeed.Broadcast.csproj">
       <Project>{180ea89e-cb8d-4889-b70e-4f5a77b219ed}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EllieSpeed.Interfaces\EllieSpeed.Interfaces.csproj">
-      <Project>{6876cd48-53d2-44c7-a077-2bf6a73cb366}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

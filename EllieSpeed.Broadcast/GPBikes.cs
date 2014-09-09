@@ -9,21 +9,21 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace EllieSpeed.Interfaces
+namespace EllieSpeed.Broadcast
 {
   public class GPBikes
   {
     [Serializable]
-    [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct SPluginsBikeEvent_t
     {
-      [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 100)]
+      [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
       public string RiderName;
 
-      [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 100)]
+      [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
       public string BikeID;
 
-      [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 100)]
+      [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
       public string BikeName;
 
       public int NumberOfGears;
@@ -38,19 +38,19 @@ namespace EllieSpeed.Interfaces
       public float EngineOptTemperature;
 
       /*  degrees Celsius. Lower and upper limits  */
-      [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.R4)]
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.R4)]
       public float[] EngineTemperatureAlarm;
 
       /*  liters  */
       public float MaxFuel;
 
-      [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 100)]
+      [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
       public string Category;
 
-      [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 100)]
+      [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
       public string TrackID;
 
-      [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 100)]
+      [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
       public string TrackName;
 
       /*  centerline length. meters  */
@@ -58,7 +58,7 @@ namespace EllieSpeed.Interfaces
     }
 
     [Serializable]
-    [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct SPluginsBikeSession_t
     {
       /*  0 = testing; 1 = practice; 2 = qualify; 3 = warmup; 4 = race  */
@@ -73,12 +73,12 @@ namespace EllieSpeed.Interfaces
       /*  degrees Celsius  */
       public float TrackTemperature;
 
-      [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 100)]
+      [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
       public string SetupFileName;
     }
 
     [Serializable]
-    [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct SPluginsBikeData_t
     {
       /*  engine rpm  */
@@ -115,7 +115,7 @@ namespace EllieSpeed.Interfaces
       public float AccelerationZ;
 
       /*  rotation  matrix of the chassis.  It incorporates lean and wheeling  */
-      [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 9, ArraySubType = UnmanagedType.R4)]
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9, ArraySubType = UnmanagedType.R4)]
       public float[] Rot;
 
       /*  degrees,  -180  to  180  */
@@ -129,7 +129,7 @@ namespace EllieSpeed.Interfaces
       public float RollVelocity;
 
       /*  normalized suspensions length.  0 = front; 1 = rear  */
-      [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.R4)]
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.R4)]
       public float[] SuspNormLength;
 
       /*  1 = rider is detached from bike  */
@@ -151,18 +151,18 @@ namespace EllieSpeed.Interfaces
       public float Clutch;
 
       /*  meters/second.  0 = front; 1  = rear  */
-      [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.R4)]
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.R4)]
       public float[] WheelSpeed;
 
       /*  1 = pit limiter is activated  */
       public int PitLimiter;
 
-      [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 100)]
+      [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
       public string EngineMapping;
     }
 
     [Serializable]
-    [StructLayoutAttribute(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct SPluginsBikeLap_t
     {
       /*  milliseconds  */
@@ -175,7 +175,7 @@ namespace EllieSpeed.Interfaces
     }
 
     [Serializable]
-    [StructLayoutAttribute(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct SPluginsBikeSplit_t
     {
       public int Split;
@@ -188,11 +188,11 @@ namespace EllieSpeed.Interfaces
     }
 
     [Serializable]
-    [StructLayoutAttribute(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct SPluginQuad_t
     {
       /* 0,0 -> top left. 1,1 -> bottom right. counter-clockwise */
-      [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.R4)]
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.R4)]
       public float[] Pos;
 
       /* 1 based index in SpriteName buffer. 0 = fill with Color */
@@ -203,14 +203,14 @@ namespace EllieSpeed.Interfaces
     }
 
     [Serializable]
-    [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct SPluginString_t
     {
-      [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 100)]
+      [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
       public string String;
 
       /* 0,0 -> top left. 1,1 -> bottom right */
-      [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.R4)]
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.R4)]
       public float[] Pos;
 
       /* 1 based index in FontName buffer */
@@ -226,14 +226,14 @@ namespace EllieSpeed.Interfaces
     }
 
     [Serializable]
-    [StructLayoutAttribute(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct SPluginsTrackSegment_t
     {
       public int Type;
       public float Length;
       public float Radius;
       public float Angle;
-      [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.R4)]
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.R4)]
       public float[] Start;
     }
   }

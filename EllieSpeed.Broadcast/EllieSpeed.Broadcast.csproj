@@ -57,16 +57,9 @@
       <DependentUpon>Broadcast.settings</DependentUpon>
     </Compile>
     <Compile Include="Broadcaster.cs" />
+    <Compile Include="GPBikes.cs" />
     <Compile Include="IBroadcaster.cs" />
-    <Compile Include="IPluginsTrackSegmentInfo.cs" />
-    <Compile Include="PluginsTrackSegmentInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EllieSpeed.Interfaces\EllieSpeed.Interfaces.csproj">
-      <Project>{6876CD48-53D2-44C7-A077-2BF6A73CB366}</Project>
-      <Name>EllieSpeed.Interfaces</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\EllieSpeed.snk">

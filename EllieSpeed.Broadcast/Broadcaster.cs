@@ -13,7 +13,6 @@ using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using EllieSpeed.Interfaces;
 
 namespace EllieSpeed.Broadcast
 {
@@ -116,7 +115,7 @@ namespace EllieSpeed.Broadcast
       SendMessage(msg);
     }
 
-    public void OnTrackCenterline(IPluginsTrackSegmentInfo[] data)
+    public void OnTrackCenterline(GPBikes.SPluginsTrackSegment_t[] data)
     {
       var msg = ObjectToByteArray(data);
       SendMessage(msg);

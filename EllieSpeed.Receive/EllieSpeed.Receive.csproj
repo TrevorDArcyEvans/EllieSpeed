@@ -58,10 +58,6 @@
       <Project>{180EA89E-CB8D-4889-B70E-4F5A77B219ED}</Project>
       <Name>EllieSpeed.Broadcast</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EllieSpeed.Interfaces\EllieSpeed.Interfaces.csproj">
-      <Project>{6876CD48-53D2-44C7-A077-2BF6A73CB366}</Project>
-      <Name>EllieSpeed.Interfaces</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\EllieSpeed.snk">

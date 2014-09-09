@@ -13,7 +13,6 @@ using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using EllieSpeed.Broadcast;
-using EllieSpeed.Interfaces;
 
 namespace EllieSpeed.Receive
 {
@@ -29,7 +28,7 @@ namespace EllieSpeed.Receive
     public event EventHandler<DataEventArgs<GPBikes.SPluginsBikeLap_t>> OnRunLap;
     public event EventHandler<DataEventArgs<GPBikes.SPluginsBikeSplit_t>> OnRunSplit;
     public event EventHandler<DataEventArgs<GPBikes.SPluginsBikeData_t>> OnRunTelemetry;
-    public event EventHandler<DataEventArgs<IPluginsTrackSegmentInfo[]>> OnTrackCenterline;
+    public event EventHandler<DataEventArgs<GPBikes.SPluginsTrackSegment_t[]>> OnTrackCenterline;
 
     private readonly UdpClient mReceiver;
     private IPEndPoint mEndPt;
@@ -135,9 +134,9 @@ namespace EllieSpeed.Receive
         return;
       }
 
-      if (obj is IPluginsTrackSegmentInfo[] && OnTrackCenterline != null)
+      if (obj is GPBikes.SPluginsTrackSegment_t[] && OnTrackCenterline != null)
       {
-        OnTrackCenterline(this, new DataEventArgs<IPluginsTrackSegmentInfo[]>((IPluginsTrackSegmentInfo[])obj));
+        OnTrackCenterline(this, new DataEventArgs<GPBikes.SPluginsTrackSegment_t[]>((GPBikes.SPluginsTrackSegment_t[])obj));
         return;
       }
     }
