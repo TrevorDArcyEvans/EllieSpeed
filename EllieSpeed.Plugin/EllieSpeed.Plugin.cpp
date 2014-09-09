@@ -235,6 +235,7 @@ EXTERN_DLL_EXPORT void RunTelemetry(void *pData, int iDataSize, float fTime, flo
 }
 
 /* This function is optional */
+/* called when a track is selected */
 EXTERN_DLL_EXPORT void TrackCenterline(int iNumSegments, SPluginsTrackSegment_t *pasSegment, void *pRaceData)
 {
   // convert to managed data
