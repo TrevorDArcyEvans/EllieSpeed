@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZedGraph", "ZedGraph\Source
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZGControlTest", "ZedGraph\Samples\CSharp\ZGControlTest\ZGControlTest.csproj", "{E34DD39C-7E93-40C9-B72B-2E5709003CF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.DataLogger", "EllieSpeed.DataLogger\EllieSpeed.DataLogger.csproj", "{B1BCC89E-5046-48C1-8B83-7799824DA37D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.DataLogger.Test", "EllieSpeed.DataLogger.Test\EllieSpeed.DataLogger.Test.csproj", "{D94FD666-1082-443E-9A1D-F1FB7AB16D12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +115,30 @@ Global
 		{E34DD39C-7E93-40C9-B72B-2E5709003CF3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E34DD39C-7E93-40C9-B72B-2E5709003CF3}.Release|Win32.ActiveCfg = Release|Any CPU
 		{E34DD39C-7E93-40C9-B72B-2E5709003CF3}.Release|x86.ActiveCfg = Release|Any CPU
+		{B1BCC89E-5046-48C1-8B83-7799824DA37D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1BCC89E-5046-48C1-8B83-7799824DA37D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1BCC89E-5046-48C1-8B83-7799824DA37D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B1BCC89E-5046-48C1-8B83-7799824DA37D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B1BCC89E-5046-48C1-8B83-7799824DA37D}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{B1BCC89E-5046-48C1-8B83-7799824DA37D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B1BCC89E-5046-48C1-8B83-7799824DA37D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1BCC89E-5046-48C1-8B83-7799824DA37D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1BCC89E-5046-48C1-8B83-7799824DA37D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B1BCC89E-5046-48C1-8B83-7799824DA37D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B1BCC89E-5046-48C1-8B83-7799824DA37D}.Release|Win32.ActiveCfg = Release|Any CPU
+		{B1BCC89E-5046-48C1-8B83-7799824DA37D}.Release|x86.ActiveCfg = Release|Any CPU
+		{D94FD666-1082-443E-9A1D-F1FB7AB16D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D94FD666-1082-443E-9A1D-F1FB7AB16D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D94FD666-1082-443E-9A1D-F1FB7AB16D12}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D94FD666-1082-443E-9A1D-F1FB7AB16D12}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D94FD666-1082-443E-9A1D-F1FB7AB16D12}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{D94FD666-1082-443E-9A1D-F1FB7AB16D12}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D94FD666-1082-443E-9A1D-F1FB7AB16D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D94FD666-1082-443E-9A1D-F1FB7AB16D12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D94FD666-1082-443E-9A1D-F1FB7AB16D12}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D94FD666-1082-443E-9A1D-F1FB7AB16D12}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D94FD666-1082-443E-9A1D-F1FB7AB16D12}.Release|Win32.ActiveCfg = Release|Any CPU
+		{D94FD666-1082-443E-9A1D-F1FB7AB16D12}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
