@@ -58,7 +58,7 @@ namespace EllieSpeed.DataLogger
       mReceiver.OnTrackCenterline += OnTrackCenterline;
     }
 
-    public SQLiteLogger(string filePath, IBroadcaster broadcaster) :
+    internal SQLiteLogger(string filePath, IBroadcaster broadcaster) :
       this(filePath)
     {
       mRecLog = broadcaster;
