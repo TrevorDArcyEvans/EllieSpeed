@@ -28,9 +28,16 @@ namespace EllieSpeed.DataLogger.Test
       var dataFilePath = Path.Combine(assyDir, "DelMe.sqlite3");
       Utils.SafeDelete(dataFilePath);
 
-      var logger = new SQLiteLogger(dataFilePath);
+      try
+      {
+        var logger = new SQLiteLogger(dataFilePath);
 
-      Assert.IsNotNull(logger);
+        Assert.IsNotNull(logger);
+      }
+      finally
+      {
+        Utils.SafeDelete(dataFilePath);
+      }
     }
   }
 }
