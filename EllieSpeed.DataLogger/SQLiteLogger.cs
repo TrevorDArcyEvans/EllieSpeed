@@ -21,7 +21,7 @@ namespace EllieSpeed.DataLogger
   {
     private readonly DataLogger mLogger;
     private readonly Receiver mReceiver = new Receiver(Broadcaster.BroadcastPort);
-    private readonly IBroadcaster mRecLog;
+    private readonly IBroadcaster mRecLog = new NullBroadcaster();
 
     public SQLiteLogger(string filePath)
     {
@@ -129,5 +129,52 @@ namespace EllieSpeed.DataLogger
     }
 
     #endregion
+
+    private class NullBroadcaster : IBroadcaster
+    {
+      public void OnStartup()
+      {
+      }
+
+      public void OnShutdown()
+      {
+      }
+
+      public void OnEventInit(GPBikes.SPluginsBikeEvent_t data)
+      {
+      }
+
+      public void OnRunInit(GPBikes.SPluginsBikeSession_t data)
+      {
+      }
+
+      public void OnRunDeinit()
+      {
+      }
+
+      public void OnRunStart()
+      {
+      }
+
+      public void OnRunStop()
+      {
+      }
+
+      public void OnRunLap(GPBikes.SPluginsBikeLap_t data)
+      {
+      }
+
+      public void OnRunSplit(GPBikes.SPluginsBikeSplit_t data)
+      {
+      }
+
+      public void OnRunTelemetry(GPBikes.SPluginsBikeData_t data)
+      {
+      }
+
+      public void OnTrackCenterline(GPBikes.SPluginsTrackSegment_t[] data)
+      {
+      }
+    }
   }
 }
