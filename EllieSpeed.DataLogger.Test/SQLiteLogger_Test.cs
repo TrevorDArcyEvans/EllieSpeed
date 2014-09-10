@@ -8,8 +8,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using EllieSpeed.Utilities;
 using NUnit.Framework;
 
 namespace EllieSpeed.DataLogger.Test
@@ -20,8 +23,14 @@ namespace EllieSpeed.DataLogger.Test
     [Test]
     public void Constructor_Completes()
     {
-      var retVal = new SQLiteLogger("aaa");
-    }
+      var assyPath = Assembly.GetExecutingAssembly().Location;
+      var assyDir = Path.GetDirectoryName(assyPath);
+      var dataFilePath = Path.Combine(assyDir, "DelMe.sqlite3");
+      Utils.SafeDelete(dataFilePath);
 
+      var logger = new SQLiteLogger(dataFilePath);
+
+      Assert.IsNotNull(logger);
+    }
   }
 }
