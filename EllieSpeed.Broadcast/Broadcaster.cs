@@ -7,6 +7,7 @@
 //
 
 using System;
+using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -20,13 +21,28 @@ namespace EllieSpeed.Broadcast
     private readonly IPEndPoint mEndPt;
     private readonly UdpClient mSender;
 
+    public static int BroadcastPort
+    {
+      get
+      {
+        var cfg = ConfigurationManager.OpenExeConfiguration(new Broadcaster(string.Empty).GetType().Assembly.Location);
+        var appSettings = (AppSettingsSection)cfg.GetSection("appSettings");
+
+        return int.Parse(appSettings.Settings["BroadcastPort"].Value);
+      }
+    }
+
     public Broadcaster()
     {
-      mEndPt = new IPEndPoint(IPAddress.Broadcast, Broadcast.Default.BroadcastPort);
+      mEndPt = new IPEndPoint(IPAddress.Broadcast, BroadcastPort);
       mSender = new UdpClient
                       {
                         EnableBroadcast = true
                       };
+    }
+
+    private Broadcaster(string requiredForStaticContext)
+    {
     }
 
     private void SendMessage(byte[] msg)
