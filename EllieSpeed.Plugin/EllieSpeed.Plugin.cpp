@@ -49,21 +49,24 @@ X+ is right, Y+ is top and Z+ is forward.
 */
 #define EXTERN_DLL_EXPORT extern "C" _declspec(dllexport)
 
-EXTERN_DLL_EXPORT char* GetModID()
-{
-  return "gpbikes";
-}
-
-extern "C" int _declspec(dllexport) GetModDataVersion()
-{
-  return 2;
-}
-
 EXTERN_DLL_EXPORT int GetInterfaceVersion()
 {
+  // have to call this in a function which does not reference any .NET code
+  // as entry to such a function will fire an AppDomain.AssemblyResolve event
   InitialiseNET();
 
   return 8;
+}
+
+EXTERN_DLL_EXPORT char* GetModID()
+{
+  // must be "gpbikes" which is probably name of simulation
+  return "gpbikes";
+}
+
+EXTERN_DLL_EXPORT int GetModDataVersion()
+{
+  return 2;
 }
 
 /* called when software is started */
