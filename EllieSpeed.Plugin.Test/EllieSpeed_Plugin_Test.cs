@@ -106,7 +106,7 @@ namespace EllieSpeed.Plugin.Test
 
     #endregion
 
-    private readonly int BroadcastPort = Broadcast.Broadcast.Default.BroadcastPort;
+    private readonly int BroadcastPort = Broadcaster.BroadcastPort;
 
     [Test]
     public void GetModID_ReturnsExpected()

@@ -12,7 +12,7 @@ namespace EllieSpeed.Receive.Console
   {
     static void Main()
     {
-      using (var rec = new Receiver(Broadcast.Broadcast.Default.BroadcastPort))
+      using (var rec = new Receiver(Broadcast.Broadcaster.BroadcastPort))
       {
         rec.OnStartup += (s, e) => System.Console.WriteLine("OnStartup");
         rec.OnShutdown += (s, e) => System.Console.WriteLine("OnShutdown");
@@ -26,7 +26,7 @@ namespace EllieSpeed.Receive.Console
         rec.OnRunTelemetry += (s, e) => System.Console.WriteLine("OnRunTelemetry");
         rec.OnTrackCenterline += (s, e) => System.Console.WriteLine("OnTrackCenterline");
 
-        System.Console.WriteLine(@"Listening for data on port " + Broadcast.Broadcast.Default.BroadcastPort);
+        System.Console.WriteLine(@"Listening for data on port " + Broadcast.Broadcaster.BroadcastPort);
         System.Console.WriteLine();
         System.Console.ReadLine();
       }
