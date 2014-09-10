@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EllieSpeed.DataLoggerModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="EllieSpeedDataLoggerModelStoreContainer">
+          <EntitySet Name="BikeData" EntityType="EllieSpeed.DataLoggerModel.Store.BikeData" store:Type="Tables" store:Name="BikeData">
+            <DefiningQuery>SELECT 
+      [BikeData].[RPM] AS [RPM], 
+      [BikeData].[EngineTemperature] AS [EngineTemperature], 
+      [BikeData].[WaterTemperature] AS [WaterTemperature], 
+      [BikeData].[Gear] AS [Gear], 
+      [BikeData].[Fuel] AS [Fuel], 
+      [BikeData].[Speedometer] AS [Speedometer], 
+      [BikeData].[PosX] AS [PosX], 
+      [BikeData].[PosY] AS [PosY], 
+      [BikeData].[PosZ] AS [PosZ], 
+      [BikeData].[VelocityX] AS [VelocityX], 
+      [BikeData].[VelocityY] AS [VelocityY], 
+      [BikeData].[VelocityZ] AS [VelocityZ], 
+      [BikeData].[AccelerationX] AS [AccelerationX], 
+      [BikeData].[AccelerationY] AS [AccelerationY], 
+      [BikeData].[AccelerationZ] AS [AccelerationZ], 
+      [BikeData].[Rot0] AS [Rot0], 
+      [BikeData].[Rot1] AS [Rot1], 
+      [BikeData].[Rot2] AS [Rot2], 
+      [BikeData].[Rot3] AS [Rot3], 
+      [BikeData].[Rot4] AS [Rot4], 
+      [BikeData].[Rot5] AS [Rot5], 
+      [BikeData].[Rot6] AS [Rot6], 
+      [BikeData].[Rot7] AS [Rot7], 
+      [BikeData].[Rot8] AS [Rot8], 
+      [BikeData].[Yaw] AS [Yaw], 
+      [BikeData].[Pitch] AS [Pitch], 
+      [BikeData].[Roll] AS [Roll], 
+      [BikeData].[YawVelocity] AS [YawVelocity], 
+      [BikeData].[PitchVelocity] AS [PitchVelocity], 
+      [BikeData].[RollVelocity] AS [RollVelocity], 
+      [BikeData].[SuspNormLengthFront] AS [SuspNormLengthFront], 
+      [BikeData].[SuspNormLengthRear] AS [SuspNormLengthRear], 
+      [BikeData].[Crashed] AS [Crashed], 
+      [BikeData].[Steer] AS [Steer], 
+      [BikeData].[Throttle] AS [Throttle], 
+      [BikeData].[FrontBrake] AS [FrontBrake], 
+      [BikeData].[RearBrake] AS [RearBrake], 
+      [BikeData].[Clutch] AS [Clutch], 
+      [BikeData].[WheelSpeedFront] AS [WheelSpeedFront], 
+      [BikeData].[WheelSpeedRear] AS [WheelSpeedRear], 
+      [BikeData].[PitLimiter] AS [PitLimiter], 
+      [BikeData].[EngineMapping] AS [EngineMapping]
+      FROM [BikeData] AS [BikeData]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BikeEvent" EntityType="EllieSpeed.DataLoggerModel.Store.BikeEvent" store:Type="Tables" store:Name="BikeEvent">
+            <DefiningQuery>SELECT 
+      [BikeEvent].[RiderName] AS [RiderName], 
+      [BikeEvent].[BikeID] AS [BikeID], 
+      [BikeEvent].[BikeName] AS [BikeName], 
+      [BikeEvent].[NumberOfGears] AS [NumberOfGears], 
+      [BikeEvent].[MaxRPM] AS [MaxRPM], 
+      [BikeEvent].[Limiter] AS [Limiter], 
+      [BikeEvent].[ShiftRPM] AS [ShiftRPM], 
+      [BikeEvent].[EngineOptTemperature] AS [EngineOptTemperature], 
+      [BikeEvent].[EngineTemperatureAlarmLower] AS [EngineTemperatureAlarmLower], 
+      [BikeEvent].[EngineTemperatureAlarmUpper] AS [EngineTemperatureAlarmUpper], 
+      [BikeEvent].[MaxFuel] AS [MaxFuel], 
+      [BikeEvent].[Category] AS [Category], 
+      [BikeEvent].[TrackID] AS [TrackID], 
+      [BikeEvent].[TrackName] AS [TrackName], 
+      [BikeEvent].[TrackLength] AS [TrackLength]
+      FROM [BikeEvent] AS [BikeEvent]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BikeLap" EntityType="EllieSpeed.DataLoggerModel.Store.BikeLap" store:Type="Tables" store:Name="BikeLap">
+            <DefiningQuery>SELECT 
+      [BikeLap].[LapTime] AS [LapTime], 
+      [BikeLap].[Best] AS [Best], 
+      [BikeLap].[LapNum] AS [LapNum]
+      FROM [BikeLap] AS [BikeLap]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BikeSession" EntityType="EllieSpeed.DataLoggerModel.Store.BikeSession" store:Type="Tables" store:Name="BikeSession">
+            <DefiningQuery>SELECT 
+      [BikeSession].[Session] AS [Session], 
+      [BikeSession].[Conditions] AS [Conditions], 
+      [BikeSession].[AirTemperature] AS [AirTemperature], 
+      [BikeSession].[TrackTemperature] AS [TrackTemperature], 
+      [BikeSession].[SetupFileName] AS [SetupFileName]
+      FROM [BikeSession] AS [BikeSession]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BikeSplit" EntityType="EllieSpeed.DataLoggerModel.Store.BikeSplit" store:Type="Tables" store:Name="BikeSplit">
+            <DefiningQuery>SELECT 
+      [BikeSplit].[Split] AS [Split], 
+      [BikeSplit].[SplitTime] AS [SplitTime], 
+      [BikeSplit].[BestDiff] AS [BestDiff]
+      FROM [BikeSplit] AS [BikeSplit]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TrackSegment" EntityType="EllieSpeed.DataLoggerModel.Store.TrackSegment" store:Type="Tables" store:Name="TrackSegment">
+            <DefiningQuery>SELECT 
+      [TrackSegment].[Type] AS [Type], 
+      [TrackSegment].[Length] AS [Length], 
+      [TrackSegment].[Radius] AS [Radius], 
+      [TrackSegment].[Angle] AS [Angle], 
+      [TrackSegment].[Start1] AS [Start1], 
+      [TrackSegment].[Start2] AS [Start2]
+      FROM [TrackSegment] AS [TrackSegment]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'main.BikeData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="BikeData">
+          <Key>
+            <PropertyRef Name="RPM" />
+            <PropertyRef Name="EngineTemperature" />
+            <PropertyRef Name="WaterTemperature" />
+            <PropertyRef Name="Gear" />
+            <PropertyRef Name="Fuel" />
+            <PropertyRef Name="Speedometer" />
+            <PropertyRef Name="PosX" />
+            <PropertyRef Name="PosY" />
+            <PropertyRef Name="PosZ" />
+            <PropertyRef Name="VelocityX" />
+            <PropertyRef Name="VelocityY" />
+            <PropertyRef Name="VelocityZ" />
+            <PropertyRef Name="AccelerationX" />
+            <PropertyRef Name="AccelerationY" />
+            <PropertyRef Name="AccelerationZ" />
+            <PropertyRef Name="Rot0" />
+            <PropertyRef Name="Rot1" />
+            <PropertyRef Name="Rot2" />
+            <PropertyRef Name="Rot3" />
+            <PropertyRef Name="Rot4" />
+            <PropertyRef Name="Rot5" />
+            <PropertyRef Name="Rot6" />
+            <PropertyRef Name="Rot7" />
+            <PropertyRef Name="Rot8" />
+            <PropertyRef Name="Yaw" />
+            <PropertyRef Name="Pitch" />
+            <PropertyRef Name="Roll" />
+            <PropertyRef Name="YawVelocity" />
+            <PropertyRef Name="PitchVelocity" />
+            <PropertyRef Name="RollVelocity" />
+            <PropertyRef Name="SuspNormLengthFront" />
+            <PropertyRef Name="SuspNormLengthRear" />
+            <PropertyRef Name="Crashed" />
+            <PropertyRef Name="Steer" />
+            <PropertyRef Name="Throttle" />
+            <PropertyRef Name="FrontBrake" />
+            <PropertyRef Name="RearBrake" />
+            <PropertyRef Name="Clutch" />
+            <PropertyRef Name="WheelSpeedFront" />
+            <PropertyRef Name="WheelSpeedRear" />
+            <PropertyRef Name="PitLimiter" />
+            <PropertyRef Name="EngineMapping" />
+          </Key>
+          <Property Name="RPM" Type="real" Nullable="false" />
+          <Property Name="EngineTemperature" Type="real" Nullable="false" />
+          <Property Name="WaterTemperature" Type="real" Nullable="false" />
+          <Property Name="Gear" Type="int" Nullable="false" />
+          <Property Name="Fuel" Type="real" Nullable="false" />
+          <Property Name="Speedometer" Type="real" Nullable="false" />
+          <Property Name="PosX" Type="real" Nullable="false" />
+          <Property Name="PosY" Type="real" Nullable="false" />
+          <Property Name="PosZ" Type="real" Nullable="false" />
+          <Property Name="VelocityX" Type="real" Nullable="false" />
+          <Property Name="VelocityY" Type="real" Nullable="false" />
+          <Property Name="VelocityZ" Type="real" Nullable="false" />
+          <Property Name="AccelerationX" Type="real" Nullable="false" />
+          <Property Name="AccelerationY" Type="real" Nullable="false" />
+          <Property Name="AccelerationZ" Type="real" Nullable="false" />
+          <Property Name="Rot0" Type="real" Nullable="false" />
+          <Property Name="Rot1" Type="real" Nullable="false" />
+          <Property Name="Rot2" Type="real" Nullable="false" />
+          <Property Name="Rot3" Type="real" Nullable="false" />
+          <Property Name="Rot4" Type="real" Nullable="false" />
+          <Property Name="Rot5" Type="real" Nullable="false" />
+          <Property Name="Rot6" Type="real" Nullable="false" />
+          <Property Name="Rot7" Type="real" Nullable="false" />
+          <Property Name="Rot8" Type="real" Nullable="false" />
+          <Property Name="Yaw" Type="real" Nullable="false" />
+          <Property Name="Pitch" Type="real" Nullable="false" />
+          <Property Name="Roll" Type="real" Nullable="false" />
+          <Property Name="YawVelocity" Type="real" Nullable="false" />
+          <Property Name="PitchVelocity" Type="real" Nullable="false" />
+          <Property Name="RollVelocity" Type="real" Nullable="false" />
+          <Property Name="SuspNormLengthFront" Type="real" Nullable="false" />
+          <Property Name="SuspNormLengthRear" Type="real" Nullable="false" />
+          <Property Name="Crashed" Type="int" Nullable="false" />
+          <Property Name="Steer" Type="real" Nullable="false" />
+          <Property Name="Throttle" Type="real" Nullable="false" />
+          <Property Name="FrontBrake" Type="real" Nullable="false" />
+          <Property Name="RearBrake" Type="real" Nullable="false" />
+          <Property Name="Clutch" Type="real" Nullable="false" />
+          <Property Name="WheelSpeedFront" Type="real" Nullable="false" />
+          <Property Name="WheelSpeedRear" Type="real" Nullable="false" />
+          <Property Name="PitLimiter" Type="int" Nullable="false" />
+          <Property Name="EngineMapping" Type="nvarchar" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'main.BikeEvent' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="BikeEvent">
+          <Key>
+            <PropertyRef Name="RiderName" />
+            <PropertyRef Name="BikeID" />
+            <PropertyRef Name="BikeName" />
+            <PropertyRef Name="NumberOfGears" />
+            <PropertyRef Name="MaxRPM" />
+            <PropertyRef Name="Limiter" />
+            <PropertyRef Name="ShiftRPM" />
+            <PropertyRef Name="EngineOptTemperature" />
+            <PropertyRef Name="EngineTemperatureAlarmLower" />
+            <PropertyRef Name="EngineTemperatureAlarmUpper" />
+            <PropertyRef Name="MaxFuel" />
+            <PropertyRef Name="Category" />
+            <PropertyRef Name="TrackID" />
+            <PropertyRef Name="TrackName" />
+            <PropertyRef Name="TrackLength" />
+          </Key>
+          <Property Name="RiderName" Type="nvarchar" Nullable="false" />
+          <Property Name="BikeID" Type="nvarchar" Nullable="false" />
+          <Property Name="BikeName" Type="nvarchar" Nullable="false" />
+          <Property Name="NumberOfGears" Type="int" Nullable="false" />
+          <Property Name="MaxRPM" Type="real" Nullable="false" />
+          <Property Name="Limiter" Type="real" Nullable="false" />
+          <Property Name="ShiftRPM" Type="real" Nullable="false" />
+          <Property Name="EngineOptTemperature" Type="real" Nullable="false" />
+          <Property Name="EngineTemperatureAlarmLower" Type="real" Nullable="false" />
+          <Property Name="EngineTemperatureAlarmUpper" Type="real" Nullable="false" />
+          <Property Name="MaxFuel" Type="real" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" Nullable="false" />
+          <Property Name="TrackID" Type="nvarchar" Nullable="false" />
+          <Property Name="TrackName" Type="nvarchar" Nullable="false" />
+          <Property Name="TrackLength" Type="real" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'main.BikeLap' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="BikeLap">
+          <Key>
+            <PropertyRef Name="LapTime" />
+            <PropertyRef Name="Best" />
+            <PropertyRef Name="LapNum" />
+          </Key>
+          <Property Name="LapTime" Type="int" Nullable="false" />
+          <Property Name="Best" Type="int" Nullable="false" />
+          <Property Name="LapNum" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'main.BikeSession' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="BikeSession">
+          <Key>
+            <PropertyRef Name="Session" />
+            <PropertyRef Name="Conditions" />
+            <PropertyRef Name="AirTemperature" />
+            <PropertyRef Name="TrackTemperature" />
+            <PropertyRef Name="SetupFileName" />
+          </Key>
+          <Property Name="Session" Type="int" Nullable="false" />
+          <Property Name="Conditions" Type="int" Nullable="false" />
+          <Property Name="AirTemperature" Type="real" Nullable="false" />
+          <Property Name="TrackTemperature" Type="real" Nullable="false" />
+          <Property Name="SetupFileName" Type="nvarchar" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'main.BikeSplit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="BikeSplit">
+          <Key>
+            <PropertyRef Name="Split" />
+            <PropertyRef Name="SplitTime" />
+            <PropertyRef Name="BestDiff" />
+          </Key>
+          <Property Name="Split" Type="int" Nullable="false" />
+          <Property Name="SplitTime" Type="int" Nullable="false" />
+          <Property Name="BestDiff" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'main.TrackSegment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TrackSegment">
+          <Key>
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Length" />
+            <PropertyRef Name="Radius" />
+            <PropertyRef Name="Angle" />
+            <PropertyRef Name="Start1" />
+            <PropertyRef Name="Start2" />
+          </Key>
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Length" Type="real" Nullable="false" />
+          <Property Name="Radius" Type="real" Nullable="false" />
+          <Property Name="Angle" Type="real" Nullable="false" />
+          <Property Name="Start1" Type="real" Nullable="false" />
+          <Property Name="Start2" Type="real" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EllieSpeed.DataLoggerModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DataLog" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BikeDatas" EntityType="EllieSpeed.DataLoggerModel.BikeData" />
+          <EntitySet Name="BikeEvents" EntityType="EllieSpeed.DataLoggerModel.BikeEvent" />
+          <EntitySet Name="BikeLaps" EntityType="EllieSpeed.DataLoggerModel.BikeLap" />
+          <EntitySet Name="BikeSessions" EntityType="EllieSpeed.DataLoggerModel.BikeSession" />
+          <EntitySet Name="BikeSplits" EntityType="EllieSpeed.DataLoggerModel.BikeSplit" />
+          <EntitySet Name="TrackSegments" EntityType="EllieSpeed.DataLoggerModel.TrackSegment" />
+        </EntityContainer>
+        <EntityType Name="BikeData">
+          <Key>
+            <PropertyRef Name="RPM" />
+            <PropertyRef Name="EngineTemperature" />
+            <PropertyRef Name="WaterTemperature" />
+            <PropertyRef Name="Gear" />
+            <PropertyRef Name="Fuel" />
+            <PropertyRef Name="Speedometer" />
+            <PropertyRef Name="PosX" />
+            <PropertyRef Name="PosY" />
+            <PropertyRef Name="PosZ" />
+            <PropertyRef Name="VelocityX" />
+            <PropertyRef Name="VelocityY" />
+            <PropertyRef Name="VelocityZ" />
+            <PropertyRef Name="AccelerationX" />
+            <PropertyRef Name="AccelerationY" />
+            <PropertyRef Name="AccelerationZ" />
+            <PropertyRef Name="Rot0" />
+            <PropertyRef Name="Rot1" />
+            <PropertyRef Name="Rot2" />
+            <PropertyRef Name="Rot3" />
+            <PropertyRef Name="Rot4" />
+            <PropertyRef Name="Rot5" />
+            <PropertyRef Name="Rot6" />
+            <PropertyRef Name="Rot7" />
+            <PropertyRef Name="Rot8" />
+            <PropertyRef Name="Yaw" />
+            <PropertyRef Name="Pitch" />
+            <PropertyRef Name="Roll" />
+            <PropertyRef Name="YawVelocity" />
+            <PropertyRef Name="PitchVelocity" />
+            <PropertyRef Name="RollVelocity" />
+            <PropertyRef Name="SuspNormLengthFront" />
+            <PropertyRef Name="SuspNormLengthRear" />
+            <PropertyRef Name="Crashed" />
+            <PropertyRef Name="Steer" />
+            <PropertyRef Name="Throttle" />
+            <PropertyRef Name="FrontBrake" />
+            <PropertyRef Name="RearBrake" />
+            <PropertyRef Name="Clutch" />
+            <PropertyRef Name="WheelSpeedFront" />
+            <PropertyRef Name="WheelSpeedRear" />
+            <PropertyRef Name="PitLimiter" />
+            <PropertyRef Name="EngineMapping" />
+          </Key>
+          <Property Name="RPM" Type="Double" Nullable="false" />
+          <Property Name="EngineTemperature" Type="Double" Nullable="false" />
+          <Property Name="WaterTemperature" Type="Double" Nullable="false" />
+          <Property Name="Gear" Type="Int32" Nullable="false" />
+          <Property Name="Fuel" Type="Double" Nullable="false" />
+          <Property Name="Speedometer" Type="Double" Nullable="false" />
+          <Property Name="PosX" Type="Double" Nullable="false" />
+          <Property Name="PosY" Type="Double" Nullable="false" />
+          <Property Name="PosZ" Type="Double" Nullable="false" />
+          <Property Name="VelocityX" Type="Double" Nullable="false" />
+          <Property Name="VelocityY" Type="Double" Nullable="false" />
+          <Property Name="VelocityZ" Type="Double" Nullable="false" />
+          <Property Name="AccelerationX" Type="Double" Nullable="false" />
+          <Property Name="AccelerationY" Type="Double" Nullable="false" />
+          <Property Name="AccelerationZ" Type="Double" Nullable="false" />
+          <Property Name="Rot0" Type="Double" Nullable="false" />
+          <Property Name="Rot1" Type="Double" Nullable="false" />
+          <Property Name="Rot2" Type="Double" Nullable="false" />
+          <Property Name="Rot3" Type="Double" Nullable="false" />
+          <Property Name="Rot4" Type="Double" Nullable="false" />
+          <Property Name="Rot5" Type="Double" Nullable="false" />
+          <Property Name="Rot6" Type="Double" Nullable="false" />
+          <Property Name="Rot7" Type="Double" Nullable="false" />
+          <Property Name="Rot8" Type="Double" Nullable="false" />
+          <Property Name="Yaw" Type="Double" Nullable="false" />
+          <Property Name="Pitch" Type="Double" Nullable="false" />
+          <Property Name="Roll" Type="Double" Nullable="false" />
+          <Property Name="YawVelocity" Type="Double" Nullable="false" />
+          <Property Name="PitchVelocity" Type="Double" Nullable="false" />
+          <Property Name="RollVelocity" Type="Double" Nullable="false" />
+          <Property Name="SuspNormLengthFront" Type="Double" Nullable="false" />
+          <Property Name="SuspNormLengthRear" Type="Double" Nullable="false" />
+          <Property Name="Crashed" Type="Int32" Nullable="false" />
+          <Property Name="Steer" Type="Double" Nullable="false" />
+          <Property Name="Throttle" Type="Double" Nullable="false" />
+          <Property Name="FrontBrake" Type="Double" Nullable="false" />
+          <Property Name="RearBrake" Type="Double" Nullable="false" />
+          <Property Name="Clutch" Type="Double" Nullable="false" />
+          <Property Name="WheelSpeedFront" Type="Double" Nullable="false" />
+          <Property Name="WheelSpeedRear" Type="Double" Nullable="false" />
+          <Property Name="PitLimiter" Type="Int32" Nullable="false" />
+          <Property Name="EngineMapping" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="BikeEvent">
+          <Key>
+            <PropertyRef Name="RiderName" />
+            <PropertyRef Name="BikeID" />
+            <PropertyRef Name="BikeName" />
+            <PropertyRef Name="NumberOfGears" />
+            <PropertyRef Name="MaxRPM" />
+            <PropertyRef Name="Limiter" />
+            <PropertyRef Name="ShiftRPM" />
+            <PropertyRef Name="EngineOptTemperature" />
+            <PropertyRef Name="EngineTemperatureAlarmLower" />
+            <PropertyRef Name="EngineTemperatureAlarmUpper" />
+            <PropertyRef Name="MaxFuel" />
+            <PropertyRef Name="Category" />
+            <PropertyRef Name="TrackID" />
+            <PropertyRef Name="TrackName" />
+            <PropertyRef Name="TrackLength" />
+          </Key>
+          <Property Name="RiderName" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="BikeID" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="BikeName" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="NumberOfGears" Type="Int32" Nullable="false" />
+          <Property Name="MaxRPM" Type="Double" Nullable="false" />
+          <Property Name="Limiter" Type="Double" Nullable="false" />
+          <Property Name="ShiftRPM" Type="Double" Nullable="false" />
+          <Property Name="EngineOptTemperature" Type="Double" Nullable="false" />
+          <Property Name="EngineTemperatureAlarmLower" Type="Double" Nullable="false" />
+          <Property Name="EngineTemperatureAlarmUpper" Type="Double" Nullable="false" />
+          <Property Name="MaxFuel" Type="Double" Nullable="false" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="TrackID" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="TrackName" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="TrackLength" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BikeLap">
+          <Key>
+            <PropertyRef Name="LapTime" />
+            <PropertyRef Name="Best" />
+            <PropertyRef Name="LapNum" />
+          </Key>
+          <Property Name="LapTime" Type="Int32" Nullable="false" />
+          <Property Name="Best" Type="Int32" Nullable="false" />
+          <Property Name="LapNum" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BikeSession">
+          <Key>
+            <PropertyRef Name="Session" />
+            <PropertyRef Name="Conditions" />
+            <PropertyRef Name="AirTemperature" />
+            <PropertyRef Name="TrackTemperature" />
+            <PropertyRef Name="SetupFileName" />
+          </Key>
+          <Property Name="Session" Type="Int32" Nullable="false" />
+          <Property Name="Conditions" Type="Int32" Nullable="false" />
+          <Property Name="AirTemperature" Type="Double" Nullable="false" />
+          <Property Name="TrackTemperature" Type="Double" Nullable="false" />
+          <Property Name="SetupFileName" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="BikeSplit">
+          <Key>
+            <PropertyRef Name="Split" />
+            <PropertyRef Name="SplitTime" />
+            <PropertyRef Name="BestDiff" />
+          </Key>
+          <Property Name="Split" Type="Int32" Nullable="false" />
+          <Property Name="SplitTime" Type="Int32" Nullable="false" />
+          <Property Name="BestDiff" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrackSegment">
+          <Key>
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Length" />
+            <PropertyRef Name="Radius" />
+            <PropertyRef Name="Angle" />
+            <PropertyRef Name="Start1" />
+            <PropertyRef Name="Start2" />
+          </Key>
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Length" Type="Double" Nullable="false" />
+          <Property Name="Radius" Type="Double" Nullable="false" />
+          <Property Name="Angle" Type="Double" Nullable="false" />
+          <Property Name="Start1" Type="Double" Nullable="false" />
+          <Property Name="Start2" Type="Double" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EllieSpeedDataLoggerModelStoreContainer" CdmEntityContainer="DataLog">
+          <EntitySetMapping Name="BikeDatas">
+            <EntityTypeMapping TypeName="EllieSpeed.DataLoggerModel.BikeData">
+              <MappingFragment StoreEntitySet="BikeData">
+                <ScalarProperty Name="RPM" ColumnName="RPM" />
+                <ScalarProperty Name="EngineTemperature" ColumnName="EngineTemperature" />
+                <ScalarProperty Name="WaterTemperature" ColumnName="WaterTemperature" />
+                <ScalarProperty Name="Gear" ColumnName="Gear" />
+                <ScalarProperty Name="Fuel" ColumnName="Fuel" />
+                <ScalarProperty Name="Speedometer" ColumnName="Speedometer" />
+                <ScalarProperty Name="PosX" ColumnName="PosX" />
+                <ScalarProperty Name="PosY" ColumnName="PosY" />
+                <ScalarProperty Name="PosZ" ColumnName="PosZ" />
+                <ScalarProperty Name="VelocityX" ColumnName="VelocityX" />
+                <ScalarProperty Name="VelocityY" ColumnName="VelocityY" />
+                <ScalarProperty Name="VelocityZ" ColumnName="VelocityZ" />
+                <ScalarProperty Name="AccelerationX" ColumnName="AccelerationX" />
+                <ScalarProperty Name="AccelerationY" ColumnName="AccelerationY" />
+                <ScalarProperty Name="AccelerationZ" ColumnName="AccelerationZ" />
+                <ScalarProperty Name="Rot0" ColumnName="Rot0" />
+                <ScalarProperty Name="Rot1" ColumnName="Rot1" />
+                <ScalarProperty Name="Rot2" ColumnName="Rot2" />
+                <ScalarProperty Name="Rot3" ColumnName="Rot3" />
+                <ScalarProperty Name="Rot4" ColumnName="Rot4" />
+                <ScalarProperty Name="Rot5" ColumnName="Rot5" />
+                <ScalarProperty Name="Rot6" ColumnName="Rot6" />
+                <ScalarProperty Name="Rot7" ColumnName="Rot7" />
+                <ScalarProperty Name="Rot8" ColumnName="Rot8" />
+                <ScalarProperty Name="Yaw" ColumnName="Yaw" />
+                <ScalarProperty Name="Pitch" ColumnName="Pitch" />
+                <ScalarProperty Name="Roll" ColumnName="Roll" />
+                <ScalarProperty Name="YawVelocity" ColumnName="YawVelocity" />
+                <ScalarProperty Name="PitchVelocity" ColumnName="PitchVelocity" />
+                <ScalarProperty Name="RollVelocity" ColumnName="RollVelocity" />
+                <ScalarProperty Name="SuspNormLengthFront" ColumnName="SuspNormLengthFront" />
+                <ScalarProperty Name="SuspNormLengthRear" ColumnName="SuspNormLengthRear" />
+                <ScalarProperty Name="Crashed" ColumnName="Crashed" />
+                <ScalarProperty Name="Steer" ColumnName="Steer" />
+                <ScalarProperty Name="Throttle" ColumnName="Throttle" />
+                <ScalarProperty Name="FrontBrake" ColumnName="FrontBrake" />
+                <ScalarProperty Name="RearBrake" ColumnName="RearBrake" />
+                <ScalarProperty Name="Clutch" ColumnName="Clutch" />
+                <ScalarProperty Name="WheelSpeedFront" ColumnName="WheelSpeedFront" />
+                <ScalarProperty Name="WheelSpeedRear" ColumnName="WheelSpeedRear" />
+                <ScalarProperty Name="PitLimiter" ColumnName="PitLimiter" />
+                <ScalarProperty Name="EngineMapping" ColumnName="EngineMapping" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BikeEvents">
+            <EntityTypeMapping TypeName="EllieSpeed.DataLoggerModel.BikeEvent">
+              <MappingFragment StoreEntitySet="BikeEvent">
+                <ScalarProperty Name="RiderName" ColumnName="RiderName" />
+                <ScalarProperty Name="BikeID" ColumnName="BikeID" />
+                <ScalarProperty Name="BikeName" ColumnName="BikeName" />
+                <ScalarProperty Name="NumberOfGears" ColumnName="NumberOfGears" />
+                <ScalarProperty Name="MaxRPM" ColumnName="MaxRPM" />
+                <ScalarProperty Name="Limiter" ColumnName="Limiter" />
+                <ScalarProperty Name="ShiftRPM" ColumnName="ShiftRPM" />
+                <ScalarProperty Name="EngineOptTemperature" ColumnName="EngineOptTemperature" />
+                <ScalarProperty Name="EngineTemperatureAlarmLower" ColumnName="EngineTemperatureAlarmLower" />
+                <ScalarProperty Name="EngineTemperatureAlarmUpper" ColumnName="EngineTemperatureAlarmUpper" />
+                <ScalarProperty Name="MaxFuel" ColumnName="MaxFuel" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="TrackID" ColumnName="TrackID" />
+                <ScalarProperty Name="TrackName" ColumnName="TrackName" />
+                <ScalarProperty Name="TrackLength" ColumnName="TrackLength" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BikeLaps">
+            <EntityTypeMapping TypeName="EllieSpeed.DataLoggerModel.BikeLap">
+              <MappingFragment StoreEntitySet="BikeLap">
+                <ScalarProperty Name="LapTime" ColumnName="LapTime" />
+                <ScalarProperty Name="Best" ColumnName="Best" />
+                <ScalarProperty Name="LapNum" ColumnName="LapNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BikeSessions">
+            <EntityTypeMapping TypeName="EllieSpeed.DataLoggerModel.BikeSession">
+              <MappingFragment StoreEntitySet="BikeSession">
+                <ScalarProperty Name="Session" ColumnName="Session" />
+                <ScalarProperty Name="Conditions" ColumnName="Conditions" />
+                <ScalarProperty Name="AirTemperature" ColumnName="AirTemperature" />
+                <ScalarProperty Name="TrackTemperature" ColumnName="TrackTemperature" />
+                <ScalarProperty Name="SetupFileName" ColumnName="SetupFileName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BikeSplits">
+            <EntityTypeMapping TypeName="EllieSpeed.DataLoggerModel.BikeSplit">
+              <MappingFragment StoreEntitySet="BikeSplit">
+                <ScalarProperty Name="Split" ColumnName="Split" />
+                <ScalarProperty Name="SplitTime" ColumnName="SplitTime" />
+                <ScalarProperty Name="BestDiff" ColumnName="BestDiff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrackSegments">
+            <EntityTypeMapping TypeName="EllieSpeed.DataLoggerModel.TrackSegment">
+              <MappingFragment StoreEntitySet="TrackSegment">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Radius" ColumnName="Radius" />
+                <ScalarProperty Name="Angle" ColumnName="Angle" />
+                <ScalarProperty Name="Start1" ColumnName="Start1" />
+                <ScalarProperty Name="Start2" ColumnName="Start2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DataLog" ZoomLevel="100">
+        <EntityTypeShape EntityType="EllieSpeed.DataLoggerModel.BikeData" Width="1.5" PointX="0.75" PointY="0.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="EllieSpeed.DataLoggerModel.BikeEvent" Width="1.5" PointX="2.75" PointY="0.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="EllieSpeed.DataLoggerModel.BikeLap" Width="1.5" PointX="4.75" PointY="0.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="EllieSpeed.DataLoggerModel.BikeSession" Width="1.5" PointX="8.625" PointY="0.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="EllieSpeed.DataLoggerModel.BikeSplit" Width="1.5" PointX="6.75" PointY="0.75" Height="0.4" IsExpanded="false" />
+        <EntityTypeShape EntityType="EllieSpeed.DataLoggerModel.TrackSegment" Width="1.5" PointX="0.875" PointY="2.25" Height="0.4" IsExpanded="false" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
