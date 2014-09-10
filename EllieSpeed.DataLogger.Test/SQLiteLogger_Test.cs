@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading;
 using EllieSpeed.Broadcast;
 using EllieSpeed.Utilities;
+using Moq;
 using NUnit.Framework;
 
 namespace EllieSpeed.DataLogger.Test
@@ -55,10 +56,13 @@ namespace EllieSpeed.DataLogger.Test
     [Test]
     public void OnStartup()
     {
-      using (new SQLiteLogger(mDataFilePath))
+      var mockBroadcaster = new Mock<IBroadcaster>();
+      using (new SQLiteLogger(mDataFilePath, mockBroadcaster.Object))
       {
         mBroadcaster.OnStartup();
         Thread.Sleep(500);
+
+        mockBroadcaster.Verify(m => m.OnStartup(), Times.Once());
       }
     }
 

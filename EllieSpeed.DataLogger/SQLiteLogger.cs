@@ -21,6 +21,7 @@ namespace EllieSpeed.DataLogger
   {
     private readonly DataLogger mLogger;
     private readonly Receiver mReceiver = new Receiver(Broadcaster.BroadcastPort);
+    private readonly IBroadcaster mRecLog;
 
     public SQLiteLogger(string filePath)
     {
@@ -57,9 +58,16 @@ namespace EllieSpeed.DataLogger
       mReceiver.OnTrackCenterline += OnTrackCenterline;
     }
 
+    public SQLiteLogger(string filePath, IBroadcaster broadcaster) :
+      this(filePath)
+    {
+      mRecLog = broadcaster;
+    }
+
     public void OnStartup(object sender, EventArgs e)
     {
       Console.WriteLine("OnStartup");
+      mRecLog.OnStartup();
     }
 
     void OnShutdown(object sender, EventArgs e)
