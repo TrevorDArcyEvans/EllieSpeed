@@ -25,20 +25,18 @@ namespace EllieSpeed.DataLogger
 
     public SQLiteLogger(string filePath)
     {
-      if (File.Exists(filePath))
+      if (!File.Exists(filePath))
       {
-        throw new ArgumentException(filePath + " already exists");
+        var assyPath = Assembly.GetExecutingAssembly().Location;
+        var assyDir = Path.GetDirectoryName(assyPath);
+        var baseDataFilePath = Path.Combine(assyDir, "EllieSpeed.DataLogger.sqlite3");
+        File.Copy(baseDataFilePath, filePath);
       }
 
       if (Directory.Exists(filePath))
       {
         throw new ArgumentException(filePath + " is a directory");
       }
-
-      var assyPath = Assembly.GetExecutingAssembly().Location;
-      var assyDir = Path.GetDirectoryName(assyPath);
-      var baseDataFilePath = Path.Combine(assyDir, "EllieSpeed.DataLogger.sqlite3");
-      File.Copy(baseDataFilePath, filePath);
 
       var connStr = string.Format("metadata=res://*/DataLogger.csdl|res://*/DataLogger.ssdl|res://*/DataLogger.msl;" +
                           "provider=System.Data.SQLite;provider connection string=\"data source={0}\";", filePath);
@@ -66,69 +64,191 @@ namespace EllieSpeed.DataLogger
 
     public void OnStartup(object sender, EventArgs e)
     {
-      Console.WriteLine("OnStartup");
       mRecLog.OnStartup();
     }
 
-    void OnShutdown(object sender, EventArgs e)
+    private void OnShutdown(object sender, EventArgs e)
     {
-      Console.WriteLine("OnShutdown");
+      mRecLog.OnShutdown();
     }
 
-    void OnEventInit(object sender, DataEventArgs<GPBikes.SPluginsBikeEvent_t> e)
+    private void OnEventInit(object sender, DataEventArgs<GPBikes.SPluginsBikeEvent_t> e)
     {
-      Console.WriteLine("OnEventInit");
+      var data = e.Data;
+      var dbObj = new BikeEvent
+                      {
+                        RiderName = data.RiderName,
+                        BikeID = data.BikeID,
+                        BikeName = data.BikeName,
+                        NumberOfGears = data.NumberOfGears,
+                        MaxRPM = data.MaxRPM,
+                        Limiter = data.Limiter,
+                        ShiftRPM = data.ShiftRPM,
+                        EngineOptTemperature = data.EngineOptTemperature,
+                        EngineTemperatureAlarmLower = data.EngineTemperatureAlarm[0],
+                        EngineTemperatureAlarmUpper = data.EngineTemperatureAlarm[1],
+                        MaxFuel = data.MaxFuel,
+                        Category = data.Category,
+                        TrackID = data.TrackID,
+                        TrackName = data.TrackName,
+                        TrackLength = data.TrackLength
+                      };
+
+      mLogger.BikeEvents.AddObject(dbObj);
+      mLogger.SaveChanges();
+
+      mRecLog.OnEventInit(data);
     }
 
-    void OnRunInit(object sender, DataEventArgs<GPBikes.SPluginsBikeSession_t> e)
+    private void OnRunInit(object sender, DataEventArgs<GPBikes.SPluginsBikeSession_t> e)
     {
-      Console.WriteLine("OnRunInit");
+      var data = e.Data;
+      var dbObj = new BikeSession
+                      {
+                        Session = data.Session,
+                        Conditions = data.Conditions,
+                        AirTemperature = data.AirTemperature,
+                        TrackTemperature = data.TrackTemperature,
+                        SetupFileName = data.SetupFileName
+                      };
+
+      mLogger.BikeSessions.AddObject(dbObj);
+      mLogger.SaveChanges();
+
+      mRecLog.OnRunInit(e.Data);
     }
 
-    void OnRunDeinit(object sender, EventArgs e)
+    private void OnRunDeinit(object sender, EventArgs e)
     {
-      Console.WriteLine("OnRunDeinit");
+      mRecLog.OnRunDeinit();
     }
 
-    void OnRunStart(object sender, EventArgs e)
+    private void OnRunStart(object sender, EventArgs e)
     {
-      Console.WriteLine("OnRunStart");
+      mRecLog.OnRunStart();
     }
 
-    void OnRunStop(object sender, EventArgs e)
+    private void OnRunStop(object sender, EventArgs e)
     {
-      Console.WriteLine("OnRunStop");
+      mRecLog.OnRunStop();
     }
 
-    void OnRunLap(object sender, DataEventArgs<GPBikes.SPluginsBikeLap_t> e)
+    private void OnRunLap(object sender, DataEventArgs<GPBikes.SPluginsBikeLap_t> e)
     {
-      Console.WriteLine("OnRunLap");
+      var data = e.Data;
+      var dbObj = new BikeLap
+                      {
+                        LapTime = data.LapTime,
+                        Best = data.Best,
+                        LapNum = data.LapNum
+                      };
+
+      mLogger.BikeLaps.AddObject(dbObj);
+      mLogger.SaveChanges();
+
+      mRecLog.OnRunLap(e.Data);
     }
 
-    void OnRunSplit(object sender, DataEventArgs<GPBikes.SPluginsBikeSplit_t> e)
+    private void OnRunSplit(object sender, DataEventArgs<GPBikes.SPluginsBikeSplit_t> e)
     {
-      Console.WriteLine("OnRunSplit");
+      var data = e.Data;
+      var dbObj = new BikeSplit
+                      {
+                        Split = data.Split,
+                        SplitTime = data.SplitTime,
+                        BestDiff = data.BestDiff
+                      };
+
+      mLogger.BikeSplits.AddObject(dbObj);
+      mLogger.SaveChanges();
+
+      mRecLog.OnRunSplit(e.Data);
     }
 
-    void OnRunTelemetry(object sender, DataEventArgs<GPBikes.SPluginsBikeData_t> e)
+    private void OnRunTelemetry(object sender, DataEventArgs<GPBikes.SPluginsBikeData_t> e)
     {
-      Console.WriteLine("OnRunTelemetry");
+      var data = e.Data;
+      var dbObj = new BikeData
+      {
+        RPM = data.RPM,
+        EngineTemperature = data.EngineTemperature,
+        WaterTemperature = data.WaterTemperature,
+        Gear = data.Gear,
+        Fuel = data.Fuel,
+        Speedometer = data.Speedometer,
+        PosX = data.PosX,
+        PosY = data.PosY,
+        PosZ = data.PosZ,
+        VelocityX = data.VelocityX,
+        VelocityY = data.VelocityY,
+        VelocityZ = data.VelocityZ,
+        AccelerationX = data.AccelerationX,
+        AccelerationY = data.AccelerationY,
+        AccelerationZ = data.AccelerationZ,
+        Rot0 = data.Rot[0],
+        Rot1 = data.Rot[1],
+        Rot2 = data.Rot[2],
+        Rot3 = data.Rot[3],
+        Rot4 = data.Rot[4],
+        Rot5 = data.Rot[5],
+        Rot6 = data.Rot[6],
+        Rot7 = data.Rot[7],
+        Rot8 = data.Rot[8],
+        Yaw = data.Yaw,
+        Pitch = data.Pitch,
+        Roll = data.Roll,
+        YawVelocity = data.YawVelocity,
+        PitchVelocity = data.PitchVelocity,
+        RollVelocity = data.RollVelocity,
+        SuspNormLengthFront = data.SuspNormLength[0],
+        SuspNormLengthRear = data.SuspNormLength[1],
+        Crashed = data.Crashed,
+        Steer = data.Steer,
+        Throttle = data.Throttle,
+        FrontBrake = data.FrontBrake,
+        RearBrake = data.RearBrake,
+        Clutch = data.Clutch,
+        WheelSpeedFront = data.WheelSpeed[0],
+        WheelSpeedRear = data.WheelSpeed[1],
+        PitLimiter = data.PitLimiter,
+        EngineMapping = data.EngineMapping
+      };
+
+      mLogger.BikeDatas.AddObject(dbObj);
+      mLogger.SaveChanges();
+
+      mRecLog.OnRunTelemetry(e.Data);
     }
 
-    void OnTrackCenterline(object sender, DataEventArgs<GPBikes.SPluginsTrackSegment_t[]> e)
+    private void OnTrackCenterline(object sender, DataEventArgs<GPBikes.SPluginsTrackSegment_t[]> e)
     {
-      Console.WriteLine("OnTrackCenterline");
-    }
+      var data = e.Data;
+      var dbObjs = from ts in data
+                   let dbObj = new TrackSegment
+                                   {
+                                     Type = ts.Type,
+                                     Length = ts.Length,
+                                     Radius = ts.Radius,
+                                     Angle = ts.Angle,
+                                     Start1 = ts.Start[0],
+                                     Start2 = ts.Start[1]
+                                   }
+                   select dbObj;
 
-    #region IDisposable Members
+      foreach (var ts in dbObjs)
+      {
+        mLogger.TrackSegments.AddObject(ts);
+      }
+      mLogger.SaveChanges();
+
+      mRecLog.OnTrackCenterline(e.Data);
+    }
 
     public void Dispose()
     {
       mLogger.Dispose();
       mReceiver.Dispose();
     }
-
-    #endregion
 
     private class NullBroadcaster : IBroadcaster
     {
@@ -173,6 +293,10 @@ namespace EllieSpeed.DataLogger
       }
 
       public void OnTrackCenterline(GPBikes.SPluginsTrackSegment_t[] data)
+      {
+      }
+
+      public void Dispose()
       {
       }
     }
