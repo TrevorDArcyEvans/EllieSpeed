@@ -7,16 +7,13 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
 using EllieSpeed.Broadcast;
 using EllieSpeed.Test.Utilties;
 using EllieSpeed.Utilities;
-using Moq;
 using NUnit.Framework;
 
 namespace EllieSpeed.DataLogger.Test
@@ -26,7 +23,6 @@ namespace EllieSpeed.DataLogger.Test
   {
     private string mDataFilePath;
     private Broadcaster mBroadcaster;
-    private Mock<IBroadcaster> mMockBroadcaster = new Mock<IBroadcaster>();
 
     [SetUp]
     public void Setup()
@@ -43,8 +39,26 @@ namespace EllieSpeed.DataLogger.Test
     [TearDown]
     public void TearDown()
     {
-      Utils.SafeDelete(mDataFilePath);
+      //Utils.SafeDelete(mDataFilePath);
       mBroadcaster.Dispose();
+    }
+
+    [TestFixtureTearDown]
+    public void FixtureTearDown()
+    {
+      // force DataLogger to release lock on SQLite file
+      GC.Collect();
+
+      Utils.SafeDelete(mDataFilePath);
+    }
+
+    private string ConnectionString
+    {
+      get
+      {
+        return string.Format("metadata=res://*/DataLogger.csdl|res://*/DataLogger.ssdl|res://*/DataLogger.msl;" +
+                            "provider=System.Data.SQLite;provider connection string=\"data source={0}\";", mDataFilePath);
+      }
     }
 
     [Test]
@@ -59,132 +73,152 @@ namespace EllieSpeed.DataLogger.Test
     [Test]
     public void OnStartup()
     {
-      using (new SQLiteLogger(mDataFilePath, mMockBroadcaster.Object))
+      using (new SQLiteLogger(mDataFilePath))
       {
         mBroadcaster.OnStartup();
         Thread.Sleep(100);
-
-        mMockBroadcaster.Verify(m => m.OnStartup(), Times.Once());
       }
     }
 
     [Test]
     public void OnShutdown()
     {
-      using (new SQLiteLogger(mDataFilePath, mMockBroadcaster.Object))
+      using (new SQLiteLogger(mDataFilePath))
       {
         mBroadcaster.OnShutdown();
         Thread.Sleep(100);
-
-        mMockBroadcaster.Verify(m => m.OnShutdown(), Times.Once());
       }
     }
 
     [Test]
     public void OnEventInit()
     {
-      var data = TestUtils.CreateBikeEvent();
-      using (new SQLiteLogger(mDataFilePath, mMockBroadcaster.Object))
+      using (new SQLiteLogger(mDataFilePath))
       {
+        var data = TestUtils.CreateBikeEvent();
         mBroadcaster.OnEventInit(data);
         Thread.Sleep(5000);
       }
 
-      mMockBroadcaster.Verify(m => m.OnEventInit(It.IsAny<GPBikes.SPluginsBikeEvent_t>()), Times.Once());
+      using (var logger = new DataLogger(ConnectionString))
+      {
+        Assert.AreEqual(1, logger.BikeEvents.Count());
+      }
+
+      // force DataLogger to release lock on SQLite file
+      GC.Collect();
     }
 
     [Test]
     public void OnRunInit()
     {
-      using (new SQLiteLogger(mDataFilePath, mMockBroadcaster.Object))
+      using (new SQLiteLogger(mDataFilePath))
       {
         var data = TestUtils.CreateBikeSession();
         mBroadcaster.OnRunInit(data);
         Thread.Sleep(5000);
-
-        mMockBroadcaster.Verify(m => m.OnRunInit(It.IsAny<GPBikes.SPluginsBikeSession_t>()), Times.Once());
       }
+
+      using (var logger = new DataLogger(ConnectionString))
+      {
+        Assert.AreEqual(1, logger.BikeSessions.Count());
+      }
+
+      // force DataLogger to release lock on SQLite file
+      GC.Collect();
     }
 
     [Test]
     public void OnRunDeinit()
     {
-      using (new SQLiteLogger(mDataFilePath, mMockBroadcaster.Object))
+      using (new SQLiteLogger(mDataFilePath))
       {
         mBroadcaster.OnRunDeinit();
         Thread.Sleep(100);
-
-        mMockBroadcaster.Verify(m => m.OnRunDeinit(), Times.Once());
       }
     }
 
     [Test]
     public void OnRunStart()
     {
-      using (new SQLiteLogger(mDataFilePath, mMockBroadcaster.Object))
+      using (new SQLiteLogger(mDataFilePath))
       {
         mBroadcaster.OnRunStart();
         Thread.Sleep(100);
-
-        mMockBroadcaster.Verify(m => m.OnRunStart(), Times.Once());
       }
     }
 
     [Test]
     public void OnRunStop()
     {
-      using (new SQLiteLogger(mDataFilePath, mMockBroadcaster.Object))
+      using (new SQLiteLogger(mDataFilePath))
       {
         mBroadcaster.OnRunStop();
         Thread.Sleep(100);
-
-        mMockBroadcaster.Verify(m => m.OnRunStop(), Times.Once());
       }
     }
 
     [Test]
     public void OnRunLap()
     {
-      using (new SQLiteLogger(mDataFilePath, mMockBroadcaster.Object))
+      using (new SQLiteLogger(mDataFilePath))
       {
         var data = TestUtils.CreateBikeLap();
         mBroadcaster.OnRunLap(data);
         Thread.Sleep(5000);
-
-        mMockBroadcaster.Verify(m => m.OnRunLap(It.IsAny<GPBikes.SPluginsBikeLap_t>()), Times.Once());
       }
+
+      using (var logger = new DataLogger(ConnectionString))
+      {
+        Assert.AreEqual(1, logger.BikeLaps.Count());
+      }
+
+      // force DataLogger to release lock on SQLite file
+      GC.Collect();
     }
 
     [Test]
     public void OnRunSplit()
     {
-      using (new SQLiteLogger(mDataFilePath, mMockBroadcaster.Object))
+      using (new SQLiteLogger(mDataFilePath))
       {
         var data = TestUtils.CreateBikeSplit();
         mBroadcaster.OnRunSplit(data);
         Thread.Sleep(5000);
-
-        mMockBroadcaster.Verify(m => m.OnRunSplit(It.IsAny<GPBikes.SPluginsBikeSplit_t>()), Times.Once());
       }
+
+      using (var logger = new DataLogger(ConnectionString))
+      {
+        Assert.AreEqual(1, logger.BikeSplits.Count());
+      }
+
+      // force DataLogger to release lock on SQLite file
+      GC.Collect();
     }
 
     [Test]
     public void OnRunTelemetry()
     {
-      using (new SQLiteLogger(mDataFilePath, mMockBroadcaster.Object))
+      using (new SQLiteLogger(mDataFilePath))
       {
         var data = TestUtils.CreateBikeData();
         mBroadcaster.OnRunTelemetry(data);
-        Thread.Sleep(500);
-
-        mMockBroadcaster.Verify(m => m.OnRunTelemetry(It.IsAny<GPBikes.SPluginsBikeData_t>()), Times.Once());
+        Thread.Sleep(5000);
       }
+
+      using (var logger = new DataLogger(ConnectionString))
+      {
+        Assert.AreEqual(1, logger.BikeDatas.Count());
+      }
+
+      // force DataLogger to release lock on SQLite file
+      GC.Collect();
     }
 
     [Test]
     public void OnTrackCenterline()
     {
-      using (new SQLiteLogger(mDataFilePath, mMockBroadcaster.Object))
+      using (new SQLiteLogger(mDataFilePath))
       {
         var data = new[]
                       {
@@ -193,10 +227,16 @@ namespace EllieSpeed.DataLogger.Test
                         TestUtils.CreateTrackSegment()
                       };
         mBroadcaster.OnTrackCenterline(data);
-        Thread.Sleep(500);
-
-        mMockBroadcaster.Verify(m => m.OnTrackCenterline(It.IsAny<GPBikes.SPluginsTrackSegment_t []>()), Times.Once());
+        Thread.Sleep(5000);
       }
+
+      using (var logger = new DataLogger(ConnectionString))
+      {
+        Assert.AreEqual(3, logger.TrackSegments.Count());
+      }
+
+      // force DataLogger to release lock on SQLite file
+      GC.Collect();
     }
   }
 }

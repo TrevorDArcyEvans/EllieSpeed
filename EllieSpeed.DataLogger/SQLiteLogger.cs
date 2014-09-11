@@ -9,45 +9,38 @@
 using System;
 using System.IO;
 using System.Reflection;
-using EllieSpeed.Broadcast;
 
 namespace EllieSpeed.DataLogger
 {
   public class SQLiteLogger : BaseLogger
   {
-    private readonly string mDatabaseFilePath;
+    private readonly string mDataFilePath;
 
     public SQLiteLogger(string filePath)
     {
-      mDatabaseFilePath = filePath;
-      if (!File.Exists(mDatabaseFilePath))
+      mDataFilePath = filePath;
+      if (!File.Exists(mDataFilePath))
       {
         var assyPath = Assembly.GetExecutingAssembly().Location;
         var assyDir = Path.GetDirectoryName(assyPath);
         var baseDataFilePath = Path.Combine(assyDir, "EllieSpeed.DataLogger.sqlite3");
-        File.Copy(baseDataFilePath, mDatabaseFilePath);
+        File.Copy(baseDataFilePath, mDataFilePath);
       }
 
-      if (Directory.Exists(mDatabaseFilePath))
+      if (Directory.Exists(mDataFilePath))
       {
-        throw new ArgumentException(mDatabaseFilePath + " is a directory");
+        throw new ArgumentException(mDataFilePath + " is a directory");
       }
 
       Initialise();
     }
 
-    internal SQLiteLogger(string filePath, IBroadcaster broadcaster) :
-      this(filePath)
-    {
-      mRecLog = broadcaster;
-    }
-
-    protected override sealed string ConnectionString
+    protected override string ConnectionString
     {
       get
       {
         return string.Format("metadata=res://*/DataLogger.csdl|res://*/DataLogger.ssdl|res://*/DataLogger.msl;" +
-                            "provider=System.Data.SQLite;provider connection string=\"data source={0}\";", mDatabaseFilePath);
+                            "provider=System.Data.SQLite;provider connection string=\"data source={0}\";", mDataFilePath);
       }
     }
   }
