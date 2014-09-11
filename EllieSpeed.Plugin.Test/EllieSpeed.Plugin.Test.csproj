@@ -67,6 +67,10 @@
       <Project>{6501D7FC-E71A-4BF9-A585-56126183883B}</Project>
       <Name>EllieSpeed.Receive</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EllieSpeed.Test.Utilties\EllieSpeed.Test.Utilties.csproj">
+      <Project>{0FDAE05E-FAB3-4D9E-A26F-4BDC9A0276B4}</Project>
+      <Name>EllieSpeed.Test.Utilties</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\EllieSpeed.snk">

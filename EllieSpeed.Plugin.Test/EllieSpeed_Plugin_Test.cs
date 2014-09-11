@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using EllieSpeed.Broadcast;
 using EllieSpeed.Receive;
+using EllieSpeed.Test.Utilties;
 using NUnit.Framework;
 
 namespace EllieSpeed.Plugin.Test
@@ -174,25 +175,7 @@ namespace EllieSpeed.Plugin.Test
     [Timeout(5000)]
     public void EventInit_Completes()
     {
-      var data = new GPBikes.SPluginsBikeEvent_t
-      {
-        RiderName = "trevorde",
-        BikeID = "VFR 400",
-        BikeName = "Ellie",
-        NumberOfGears = 6,
-        MaxRPM = 14500,
-        Limiter = 15500,
-        ShiftRPM = 14500,
-        EngineOptTemperature = 85,
-        EngineTemperatureAlarm = new float[2],
-        MaxFuel = 14,
-        Category = "Super Sports",
-        TrackID = "20060220",
-        TrackName = "Wanneroo",
-        TrackLength = 2160
-      };
-      data.EngineTemperatureAlarm[0] = 50;
-      data.EngineTemperatureAlarm[1] = 95;
+      var data = TestUtils.CreateBikeEvent();
       var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(data));
       Marshal.StructureToPtr(data, ptr, true);
 
@@ -234,14 +217,7 @@ namespace EllieSpeed.Plugin.Test
     [Timeout(5000)]
     public void RunInit_Completes()
     {
-      var data = new GPBikes.SPluginsBikeSession_t
-      {
-        Session = 4,
-        Conditions = 2,
-        AirTemperature = 21,
-        TrackTemperature = 30,
-        SetupFileName = "RainTyres"
-      };
+      var data = TestUtils.CreateBikeSession();
       var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(data));
       Marshal.StructureToPtr(data, ptr, true);
 
@@ -327,12 +303,7 @@ namespace EllieSpeed.Plugin.Test
     [Timeout(5000)]
     public void RunLap_Completes()
     {
-      var data = new GPBikes.SPluginsBikeLap_t
-      {
-        LapTime = 66000,
-        Best = 1,
-        LapNum = 6
-      };
+      var data = TestUtils.CreateBikeLap();
       var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(data));
       Marshal.StructureToPtr(data, ptr, true);
 
@@ -362,12 +333,7 @@ namespace EllieSpeed.Plugin.Test
     [Timeout(5000)]
     public void RunSplit_Completes()
     {
-      var data = new GPBikes.SPluginsBikeSplit_t
-      {
-        Split = 3,
-        SplitTime = 66000,
-        BestDiff = 100
-      };
+      var data = TestUtils.CreateBikeSplit();
       var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(data));
       Marshal.StructureToPtr(data, ptr, true);
 
@@ -397,62 +363,7 @@ namespace EllieSpeed.Plugin.Test
     [Timeout(5000)]
     public void RunTelemetry_Completes()
     {
-      var data = new GPBikes.SPluginsBikeData_t
-      {
-        RPM = 13500f,
-        EngineTemperature = 220f,
-        WaterTemperature = 85f,
-        Gear = 3,
-        Fuel = 6f,
-        Speedometer = 55.5f,
-
-        PosX = 21f,
-        PosY = 23f,
-        PosZ = 25f,
-
-        VelocityX = 24f,
-        VelocityY = 26f,
-        VelocityZ = 28f,
-
-        AccelerationX = 3f,
-        AccelerationY = 5f,
-        AccelerationZ = 7f,
-
-        Rot = new float[9],
-
-        Yaw = 45f,
-        Pitch = 22.5f,
-        Roll = -12.5f,
-
-        YawVelocity = 1f,
-        PitchVelocity = 2f,
-        RollVelocity = 3f,
-
-        SuspNormLength = new float[2],
-
-        Crashed = 1,
-        Throttle = 0.95f,
-        FrontBrake = 0.03f,
-        RearBrake = 0.01f,
-        Clutch = 1f,
-
-        WheelSpeed = new float[2],
-
-        PitLimiter = 1,
-        EngineMapping = "RainTyres"
-      };
-      for (var i = 0; i < 9; i++)
-      {
-        data.Rot[i] = i * i;
-      }
-      for (var i = 0; i < 2; i++)
-      {
-        data.SuspNormLength[i] = 0.5f * (i + 1);
-      }
-      for (var i = 0; i < 2; i++)
-      {
-        data.WheelSpeed[i] = 100f * (i + 1);
-      }
+      var data = TestUtils.CreateBikeData();
 
       var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(data));
       Marshal.StructureToPtr(data, ptr, true);
@@ -526,26 +437,6 @@ namespace EllieSpeed.Plugin.Test
       }
     }
 
-    // cannot have a default constructor for a struct so have this factory
-    // so we initialise Start array
-    private static GPBikes.SPluginsTrackSegment_t CreatePluginsTrackSegment()
-    {
-      return new GPBikes.SPluginsTrackSegment_t
-                  {
-                    Start = new float[2]
-                  };
-    }
-
-    private void Randomise(ref GPBikes.SPluginsTrackSegment_t seg, int seq)
-    {
-      seg.Angle = seq * 36f;
-      seg.Length = seq * 50f;
-      seg.Radius = seq * 10f;
-      seg.Type = seq * 1;
-      seg.Start[0] = seq * 10f;
-      seg.Start[1] = seq * 10f;
-    }
-
     [Test]
     [Timeout(5000)]
     public void TrackCenterline_Completes()
@@ -556,8 +447,7 @@ namespace EllieSpeed.Plugin.Test
 
       for (var i = 0; i < NumTrackSegs; i++)
       {
-        var currData = CreatePluginsTrackSegment();
-        Randomise(ref currData, i);
+        var currData = TestUtils.CreateTrackSegment();
         data.Add(currData);
       }
 
