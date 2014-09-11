@@ -79,7 +79,9 @@
     <None Include="..\EllieSpeed.snk">
       <Link>EllieSpeed.snk</Link>
     </None>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="DataLogger.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DataLogger.Designer.cs</LastGenOutput>
