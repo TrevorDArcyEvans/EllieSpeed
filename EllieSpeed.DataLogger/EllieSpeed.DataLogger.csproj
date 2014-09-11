@@ -57,6 +57,7 @@
     <Compile Include="..\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
+    <Compile Include="BaseLogger.cs" />
     <Compile Include="SQLiteLogger.cs" />
     <Compile Include="DataLogger.Designer.cs">
       <AutoGen>True</AutoGen>
