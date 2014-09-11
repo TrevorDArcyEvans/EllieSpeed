@@ -16,7 +16,7 @@ using System.Text;
 
 namespace EllieSpeed.Broadcast
 {
-  public class Broadcaster : IBroadcaster, IDisposable
+  public class Broadcaster : IBroadcaster
   {
     private readonly IPEndPoint mEndPt;
     private readonly UdpClient mSender;

@@ -6,9 +6,11 @@
 //  www.EllieWare.com
 //
 
+using System;
+
 namespace EllieSpeed.Broadcast
 {
-  public interface IBroadcaster
+  public interface IBroadcaster : IDisposable
   {
     void OnStartup();
     void OnShutdown();
