@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,6 +72,10 @@
     <ProjectReference Include="..\EllieSpeed.DataLogger\EllieSpeed.DataLogger.csproj">
       <Project>{B1BCC89E-5046-48C1-8B83-7799824DA37D}</Project>
       <Name>EllieSpeed.DataLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EllieSpeed.Test.Utilties\EllieSpeed.Test.Utilties.csproj">
+      <Project>{0FDAE05E-FAB3-4D9E-A26F-4BDC9A0276B4}</Project>
+      <Name>EllieSpeed.Test.Utilties</Name>
     </ProjectReference>
     <ProjectReference Include="..\EllieSpeed.Utilities\EllieSpeed.Utilities.csproj">
       <Project>{3CFF1EBD-E509-4B14-B0F0-371DFF5ED75F}</Project>
