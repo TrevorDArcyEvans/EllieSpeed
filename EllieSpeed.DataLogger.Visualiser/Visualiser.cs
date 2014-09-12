@@ -144,6 +144,10 @@ namespace EllieSpeed.DataLogger.Visualiser
         ZedGraph.IsAutoScrollRange = true;
         ZedGraph.IsScrollY2 = true;
 
+
+        myPane.YAxis.IsVisible = myPane.Y2Axis.IsVisible = false;
+
+
         // OPTIONAL: Show tooltips when the mouse hovers over a point
         ZedGraph.IsShowPointValues = true;
         ZedGraph.PointValueEvent += PointValueHandler;
@@ -161,7 +165,6 @@ namespace EllieSpeed.DataLogger.Visualiser
         // Make sure the Graph gets redrawn
         ZedGraph.Invalidate();
       }
-
     }
 
     /// <summary>
