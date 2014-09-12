@@ -3,7 +3,7 @@
 //
 //  All rights reserved
 //
-//  www.EllieWare.com
+//  www.EllieSpeed.com
 //
 using System.Reflection;
 using System.Runtime.InteropServices;
