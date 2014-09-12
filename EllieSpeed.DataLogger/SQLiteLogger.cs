@@ -16,7 +16,8 @@ namespace EllieSpeed.DataLogger
   {
     private readonly string mDataFilePath;
 
-    public SQLiteLogger(string filePath)
+    public SQLiteLogger(string filePath) :
+      base(new DataLogger(GetConnectionString(filePath)))
     {
       mDataFilePath = filePath;
       if (!File.Exists(mDataFilePath))
@@ -31,17 +32,20 @@ namespace EllieSpeed.DataLogger
       {
         throw new ArgumentException(mDataFilePath + " is a directory");
       }
-
-      Initialise();
     }
 
     protected override string ConnectionString
     {
       get
       {
-        return string.Format("metadata=res://*/DataLogger.csdl|res://*/DataLogger.ssdl|res://*/DataLogger.msl;" +
-                            "provider=System.Data.SQLite;provider connection string=\"data source={0}\";", mDataFilePath);
+        return GetConnectionString(mDataFilePath);
       }
+    }
+
+    public static string GetConnectionString(string filePath)
+    {
+      return string.Format("metadata=res://*/DataLogger.csdl|res://*/DataLogger.ssdl|res://*/DataLogger.msl;" +
+                          "provider=System.Data.SQLite;provider connection string=\"data source={0}\";", filePath);
     }
   }
 }
