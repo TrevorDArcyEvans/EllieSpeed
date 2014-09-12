@@ -28,7 +28,8 @@ namespace EllieSpeed.Receive.Console
 
         System.Console.WriteLine(@"Listening for data on port " + Broadcast.Broadcaster.BroadcastPort);
         System.Console.WriteLine();
-        System.Console.ReadLine();
+        System.Console.WriteLine(@"Press any key to exit");
+        System.Console.ReadKey();
       }
     }
   }
