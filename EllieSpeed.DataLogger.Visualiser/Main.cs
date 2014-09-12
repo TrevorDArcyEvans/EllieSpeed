@@ -36,6 +36,7 @@ namespace EllieSpeed.DataLogger.Visualiser
 
     private void FileClose_Click(object sender, EventArgs e)
     {
+      // still have to do a check as can be called via shortcut
       if (ActiveMdiChild == null)
       {
         return;
@@ -72,6 +73,11 @@ namespace EllieSpeed.DataLogger.Visualiser
     {
       var frm = new AboutBox();
       frm.ShowDialog();
+    }
+
+    private void FileMenuItem_DropDownOpening(object sender, EventArgs e)
+    {
+      FileCloseMenuItem.Enabled = ActiveMdiChild != null;
     }
   }
 }

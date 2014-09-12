@@ -37,11 +37,11 @@ namespace EllieSpeed.DataLogger.Visualiser
     private void InitializeComponent()
     {
       System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-      this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.FileOpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.FileCloseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
       this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.WindowMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.WindowCascadeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.WindowTileHorizontalMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,19 +56,6 @@ namespace EllieSpeed.DataLogger.Visualiser
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
-      // menuStrip1
-      // 
-      this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            toolStripMenuItem1,
-            this.WindowMenuItem,
-            this.helpToolStripMenuItem});
-      this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-      this.menuStrip1.MdiWindowListItem = this.WindowMenuItem;
-      this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(721, 24);
-      this.menuStrip1.TabIndex = 1;
-      this.menuStrip1.Text = "menuStrip1";
-      // 
       // toolStripMenuItem1
       // 
       toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -79,6 +66,7 @@ namespace EllieSpeed.DataLogger.Visualiser
       toolStripMenuItem1.Name = "toolStripMenuItem1";
       toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
       toolStripMenuItem1.Text = "&File";
+      toolStripMenuItem1.DropDownOpening += new System.EventHandler(this.FileMenuItem_DropDownOpening);
       // 
       // FileOpenMenuItem
       // 
@@ -109,6 +97,19 @@ namespace EllieSpeed.DataLogger.Visualiser
       this.exitToolStripMenuItem.Text = "E&xit";
       this.exitToolStripMenuItem.Click += new System.EventHandler(this.FileExit_Click);
       // 
+      // menuStrip1
+      // 
+      this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            toolStripMenuItem1,
+            this.WindowMenuItem,
+            this.helpToolStripMenuItem});
+      this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+      this.menuStrip1.MdiWindowListItem = this.WindowMenuItem;
+      this.menuStrip1.Name = "menuStrip1";
+      this.menuStrip1.Size = new System.Drawing.Size(721, 24);
+      this.menuStrip1.TabIndex = 1;
+      this.menuStrip1.Text = "menuStrip1";
+      // 
       // WindowMenuItem
       // 
       this.WindowMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -123,28 +124,28 @@ namespace EllieSpeed.DataLogger.Visualiser
       // WindowCascadeMenuItem
       // 
       this.WindowCascadeMenuItem.Name = "WindowCascadeMenuItem";
-      this.WindowCascadeMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.WindowCascadeMenuItem.Size = new System.Drawing.Size(151, 22);
       this.WindowCascadeMenuItem.Text = "&Cascade";
       this.WindowCascadeMenuItem.Click += new System.EventHandler(this.WindowCascade_Click);
       // 
       // WindowTileHorizontalMenuItem
       // 
       this.WindowTileHorizontalMenuItem.Name = "WindowTileHorizontalMenuItem";
-      this.WindowTileHorizontalMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.WindowTileHorizontalMenuItem.Size = new System.Drawing.Size(151, 22);
       this.WindowTileHorizontalMenuItem.Text = "Tile &Horizontal";
       this.WindowTileHorizontalMenuItem.Click += new System.EventHandler(this.WindowTileHorizontal_Click);
       // 
       // WindowTileVerticalMenuItem
       // 
       this.WindowTileVerticalMenuItem.Name = "WindowTileVerticalMenuItem";
-      this.WindowTileVerticalMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.WindowTileVerticalMenuItem.Size = new System.Drawing.Size(151, 22);
       this.WindowTileVerticalMenuItem.Text = "Tile &Vertical";
       this.WindowTileVerticalMenuItem.Click += new System.EventHandler(this.WindowTileVertical_Click);
       // 
       // WindowArrangeIconsMenuItem
       // 
       this.WindowArrangeIconsMenuItem.Name = "WindowArrangeIconsMenuItem";
-      this.WindowArrangeIconsMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.WindowArrangeIconsMenuItem.Size = new System.Drawing.Size(151, 22);
       this.WindowArrangeIconsMenuItem.Text = "&Arrange Icons";
       this.WindowArrangeIconsMenuItem.Click += new System.EventHandler(this.WindowArrangeIcons_Click);
       // 
@@ -159,7 +160,7 @@ namespace EllieSpeed.DataLogger.Visualiser
       // HelpAboutMenuItem
       // 
       this.HelpAboutMenuItem.Name = "HelpAboutMenuItem";
-      this.HelpAboutMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.HelpAboutMenuItem.Size = new System.Drawing.Size(116, 22);
       this.HelpAboutMenuItem.Text = "&About...";
       this.HelpAboutMenuItem.Click += new System.EventHandler(this.HelpAbout_Click);
       // 
