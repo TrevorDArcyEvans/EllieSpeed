@@ -44,6 +44,7 @@ namespace EllieSpeed.DataLogger.Visualiser
       // 
       this.ZedGraph.Dock = System.Windows.Forms.DockStyle.Fill;
       this.ZedGraph.IsEnableVZoom = false;
+      this.ZedGraph.IsSynchronizeXAxes = true;
       this.ZedGraph.Location = new System.Drawing.Point(0, 0);
       this.ZedGraph.Name = "ZedGraph";
       this.ZedGraph.ScrollGrace = 0D;
