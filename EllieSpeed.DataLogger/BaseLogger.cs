@@ -1,9 +1,9 @@
 ﻿//
-//  Copyright (C) 2014 EllieWare
+//  Copyright (C) 2014 EllieSpeed
 //
 //  All rights reserved
 //
-//  www.EllieWare.com
+//  www.EllieSpeed.com
 //
 
 using System;
@@ -15,15 +15,14 @@ namespace EllieSpeed.DataLogger
 {
   public abstract class BaseLogger : IDisposable
   {
-    private DataLogger mLogger;
-
+    private readonly DataLogger mLogger;
     private readonly Receiver mReceiver = new Receiver(Broadcaster.BroadcastPort);
 
     protected abstract string ConnectionString { get; }
 
-    protected void Initialise()
+    public BaseLogger(DataLogger logger)
     {
-      mLogger = new DataLogger(ConnectionString);
+      mLogger = logger;
 
       mReceiver.OnStartup += OnStartup;
       mReceiver.OnShutdown += OnShutdown;

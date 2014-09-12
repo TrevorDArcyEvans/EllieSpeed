@@ -1,9 +1,9 @@
 ﻿//
-//  Copyright (C) 2014 EllieWare
+//  Copyright (C) 2014 EllieSpeed
 //
 //  All rights reserved
 //
-//  www.EllieWare.com
+//  www.EllieSpeed.com
 //
 
 using System.Reflection;

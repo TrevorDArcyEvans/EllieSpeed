@@ -1,9 +1,9 @@
 ﻿//
-//  Copyright (C) 2014 EllieWare
+//  Copyright (C) 2014 EllieSpeed
 //
 //  All rights reserved
 //
-//  www.EllieWare.com
+//  www.EllieSpeed.com
 //
 
 namespace EllieSpeed.Receive.Console
@@ -28,7 +28,8 @@ namespace EllieSpeed.Receive.Console
 
         System.Console.WriteLine(@"Listening for data on port " + Broadcast.Broadcaster.BroadcastPort);
         System.Console.WriteLine();
-        System.Console.ReadLine();
+        System.Console.WriteLine(@"Press any key to exit");
+        System.Console.ReadKey();
       }
     }
   }

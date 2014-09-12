@@ -11,5 +11,5 @@ using System.Reflection;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EllieSpeed.Broadcast")]
-[assembly: AssemblyProduct("EllieSpeed.Broadcast")]
+[assembly: AssemblyTitle("EllieSpeed.DataLogger.SQLite")]
+[assembly: AssemblyProduct("EllieSpeed.DataLogger.SQLite")]
