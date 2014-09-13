@@ -22,10 +22,17 @@ namespace EllieSpeed.DataLogger
       mDataFilePath = filePath;
       if (!File.Exists(mDataFilePath))
       {
-        var assyPath = Assembly.GetExecutingAssembly().Location;
-        var assyDir = Path.GetDirectoryName(assyPath);
-        var baseDataFilePath = Path.Combine(assyDir, "EllieSpeed.DataLogger.sqlite3");
-        File.Copy(baseDataFilePath, mDataFilePath);
+        var assy = Assembly.GetExecutingAssembly();
+        var strm = assy.GetManifestResourceStream("EllieSpeed.DataLogger.SQLite.sqlite3");
+
+        using (var fileStream = File.Create(mDataFilePath, (int)strm.Length))
+        {
+          // Initialize the bytes array with the stream length and then fill it with data
+          var bytesInStream = new byte[strm.Length];
+          strm.Read(bytesInStream, 0, bytesInStream.Length);
+          // Use write method to write to the file specified above
+          fileStream.Write(bytesInStream, 0, bytesInStream.Length);
+        }
       }
 
       if (Directory.Exists(mDataFilePath))

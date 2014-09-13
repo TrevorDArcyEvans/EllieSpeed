@@ -87,9 +87,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DataLogger.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="EllieSpeed.DataLogger.sqlite3">
+    <EmbeddedResource Include="SQLite.sqlite3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
