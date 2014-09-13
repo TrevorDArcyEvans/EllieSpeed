@@ -81,6 +81,12 @@ namespace EllieSpeed.Broadcast
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct SPluginsBikeData_t
     {
+      /*  TrackTime is the ontrack time, in seconds  */
+      public float TrackTime;
+
+      /*  Position on centerline, from 0 to 1  */
+      public float TrackPosition;
+
       /*  engine rpm  */
       public float RPM;
 

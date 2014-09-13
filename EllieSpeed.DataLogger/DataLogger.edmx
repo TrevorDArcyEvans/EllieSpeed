@@ -18,6 +18,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TrackTime" Type="real" Nullable="false" />
+          <Property Name="TrackPosition" Type="real" Nullable="false" />
           <Property Name="RPM" Type="real" Nullable="false" />
           <Property Name="EngineTemperature" Type="real" Nullable="false" />
           <Property Name="WaterTemperature" Type="real" Nullable="false" />
@@ -182,6 +184,8 @@
           <Property Name="PitLimiter" Type="Int32" Nullable="false" />
           <Property Name="EngineMapping" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
           <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Double" Name="TrackTime" Nullable="false" />
+          <Property Type="Double" Name="TrackPosition" Nullable="false" />
         </EntityType>
         <EntityType Name="BikeEvent">
           <Key>
@@ -254,6 +258,8 @@
           <EntitySetMapping Name="BikeDatas">
             <EntityTypeMapping TypeName="EllieSpeed.DataLoggerModel.BikeData">
               <MappingFragment StoreEntitySet="BikeData">
+                <ScalarProperty Name="TrackPosition" ColumnName="TrackPosition" />
+                <ScalarProperty Name="TrackTime" ColumnName="TrackTime" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="RPM" ColumnName="RPM" />
                 <ScalarProperty Name="EngineTemperature" ColumnName="EngineTemperature" />
@@ -387,7 +393,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="DataLog" ZoomLevel="100">
+      <Diagram Name="DataLog" ZoomLevel="63">
         <EntityTypeShape EntityType="EllieSpeed.DataLoggerModel.BikeData" Width="1.5" PointX="0.5" PointY="0.5" Height="9.2877408854166656" IsExpanded="true" />
         <EntityTypeShape EntityType="EllieSpeed.DataLoggerModel.BikeEvent" Width="1.5" PointX="2.5" PointY="0.5" Height="4.1156022135416652" IsExpanded="true" />
         <EntityTypeShape EntityType="EllieSpeed.DataLoggerModel.BikeLap" Width="1.5" PointX="4.5" PointY="0.5" Height="1.787985026041667" IsExpanded="true" />

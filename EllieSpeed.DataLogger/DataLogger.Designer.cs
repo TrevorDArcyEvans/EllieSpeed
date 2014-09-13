@@ -277,7 +277,9 @@ namespace EllieSpeed.DataLogger
         /// <param name="pitLimiter">Initial value of the PitLimiter property.</param>
         /// <param name="engineMapping">Initial value of the EngineMapping property.</param>
         /// <param name="id">Initial value of the ID property.</param>
-        public static BikeData CreateBikeData(global::System.Double rPM, global::System.Double engineTemperature, global::System.Double waterTemperature, global::System.Int32 gear, global::System.Double fuel, global::System.Double speedometer, global::System.Double posX, global::System.Double posY, global::System.Double posZ, global::System.Double velocityX, global::System.Double velocityY, global::System.Double velocityZ, global::System.Double accelerationX, global::System.Double accelerationY, global::System.Double accelerationZ, global::System.Double rot0, global::System.Double rot1, global::System.Double rot2, global::System.Double rot3, global::System.Double rot4, global::System.Double rot5, global::System.Double rot6, global::System.Double rot7, global::System.Double rot8, global::System.Double yaw, global::System.Double pitch, global::System.Double roll, global::System.Double yawVelocity, global::System.Double pitchVelocity, global::System.Double rollVelocity, global::System.Double suspNormLengthFront, global::System.Double suspNormLengthRear, global::System.Int32 crashed, global::System.Double steer, global::System.Double throttle, global::System.Double frontBrake, global::System.Double rearBrake, global::System.Double clutch, global::System.Double wheelSpeedFront, global::System.Double wheelSpeedRear, global::System.Int32 pitLimiter, global::System.String engineMapping, global::System.Int64 id)
+        /// <param name="trackTime">Initial value of the TrackTime property.</param>
+        /// <param name="trackPosition">Initial value of the TrackPosition property.</param>
+        public static BikeData CreateBikeData(global::System.Double rPM, global::System.Double engineTemperature, global::System.Double waterTemperature, global::System.Int32 gear, global::System.Double fuel, global::System.Double speedometer, global::System.Double posX, global::System.Double posY, global::System.Double posZ, global::System.Double velocityX, global::System.Double velocityY, global::System.Double velocityZ, global::System.Double accelerationX, global::System.Double accelerationY, global::System.Double accelerationZ, global::System.Double rot0, global::System.Double rot1, global::System.Double rot2, global::System.Double rot3, global::System.Double rot4, global::System.Double rot5, global::System.Double rot6, global::System.Double rot7, global::System.Double rot8, global::System.Double yaw, global::System.Double pitch, global::System.Double roll, global::System.Double yawVelocity, global::System.Double pitchVelocity, global::System.Double rollVelocity, global::System.Double suspNormLengthFront, global::System.Double suspNormLengthRear, global::System.Int32 crashed, global::System.Double steer, global::System.Double throttle, global::System.Double frontBrake, global::System.Double rearBrake, global::System.Double clutch, global::System.Double wheelSpeedFront, global::System.Double wheelSpeedRear, global::System.Int32 pitLimiter, global::System.String engineMapping, global::System.Int64 id, global::System.Double trackTime, global::System.Double trackPosition)
         {
             BikeData bikeData = new BikeData();
             bikeData.RPM = rPM;
@@ -323,6 +325,8 @@ namespace EllieSpeed.DataLogger
             bikeData.PitLimiter = pitLimiter;
             bikeData.EngineMapping = engineMapping;
             bikeData.ID = id;
+            bikeData.TrackTime = trackTime;
+            bikeData.TrackPosition = trackPosition;
             return bikeData;
         }
 
@@ -333,7 +337,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double RPM
         {
@@ -343,14 +347,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_RPM != value)
-                {
-                    OnRPMChanging(value);
-                    ReportPropertyChanging("RPM");
-                    _RPM = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("RPM");
-                    OnRPMChanged();
-                }
+                OnRPMChanging(value);
+                ReportPropertyChanging("RPM");
+                _RPM = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RPM");
+                OnRPMChanged();
             }
         }
         private global::System.Double _RPM;
@@ -360,7 +361,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double EngineTemperature
         {
@@ -370,14 +371,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_EngineTemperature != value)
-                {
-                    OnEngineTemperatureChanging(value);
-                    ReportPropertyChanging("EngineTemperature");
-                    _EngineTemperature = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("EngineTemperature");
-                    OnEngineTemperatureChanged();
-                }
+                OnEngineTemperatureChanging(value);
+                ReportPropertyChanging("EngineTemperature");
+                _EngineTemperature = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EngineTemperature");
+                OnEngineTemperatureChanged();
             }
         }
         private global::System.Double _EngineTemperature;
@@ -387,7 +385,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double WaterTemperature
         {
@@ -397,14 +395,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_WaterTemperature != value)
-                {
-                    OnWaterTemperatureChanging(value);
-                    ReportPropertyChanging("WaterTemperature");
-                    _WaterTemperature = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("WaterTemperature");
-                    OnWaterTemperatureChanged();
-                }
+                OnWaterTemperatureChanging(value);
+                ReportPropertyChanging("WaterTemperature");
+                _WaterTemperature = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("WaterTemperature");
+                OnWaterTemperatureChanged();
             }
         }
         private global::System.Double _WaterTemperature;
@@ -414,7 +409,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 Gear
         {
@@ -424,14 +419,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Gear != value)
-                {
-                    OnGearChanging(value);
-                    ReportPropertyChanging("Gear");
-                    _Gear = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Gear");
-                    OnGearChanged();
-                }
+                OnGearChanging(value);
+                ReportPropertyChanging("Gear");
+                _Gear = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Gear");
+                OnGearChanged();
             }
         }
         private global::System.Int32 _Gear;
@@ -441,7 +433,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Fuel
         {
@@ -451,14 +443,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Fuel != value)
-                {
-                    OnFuelChanging(value);
-                    ReportPropertyChanging("Fuel");
-                    _Fuel = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Fuel");
-                    OnFuelChanged();
-                }
+                OnFuelChanging(value);
+                ReportPropertyChanging("Fuel");
+                _Fuel = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Fuel");
+                OnFuelChanged();
             }
         }
         private global::System.Double _Fuel;
@@ -468,7 +457,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Speedometer
         {
@@ -478,14 +467,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Speedometer != value)
-                {
-                    OnSpeedometerChanging(value);
-                    ReportPropertyChanging("Speedometer");
-                    _Speedometer = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Speedometer");
-                    OnSpeedometerChanged();
-                }
+                OnSpeedometerChanging(value);
+                ReportPropertyChanging("Speedometer");
+                _Speedometer = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Speedometer");
+                OnSpeedometerChanged();
             }
         }
         private global::System.Double _Speedometer;
@@ -495,7 +481,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double PosX
         {
@@ -505,14 +491,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_PosX != value)
-                {
-                    OnPosXChanging(value);
-                    ReportPropertyChanging("PosX");
-                    _PosX = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("PosX");
-                    OnPosXChanged();
-                }
+                OnPosXChanging(value);
+                ReportPropertyChanging("PosX");
+                _PosX = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PosX");
+                OnPosXChanged();
             }
         }
         private global::System.Double _PosX;
@@ -522,7 +505,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double PosY
         {
@@ -532,14 +515,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_PosY != value)
-                {
-                    OnPosYChanging(value);
-                    ReportPropertyChanging("PosY");
-                    _PosY = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("PosY");
-                    OnPosYChanged();
-                }
+                OnPosYChanging(value);
+                ReportPropertyChanging("PosY");
+                _PosY = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PosY");
+                OnPosYChanged();
             }
         }
         private global::System.Double _PosY;
@@ -549,7 +529,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double PosZ
         {
@@ -559,14 +539,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_PosZ != value)
-                {
-                    OnPosZChanging(value);
-                    ReportPropertyChanging("PosZ");
-                    _PosZ = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("PosZ");
-                    OnPosZChanged();
-                }
+                OnPosZChanging(value);
+                ReportPropertyChanging("PosZ");
+                _PosZ = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PosZ");
+                OnPosZChanged();
             }
         }
         private global::System.Double _PosZ;
@@ -576,7 +553,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double VelocityX
         {
@@ -586,14 +563,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_VelocityX != value)
-                {
-                    OnVelocityXChanging(value);
-                    ReportPropertyChanging("VelocityX");
-                    _VelocityX = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("VelocityX");
-                    OnVelocityXChanged();
-                }
+                OnVelocityXChanging(value);
+                ReportPropertyChanging("VelocityX");
+                _VelocityX = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VelocityX");
+                OnVelocityXChanged();
             }
         }
         private global::System.Double _VelocityX;
@@ -603,7 +577,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double VelocityY
         {
@@ -613,14 +587,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_VelocityY != value)
-                {
-                    OnVelocityYChanging(value);
-                    ReportPropertyChanging("VelocityY");
-                    _VelocityY = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("VelocityY");
-                    OnVelocityYChanged();
-                }
+                OnVelocityYChanging(value);
+                ReportPropertyChanging("VelocityY");
+                _VelocityY = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VelocityY");
+                OnVelocityYChanged();
             }
         }
         private global::System.Double _VelocityY;
@@ -630,7 +601,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double VelocityZ
         {
@@ -640,14 +611,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_VelocityZ != value)
-                {
-                    OnVelocityZChanging(value);
-                    ReportPropertyChanging("VelocityZ");
-                    _VelocityZ = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("VelocityZ");
-                    OnVelocityZChanged();
-                }
+                OnVelocityZChanging(value);
+                ReportPropertyChanging("VelocityZ");
+                _VelocityZ = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VelocityZ");
+                OnVelocityZChanged();
             }
         }
         private global::System.Double _VelocityZ;
@@ -657,7 +625,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double AccelerationX
         {
@@ -667,14 +635,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_AccelerationX != value)
-                {
-                    OnAccelerationXChanging(value);
-                    ReportPropertyChanging("AccelerationX");
-                    _AccelerationX = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("AccelerationX");
-                    OnAccelerationXChanged();
-                }
+                OnAccelerationXChanging(value);
+                ReportPropertyChanging("AccelerationX");
+                _AccelerationX = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AccelerationX");
+                OnAccelerationXChanged();
             }
         }
         private global::System.Double _AccelerationX;
@@ -684,7 +649,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double AccelerationY
         {
@@ -694,14 +659,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_AccelerationY != value)
-                {
-                    OnAccelerationYChanging(value);
-                    ReportPropertyChanging("AccelerationY");
-                    _AccelerationY = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("AccelerationY");
-                    OnAccelerationYChanged();
-                }
+                OnAccelerationYChanging(value);
+                ReportPropertyChanging("AccelerationY");
+                _AccelerationY = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AccelerationY");
+                OnAccelerationYChanged();
             }
         }
         private global::System.Double _AccelerationY;
@@ -711,7 +673,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double AccelerationZ
         {
@@ -721,14 +683,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_AccelerationZ != value)
-                {
-                    OnAccelerationZChanging(value);
-                    ReportPropertyChanging("AccelerationZ");
-                    _AccelerationZ = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("AccelerationZ");
-                    OnAccelerationZChanged();
-                }
+                OnAccelerationZChanging(value);
+                ReportPropertyChanging("AccelerationZ");
+                _AccelerationZ = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AccelerationZ");
+                OnAccelerationZChanged();
             }
         }
         private global::System.Double _AccelerationZ;
@@ -738,7 +697,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Rot0
         {
@@ -748,14 +707,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Rot0 != value)
-                {
-                    OnRot0Changing(value);
-                    ReportPropertyChanging("Rot0");
-                    _Rot0 = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Rot0");
-                    OnRot0Changed();
-                }
+                OnRot0Changing(value);
+                ReportPropertyChanging("Rot0");
+                _Rot0 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Rot0");
+                OnRot0Changed();
             }
         }
         private global::System.Double _Rot0;
@@ -765,7 +721,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Rot1
         {
@@ -775,14 +731,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Rot1 != value)
-                {
-                    OnRot1Changing(value);
-                    ReportPropertyChanging("Rot1");
-                    _Rot1 = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Rot1");
-                    OnRot1Changed();
-                }
+                OnRot1Changing(value);
+                ReportPropertyChanging("Rot1");
+                _Rot1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Rot1");
+                OnRot1Changed();
             }
         }
         private global::System.Double _Rot1;
@@ -792,7 +745,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Rot2
         {
@@ -802,14 +755,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Rot2 != value)
-                {
-                    OnRot2Changing(value);
-                    ReportPropertyChanging("Rot2");
-                    _Rot2 = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Rot2");
-                    OnRot2Changed();
-                }
+                OnRot2Changing(value);
+                ReportPropertyChanging("Rot2");
+                _Rot2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Rot2");
+                OnRot2Changed();
             }
         }
         private global::System.Double _Rot2;
@@ -819,7 +769,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Rot3
         {
@@ -829,14 +779,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Rot3 != value)
-                {
-                    OnRot3Changing(value);
-                    ReportPropertyChanging("Rot3");
-                    _Rot3 = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Rot3");
-                    OnRot3Changed();
-                }
+                OnRot3Changing(value);
+                ReportPropertyChanging("Rot3");
+                _Rot3 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Rot3");
+                OnRot3Changed();
             }
         }
         private global::System.Double _Rot3;
@@ -846,7 +793,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Rot4
         {
@@ -856,14 +803,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Rot4 != value)
-                {
-                    OnRot4Changing(value);
-                    ReportPropertyChanging("Rot4");
-                    _Rot4 = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Rot4");
-                    OnRot4Changed();
-                }
+                OnRot4Changing(value);
+                ReportPropertyChanging("Rot4");
+                _Rot4 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Rot4");
+                OnRot4Changed();
             }
         }
         private global::System.Double _Rot4;
@@ -873,7 +817,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Rot5
         {
@@ -883,14 +827,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Rot5 != value)
-                {
-                    OnRot5Changing(value);
-                    ReportPropertyChanging("Rot5");
-                    _Rot5 = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Rot5");
-                    OnRot5Changed();
-                }
+                OnRot5Changing(value);
+                ReportPropertyChanging("Rot5");
+                _Rot5 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Rot5");
+                OnRot5Changed();
             }
         }
         private global::System.Double _Rot5;
@@ -900,7 +841,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Rot6
         {
@@ -910,14 +851,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Rot6 != value)
-                {
-                    OnRot6Changing(value);
-                    ReportPropertyChanging("Rot6");
-                    _Rot6 = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Rot6");
-                    OnRot6Changed();
-                }
+                OnRot6Changing(value);
+                ReportPropertyChanging("Rot6");
+                _Rot6 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Rot6");
+                OnRot6Changed();
             }
         }
         private global::System.Double _Rot6;
@@ -927,7 +865,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Rot7
         {
@@ -937,14 +875,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Rot7 != value)
-                {
-                    OnRot7Changing(value);
-                    ReportPropertyChanging("Rot7");
-                    _Rot7 = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Rot7");
-                    OnRot7Changed();
-                }
+                OnRot7Changing(value);
+                ReportPropertyChanging("Rot7");
+                _Rot7 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Rot7");
+                OnRot7Changed();
             }
         }
         private global::System.Double _Rot7;
@@ -954,7 +889,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Rot8
         {
@@ -964,14 +899,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Rot8 != value)
-                {
-                    OnRot8Changing(value);
-                    ReportPropertyChanging("Rot8");
-                    _Rot8 = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Rot8");
-                    OnRot8Changed();
-                }
+                OnRot8Changing(value);
+                ReportPropertyChanging("Rot8");
+                _Rot8 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Rot8");
+                OnRot8Changed();
             }
         }
         private global::System.Double _Rot8;
@@ -981,7 +913,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Yaw
         {
@@ -991,14 +923,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Yaw != value)
-                {
-                    OnYawChanging(value);
-                    ReportPropertyChanging("Yaw");
-                    _Yaw = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Yaw");
-                    OnYawChanged();
-                }
+                OnYawChanging(value);
+                ReportPropertyChanging("Yaw");
+                _Yaw = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Yaw");
+                OnYawChanged();
             }
         }
         private global::System.Double _Yaw;
@@ -1008,7 +937,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Pitch
         {
@@ -1018,14 +947,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Pitch != value)
-                {
-                    OnPitchChanging(value);
-                    ReportPropertyChanging("Pitch");
-                    _Pitch = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Pitch");
-                    OnPitchChanged();
-                }
+                OnPitchChanging(value);
+                ReportPropertyChanging("Pitch");
+                _Pitch = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Pitch");
+                OnPitchChanged();
             }
         }
         private global::System.Double _Pitch;
@@ -1035,7 +961,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Roll
         {
@@ -1045,14 +971,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Roll != value)
-                {
-                    OnRollChanging(value);
-                    ReportPropertyChanging("Roll");
-                    _Roll = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Roll");
-                    OnRollChanged();
-                }
+                OnRollChanging(value);
+                ReportPropertyChanging("Roll");
+                _Roll = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Roll");
+                OnRollChanged();
             }
         }
         private global::System.Double _Roll;
@@ -1062,7 +985,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double YawVelocity
         {
@@ -1072,14 +995,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_YawVelocity != value)
-                {
-                    OnYawVelocityChanging(value);
-                    ReportPropertyChanging("YawVelocity");
-                    _YawVelocity = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("YawVelocity");
-                    OnYawVelocityChanged();
-                }
+                OnYawVelocityChanging(value);
+                ReportPropertyChanging("YawVelocity");
+                _YawVelocity = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("YawVelocity");
+                OnYawVelocityChanged();
             }
         }
         private global::System.Double _YawVelocity;
@@ -1089,7 +1009,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double PitchVelocity
         {
@@ -1099,14 +1019,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_PitchVelocity != value)
-                {
-                    OnPitchVelocityChanging(value);
-                    ReportPropertyChanging("PitchVelocity");
-                    _PitchVelocity = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("PitchVelocity");
-                    OnPitchVelocityChanged();
-                }
+                OnPitchVelocityChanging(value);
+                ReportPropertyChanging("PitchVelocity");
+                _PitchVelocity = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PitchVelocity");
+                OnPitchVelocityChanged();
             }
         }
         private global::System.Double _PitchVelocity;
@@ -1116,7 +1033,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double RollVelocity
         {
@@ -1126,14 +1043,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_RollVelocity != value)
-                {
-                    OnRollVelocityChanging(value);
-                    ReportPropertyChanging("RollVelocity");
-                    _RollVelocity = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("RollVelocity");
-                    OnRollVelocityChanged();
-                }
+                OnRollVelocityChanging(value);
+                ReportPropertyChanging("RollVelocity");
+                _RollVelocity = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RollVelocity");
+                OnRollVelocityChanged();
             }
         }
         private global::System.Double _RollVelocity;
@@ -1143,7 +1057,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double SuspNormLengthFront
         {
@@ -1153,14 +1067,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_SuspNormLengthFront != value)
-                {
-                    OnSuspNormLengthFrontChanging(value);
-                    ReportPropertyChanging("SuspNormLengthFront");
-                    _SuspNormLengthFront = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("SuspNormLengthFront");
-                    OnSuspNormLengthFrontChanged();
-                }
+                OnSuspNormLengthFrontChanging(value);
+                ReportPropertyChanging("SuspNormLengthFront");
+                _SuspNormLengthFront = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SuspNormLengthFront");
+                OnSuspNormLengthFrontChanged();
             }
         }
         private global::System.Double _SuspNormLengthFront;
@@ -1170,7 +1081,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double SuspNormLengthRear
         {
@@ -1180,14 +1091,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_SuspNormLengthRear != value)
-                {
-                    OnSuspNormLengthRearChanging(value);
-                    ReportPropertyChanging("SuspNormLengthRear");
-                    _SuspNormLengthRear = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("SuspNormLengthRear");
-                    OnSuspNormLengthRearChanged();
-                }
+                OnSuspNormLengthRearChanging(value);
+                ReportPropertyChanging("SuspNormLengthRear");
+                _SuspNormLengthRear = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SuspNormLengthRear");
+                OnSuspNormLengthRearChanged();
             }
         }
         private global::System.Double _SuspNormLengthRear;
@@ -1197,7 +1105,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 Crashed
         {
@@ -1207,14 +1115,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Crashed != value)
-                {
-                    OnCrashedChanging(value);
-                    ReportPropertyChanging("Crashed");
-                    _Crashed = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Crashed");
-                    OnCrashedChanged();
-                }
+                OnCrashedChanging(value);
+                ReportPropertyChanging("Crashed");
+                _Crashed = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Crashed");
+                OnCrashedChanged();
             }
         }
         private global::System.Int32 _Crashed;
@@ -1224,7 +1129,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Steer
         {
@@ -1234,14 +1139,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Steer != value)
-                {
-                    OnSteerChanging(value);
-                    ReportPropertyChanging("Steer");
-                    _Steer = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Steer");
-                    OnSteerChanged();
-                }
+                OnSteerChanging(value);
+                ReportPropertyChanging("Steer");
+                _Steer = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Steer");
+                OnSteerChanged();
             }
         }
         private global::System.Double _Steer;
@@ -1251,7 +1153,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Throttle
         {
@@ -1261,14 +1163,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Throttle != value)
-                {
-                    OnThrottleChanging(value);
-                    ReportPropertyChanging("Throttle");
-                    _Throttle = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Throttle");
-                    OnThrottleChanged();
-                }
+                OnThrottleChanging(value);
+                ReportPropertyChanging("Throttle");
+                _Throttle = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Throttle");
+                OnThrottleChanged();
             }
         }
         private global::System.Double _Throttle;
@@ -1278,7 +1177,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double FrontBrake
         {
@@ -1288,14 +1187,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_FrontBrake != value)
-                {
-                    OnFrontBrakeChanging(value);
-                    ReportPropertyChanging("FrontBrake");
-                    _FrontBrake = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("FrontBrake");
-                    OnFrontBrakeChanged();
-                }
+                OnFrontBrakeChanging(value);
+                ReportPropertyChanging("FrontBrake");
+                _FrontBrake = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FrontBrake");
+                OnFrontBrakeChanged();
             }
         }
         private global::System.Double _FrontBrake;
@@ -1305,7 +1201,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double RearBrake
         {
@@ -1315,14 +1211,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_RearBrake != value)
-                {
-                    OnRearBrakeChanging(value);
-                    ReportPropertyChanging("RearBrake");
-                    _RearBrake = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("RearBrake");
-                    OnRearBrakeChanged();
-                }
+                OnRearBrakeChanging(value);
+                ReportPropertyChanging("RearBrake");
+                _RearBrake = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RearBrake");
+                OnRearBrakeChanged();
             }
         }
         private global::System.Double _RearBrake;
@@ -1332,7 +1225,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Clutch
         {
@@ -1342,14 +1235,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Clutch != value)
-                {
-                    OnClutchChanging(value);
-                    ReportPropertyChanging("Clutch");
-                    _Clutch = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Clutch");
-                    OnClutchChanged();
-                }
+                OnClutchChanging(value);
+                ReportPropertyChanging("Clutch");
+                _Clutch = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Clutch");
+                OnClutchChanged();
             }
         }
         private global::System.Double _Clutch;
@@ -1359,7 +1249,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double WheelSpeedFront
         {
@@ -1369,14 +1259,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_WheelSpeedFront != value)
-                {
-                    OnWheelSpeedFrontChanging(value);
-                    ReportPropertyChanging("WheelSpeedFront");
-                    _WheelSpeedFront = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("WheelSpeedFront");
-                    OnWheelSpeedFrontChanged();
-                }
+                OnWheelSpeedFrontChanging(value);
+                ReportPropertyChanging("WheelSpeedFront");
+                _WheelSpeedFront = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("WheelSpeedFront");
+                OnWheelSpeedFrontChanged();
             }
         }
         private global::System.Double _WheelSpeedFront;
@@ -1386,7 +1273,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double WheelSpeedRear
         {
@@ -1396,14 +1283,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_WheelSpeedRear != value)
-                {
-                    OnWheelSpeedRearChanging(value);
-                    ReportPropertyChanging("WheelSpeedRear");
-                    _WheelSpeedRear = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("WheelSpeedRear");
-                    OnWheelSpeedRearChanged();
-                }
+                OnWheelSpeedRearChanging(value);
+                ReportPropertyChanging("WheelSpeedRear");
+                _WheelSpeedRear = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("WheelSpeedRear");
+                OnWheelSpeedRearChanged();
             }
         }
         private global::System.Double _WheelSpeedRear;
@@ -1413,7 +1297,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 PitLimiter
         {
@@ -1423,14 +1307,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_PitLimiter != value)
-                {
-                    OnPitLimiterChanging(value);
-                    ReportPropertyChanging("PitLimiter");
-                    _PitLimiter = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("PitLimiter");
-                    OnPitLimiterChanged();
-                }
+                OnPitLimiterChanging(value);
+                ReportPropertyChanging("PitLimiter");
+                _PitLimiter = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PitLimiter");
+                OnPitLimiterChanged();
             }
         }
         private global::System.Int32 _PitLimiter;
@@ -1440,7 +1321,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String EngineMapping
         {
@@ -1450,14 +1331,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_EngineMapping != value)
-                {
-                    OnEngineMappingChanging(value);
-                    ReportPropertyChanging("EngineMapping");
-                    _EngineMapping = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("EngineMapping");
-                    OnEngineMappingChanged();
-                }
+                OnEngineMappingChanging(value);
+                ReportPropertyChanging("EngineMapping");
+                _EngineMapping = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("EngineMapping");
+                OnEngineMappingChanged();
             }
         }
         private global::System.String _EngineMapping;
@@ -1490,6 +1368,54 @@ namespace EllieSpeed.DataLogger
         private global::System.Int64 _ID;
         partial void OnIDChanging(global::System.Int64 value);
         partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double TrackTime
+        {
+            get
+            {
+                return _TrackTime;
+            }
+            set
+            {
+                OnTrackTimeChanging(value);
+                ReportPropertyChanging("TrackTime");
+                _TrackTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TrackTime");
+                OnTrackTimeChanged();
+            }
+        }
+        private global::System.Double _TrackTime;
+        partial void OnTrackTimeChanging(global::System.Double value);
+        partial void OnTrackTimeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double TrackPosition
+        {
+            get
+            {
+                return _TrackPosition;
+            }
+            set
+            {
+                OnTrackPositionChanging(value);
+                ReportPropertyChanging("TrackPosition");
+                _TrackPosition = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TrackPosition");
+                OnTrackPositionChanged();
+            }
+        }
+        private global::System.Double _TrackPosition;
+        partial void OnTrackPositionChanging(global::System.Double value);
+        partial void OnTrackPositionChanged();
 
         #endregion
 
@@ -1554,7 +1480,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String RiderName
         {
@@ -1564,14 +1490,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_RiderName != value)
-                {
-                    OnRiderNameChanging(value);
-                    ReportPropertyChanging("RiderName");
-                    _RiderName = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("RiderName");
-                    OnRiderNameChanged();
-                }
+                OnRiderNameChanging(value);
+                ReportPropertyChanging("RiderName");
+                _RiderName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("RiderName");
+                OnRiderNameChanged();
             }
         }
         private global::System.String _RiderName;
@@ -1581,7 +1504,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String BikeID
         {
@@ -1591,14 +1514,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_BikeID != value)
-                {
-                    OnBikeIDChanging(value);
-                    ReportPropertyChanging("BikeID");
-                    _BikeID = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("BikeID");
-                    OnBikeIDChanged();
-                }
+                OnBikeIDChanging(value);
+                ReportPropertyChanging("BikeID");
+                _BikeID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("BikeID");
+                OnBikeIDChanged();
             }
         }
         private global::System.String _BikeID;
@@ -1608,7 +1528,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String BikeName
         {
@@ -1618,14 +1538,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_BikeName != value)
-                {
-                    OnBikeNameChanging(value);
-                    ReportPropertyChanging("BikeName");
-                    _BikeName = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("BikeName");
-                    OnBikeNameChanged();
-                }
+                OnBikeNameChanging(value);
+                ReportPropertyChanging("BikeName");
+                _BikeName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("BikeName");
+                OnBikeNameChanged();
             }
         }
         private global::System.String _BikeName;
@@ -1635,7 +1552,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 NumberOfGears
         {
@@ -1645,14 +1562,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_NumberOfGears != value)
-                {
-                    OnNumberOfGearsChanging(value);
-                    ReportPropertyChanging("NumberOfGears");
-                    _NumberOfGears = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("NumberOfGears");
-                    OnNumberOfGearsChanged();
-                }
+                OnNumberOfGearsChanging(value);
+                ReportPropertyChanging("NumberOfGears");
+                _NumberOfGears = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NumberOfGears");
+                OnNumberOfGearsChanged();
             }
         }
         private global::System.Int32 _NumberOfGears;
@@ -1662,7 +1576,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double MaxRPM
         {
@@ -1672,14 +1586,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_MaxRPM != value)
-                {
-                    OnMaxRPMChanging(value);
-                    ReportPropertyChanging("MaxRPM");
-                    _MaxRPM = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("MaxRPM");
-                    OnMaxRPMChanged();
-                }
+                OnMaxRPMChanging(value);
+                ReportPropertyChanging("MaxRPM");
+                _MaxRPM = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MaxRPM");
+                OnMaxRPMChanged();
             }
         }
         private global::System.Double _MaxRPM;
@@ -1689,7 +1600,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Limiter
         {
@@ -1699,14 +1610,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Limiter != value)
-                {
-                    OnLimiterChanging(value);
-                    ReportPropertyChanging("Limiter");
-                    _Limiter = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Limiter");
-                    OnLimiterChanged();
-                }
+                OnLimiterChanging(value);
+                ReportPropertyChanging("Limiter");
+                _Limiter = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Limiter");
+                OnLimiterChanged();
             }
         }
         private global::System.Double _Limiter;
@@ -1716,7 +1624,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double ShiftRPM
         {
@@ -1726,14 +1634,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_ShiftRPM != value)
-                {
-                    OnShiftRPMChanging(value);
-                    ReportPropertyChanging("ShiftRPM");
-                    _ShiftRPM = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ShiftRPM");
-                    OnShiftRPMChanged();
-                }
+                OnShiftRPMChanging(value);
+                ReportPropertyChanging("ShiftRPM");
+                _ShiftRPM = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ShiftRPM");
+                OnShiftRPMChanged();
             }
         }
         private global::System.Double _ShiftRPM;
@@ -1743,7 +1648,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double EngineOptTemperature
         {
@@ -1753,14 +1658,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_EngineOptTemperature != value)
-                {
-                    OnEngineOptTemperatureChanging(value);
-                    ReportPropertyChanging("EngineOptTemperature");
-                    _EngineOptTemperature = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("EngineOptTemperature");
-                    OnEngineOptTemperatureChanged();
-                }
+                OnEngineOptTemperatureChanging(value);
+                ReportPropertyChanging("EngineOptTemperature");
+                _EngineOptTemperature = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EngineOptTemperature");
+                OnEngineOptTemperatureChanged();
             }
         }
         private global::System.Double _EngineOptTemperature;
@@ -1770,7 +1672,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double EngineTemperatureAlarmLower
         {
@@ -1780,14 +1682,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_EngineTemperatureAlarmLower != value)
-                {
-                    OnEngineTemperatureAlarmLowerChanging(value);
-                    ReportPropertyChanging("EngineTemperatureAlarmLower");
-                    _EngineTemperatureAlarmLower = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("EngineTemperatureAlarmLower");
-                    OnEngineTemperatureAlarmLowerChanged();
-                }
+                OnEngineTemperatureAlarmLowerChanging(value);
+                ReportPropertyChanging("EngineTemperatureAlarmLower");
+                _EngineTemperatureAlarmLower = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EngineTemperatureAlarmLower");
+                OnEngineTemperatureAlarmLowerChanged();
             }
         }
         private global::System.Double _EngineTemperatureAlarmLower;
@@ -1797,7 +1696,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double EngineTemperatureAlarmUpper
         {
@@ -1807,14 +1706,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_EngineTemperatureAlarmUpper != value)
-                {
-                    OnEngineTemperatureAlarmUpperChanging(value);
-                    ReportPropertyChanging("EngineTemperatureAlarmUpper");
-                    _EngineTemperatureAlarmUpper = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("EngineTemperatureAlarmUpper");
-                    OnEngineTemperatureAlarmUpperChanged();
-                }
+                OnEngineTemperatureAlarmUpperChanging(value);
+                ReportPropertyChanging("EngineTemperatureAlarmUpper");
+                _EngineTemperatureAlarmUpper = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EngineTemperatureAlarmUpper");
+                OnEngineTemperatureAlarmUpperChanged();
             }
         }
         private global::System.Double _EngineTemperatureAlarmUpper;
@@ -1824,7 +1720,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double MaxFuel
         {
@@ -1834,14 +1730,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_MaxFuel != value)
-                {
-                    OnMaxFuelChanging(value);
-                    ReportPropertyChanging("MaxFuel");
-                    _MaxFuel = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("MaxFuel");
-                    OnMaxFuelChanged();
-                }
+                OnMaxFuelChanging(value);
+                ReportPropertyChanging("MaxFuel");
+                _MaxFuel = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MaxFuel");
+                OnMaxFuelChanged();
             }
         }
         private global::System.Double _MaxFuel;
@@ -1851,7 +1744,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String Category
         {
@@ -1861,14 +1754,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_Category != value)
-                {
-                    OnCategoryChanging(value);
-                    ReportPropertyChanging("Category");
-                    _Category = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("Category");
-                    OnCategoryChanged();
-                }
+                OnCategoryChanging(value);
+                ReportPropertyChanging("Category");
+                _Category = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Category");
+                OnCategoryChanged();
             }
         }
         private global::System.String _Category;
@@ -1878,7 +1768,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String TrackID
         {
@@ -1888,14 +1778,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_TrackID != value)
-                {
-                    OnTrackIDChanging(value);
-                    ReportPropertyChanging("TrackID");
-                    _TrackID = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("TrackID");
-                    OnTrackIDChanged();
-                }
+                OnTrackIDChanging(value);
+                ReportPropertyChanging("TrackID");
+                _TrackID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TrackID");
+                OnTrackIDChanged();
             }
         }
         private global::System.String _TrackID;
@@ -1905,7 +1792,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String TrackName
         {
@@ -1915,14 +1802,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_TrackName != value)
-                {
-                    OnTrackNameChanging(value);
-                    ReportPropertyChanging("TrackName");
-                    _TrackName = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("TrackName");
-                    OnTrackNameChanged();
-                }
+                OnTrackNameChanging(value);
+                ReportPropertyChanging("TrackName");
+                _TrackName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TrackName");
+                OnTrackNameChanged();
             }
         }
         private global::System.String _TrackName;
@@ -1932,7 +1816,7 @@ namespace EllieSpeed.DataLogger
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double TrackLength
         {
@@ -1942,14 +1826,11 @@ namespace EllieSpeed.DataLogger
             }
             set
             {
-                if (_TrackLength != value)
-                {
-                    OnTrackLengthChanging(value);
-                    ReportPropertyChanging("TrackLength");
-                    _TrackLength = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("TrackLength");
-                    OnTrackLengthChanged();
-                }
+                OnTrackLengthChanging(value);
+                ReportPropertyChanging("TrackLength");
+                _TrackLength = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TrackLength");
+                OnTrackLengthChanged();
             }
         }
         private global::System.Double _TrackLength;

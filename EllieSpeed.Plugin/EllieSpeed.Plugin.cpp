@@ -188,6 +188,8 @@ EXTERN_DLL_EXPORT void RunTelemetry(void *pData, int iDataSize, float fTime, flo
 
   // convert to managed data
   EllieSpeed::Broadcast::GPBikes::SPluginsBikeData_t data;
+  data.TrackTime = fTime;
+  data.TrackPosition = fPos;
   data.RPM = psBikeData->m_fRPM;
   data.EngineTemperature = psBikeData->m_fEngineTemperature;
   data.WaterTemperature = psBikeData->m_fWaterTemperature;

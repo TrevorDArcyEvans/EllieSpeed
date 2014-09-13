@@ -1,5 +1,9 @@
 
 /*
+  Based on GPB reference plugin
+*/
+
+/*
 If compiled as C++, extern "C" must be added to declaration of functions to export
 
 X+ is right, Y+ is top and Z+ is forward.
