@@ -1,0 +1,11 @@
+It is possible to write a DLL that receives data from the simulated bike in realtime.
+
+Example source code can be downloaded at http://www.gp-bikes.com/?page=downloads
+
+Please note that all function calls are blocking, so control should be returned to simulation as soon as possible to avoid framerate issues.
+
+The plugin must have the file extension renamed to DLO and it must be copied to the "gpbikes/plugins" directory in GP Bikes installation folder.
+
+NOTE: a license is not needed to add plugins.
+
+http://forum.piboso.com/index.php?topic=33.0
