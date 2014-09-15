@@ -56,8 +56,7 @@ namespace EllieSpeed.DataLogger.Test
     {
       get
       {
-        return string.Format("metadata=res://*/DataLogger.csdl|res://*/DataLogger.ssdl|res://*/DataLogger.msl;" +
-                            "provider=System.Data.SQLite;provider connection string=\"data source={0}\";", mDataFilePath);
+        return SQLiteLogger.GetConnectionString(mDataFilePath);
       }
     }
 
@@ -93,9 +92,9 @@ namespace EllieSpeed.DataLogger.Test
     [Test]
     public void OnEventInit()
     {
+      var data = TestUtils.CreateBikeEvent();
       using (new SQLiteLogger(mDataFilePath))
       {
-        var data = TestUtils.CreateBikeEvent();
         mBroadcaster.OnEventInit(data);
         Thread.Sleep(5000);
       }
@@ -103,6 +102,9 @@ namespace EllieSpeed.DataLogger.Test
       using (var logger = new DataLogger(ConnectionString))
       {
         Assert.AreEqual(1, logger.BikeEvents.Count());
+
+        var recData = logger.BikeEvents.Single();
+        TestUtils.AssertAreEqual(recData, data);
       }
 
       // force DataLogger to release lock on SQLite file
@@ -112,9 +114,9 @@ namespace EllieSpeed.DataLogger.Test
     [Test]
     public void OnRunInit()
     {
+      var data = TestUtils.CreateBikeSession();
       using (new SQLiteLogger(mDataFilePath))
       {
-        var data = TestUtils.CreateBikeSession();
         mBroadcaster.OnRunInit(data);
         Thread.Sleep(5000);
       }
@@ -122,6 +124,9 @@ namespace EllieSpeed.DataLogger.Test
       using (var logger = new DataLogger(ConnectionString))
       {
         Assert.AreEqual(1, logger.BikeSessions.Count());
+
+        var recData = logger.BikeSessions.Single();
+        TestUtils.AssertAreEqual(recData, data);
       }
 
       // force DataLogger to release lock on SQLite file
@@ -161,9 +166,9 @@ namespace EllieSpeed.DataLogger.Test
     [Test]
     public void OnRunLap()
     {
+      var data = TestUtils.CreateBikeLap();
       using (new SQLiteLogger(mDataFilePath))
       {
-        var data = TestUtils.CreateBikeLap();
         mBroadcaster.OnRunLap(data);
         Thread.Sleep(5000);
       }
@@ -171,6 +176,9 @@ namespace EllieSpeed.DataLogger.Test
       using (var logger = new DataLogger(ConnectionString))
       {
         Assert.AreEqual(1, logger.BikeLaps.Count());
+
+        var recData = logger.BikeLaps.Single();
+        TestUtils.AssertAreEqual(recData, data);
       }
 
       // force DataLogger to release lock on SQLite file
@@ -180,9 +188,9 @@ namespace EllieSpeed.DataLogger.Test
     [Test]
     public void OnRunSplit()
     {
+      var data = TestUtils.CreateBikeSplit();
       using (new SQLiteLogger(mDataFilePath))
       {
-        var data = TestUtils.CreateBikeSplit();
         mBroadcaster.OnRunSplit(data);
         Thread.Sleep(5000);
       }
@@ -190,6 +198,9 @@ namespace EllieSpeed.DataLogger.Test
       using (var logger = new DataLogger(ConnectionString))
       {
         Assert.AreEqual(1, logger.BikeSplits.Count());
+
+        var recData = logger.BikeSplits.Single();
+        TestUtils.AssertAreEqual(recData, data);
       }
 
       // force DataLogger to release lock on SQLite file
@@ -199,9 +210,9 @@ namespace EllieSpeed.DataLogger.Test
     [Test]
     public void OnRunTelemetry()
     {
+      var data = TestUtils.CreateBikeData();
       using (new SQLiteLogger(mDataFilePath))
       {
-        var data = TestUtils.CreateBikeData();
         mBroadcaster.OnRunTelemetry(data);
         Thread.Sleep(5000);
       }
@@ -209,6 +220,9 @@ namespace EllieSpeed.DataLogger.Test
       using (var logger = new DataLogger(ConnectionString))
       {
         Assert.AreEqual(1, logger.BikeDatas.Count());
+
+        var recData = logger.BikeDatas.Single();
+        TestUtils.AssertAreEqual(recData, data);
       }
 
       // force DataLogger to release lock on SQLite file
@@ -218,21 +232,27 @@ namespace EllieSpeed.DataLogger.Test
     [Test]
     public void OnTrackCenterline()
     {
-      using (new SQLiteLogger(mDataFilePath))
-      {
-        var data = new[]
+      var data = new[]
                       {
                         TestUtils.CreateTrackSegment(),
                         TestUtils.CreateTrackSegment(),
                         TestUtils.CreateTrackSegment()
                       };
+      using (new SQLiteLogger(mDataFilePath))
+      {
         mBroadcaster.OnTrackCenterline(data);
         Thread.Sleep(5000);
       }
 
       using (var logger = new DataLogger(ConnectionString))
       {
-        Assert.AreEqual(3, logger.TrackSegments.Count());
+        Assert.AreEqual(data.Length, logger.TrackSegments.Count());
+
+        var recData = logger.TrackSegments.ToList();
+        for (var i = 0; i < data.Length; i++)
+        {
+          TestUtils.AssertAreEqual(recData[i], data[i]);
+        }
       }
 
       // force DataLogger to release lock on SQLite file

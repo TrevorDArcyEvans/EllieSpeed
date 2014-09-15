@@ -8,6 +8,8 @@
 
 using System;
 using EllieSpeed.Broadcast;
+using EllieSpeed.DataLogger;
+using NUnit.Framework;
 
 namespace EllieSpeed.Test.Utilties
 {
@@ -142,6 +144,225 @@ namespace EllieSpeed.Test.Utilties
       };
 
       return data;
+    }
+
+    public static void AssertAreEqual(GPBikes.SPluginsBikeEvent_t recData, GPBikes.SPluginsBikeEvent_t data)
+    {
+      Assert.AreEqual(recData.RiderName, data.RiderName);
+      Assert.AreEqual(recData.BikeID, data.BikeID);
+      Assert.AreEqual(recData.BikeName, data.BikeName);
+      Assert.AreEqual(recData.NumberOfGears, data.NumberOfGears);
+      Assert.AreEqual(recData.MaxRPM, data.MaxRPM);
+      Assert.AreEqual(recData.Limiter, data.Limiter);
+      Assert.AreEqual(recData.ShiftRPM, data.ShiftRPM);
+      Assert.AreEqual(recData.EngineOptTemperature, data.EngineOptTemperature);
+      Assert.AreEqual(recData.EngineTemperatureAlarm[0], data.EngineTemperatureAlarm[0]);
+      Assert.AreEqual(recData.EngineTemperatureAlarm[1], data.EngineTemperatureAlarm[1]);
+      Assert.AreEqual(recData.MaxFuel, data.MaxFuel);
+      Assert.AreEqual(recData.Category, data.Category);
+      Assert.AreEqual(recData.TrackID, data.TrackID);
+      Assert.AreEqual(recData.TrackName, data.TrackName);
+      Assert.AreEqual(recData.TrackLength, data.TrackLength);
+    }
+
+    public static void AssertAreEqual(BikeEvent recData, GPBikes.SPluginsBikeEvent_t data)
+    {
+      Assert.AreEqual(recData.RiderName, data.RiderName);
+      Assert.AreEqual(recData.BikeID, data.BikeID);
+      Assert.AreEqual(recData.BikeName, data.BikeName);
+      Assert.AreEqual(recData.NumberOfGears, data.NumberOfGears);
+      Assert.AreEqual(recData.MaxRPM, data.MaxRPM);
+      Assert.AreEqual(recData.Limiter, data.Limiter);
+      Assert.AreEqual(recData.ShiftRPM, data.ShiftRPM);
+      Assert.AreEqual(recData.EngineOptTemperature, data.EngineOptTemperature);
+      Assert.AreEqual(recData.EngineTemperatureAlarmLower, data.EngineTemperatureAlarm[0]);
+      Assert.AreEqual(recData.EngineTemperatureAlarmUpper, data.EngineTemperatureAlarm[1]);
+      Assert.AreEqual(recData.MaxFuel, data.MaxFuel);
+      Assert.AreEqual(recData.Category, data.Category);
+      Assert.AreEqual(recData.TrackID, data.TrackID);
+      Assert.AreEqual(recData.TrackName, data.TrackName);
+      Assert.AreEqual(recData.TrackLength, data.TrackLength);
+    }
+
+    public static void AssertAreEqual(GPBikes.SPluginsBikeSession_t recData, GPBikes.SPluginsBikeSession_t data)
+    {
+      Assert.AreEqual(recData.Session, data.Session);
+      Assert.AreEqual(recData.Conditions, data.Conditions);
+      Assert.AreEqual(recData.AirTemperature, data.AirTemperature);
+      Assert.AreEqual(recData.TrackTemperature, data.TrackTemperature);
+      Assert.AreEqual(recData.SetupFileName, data.SetupFileName);
+    }
+
+    public static void AssertAreEqual(BikeSession recData, GPBikes.SPluginsBikeSession_t data)
+    {
+      Assert.AreEqual(recData.Session, data.Session);
+      Assert.AreEqual(recData.Conditions, data.Conditions);
+      Assert.AreEqual(recData.AirTemperature, data.AirTemperature);
+      Assert.AreEqual(recData.TrackTemperature, data.TrackTemperature);
+      Assert.AreEqual(recData.SetupFileName, data.SetupFileName);
+    }
+
+    public static void AssertAreEqual(GPBikes.SPluginsBikeLap_t recData, GPBikes.SPluginsBikeLap_t data)
+    {
+      Assert.AreEqual(recData.LapTime, data.LapTime);
+      Assert.AreEqual(recData.Best, data.Best);
+      Assert.AreEqual(recData.LapNum, data.LapNum);
+    }
+
+    public static void AssertAreEqual(BikeLap recData, GPBikes.SPluginsBikeLap_t data)
+    {
+      Assert.AreEqual(recData.LapTime, data.LapTime);
+      Assert.AreEqual(recData.Best, data.Best);
+      Assert.AreEqual(recData.LapNum, data.LapNum);
+    }
+
+    public static void AssertAreEqual(GPBikes.SPluginsBikeSplit_t recData, GPBikes.SPluginsBikeSplit_t data)
+    {
+      Assert.AreEqual(recData.Split, data.Split);
+      Assert.AreEqual(recData.SplitTime, data.SplitTime);
+      Assert.AreEqual(recData.BestDiff, data.BestDiff);
+    }
+
+    public static void AssertAreEqual(BikeSplit recData, GPBikes.SPluginsBikeSplit_t data)
+    {
+      Assert.AreEqual(recData.Split, data.Split);
+      Assert.AreEqual(recData.SplitTime, data.SplitTime);
+      Assert.AreEqual(recData.BestDiff, data.BestDiff);
+    }
+
+    public static void AssertAreEqual(GPBikes.SPluginsBikeData_t recData, GPBikes.SPluginsBikeData_t data)
+    {
+      Assert.AreEqual(recData.TrackTime, data.TrackTime);
+      Assert.AreEqual(recData.TrackPosition, data.TrackPosition);
+
+      Assert.AreEqual(recData.RPM, data.RPM);
+      Assert.AreEqual(recData.EngineTemperature, data.EngineTemperature);
+      Assert.AreEqual(recData.WaterTemperature, data.WaterTemperature);
+      Assert.AreEqual(recData.Gear, data.Gear);
+      Assert.AreEqual(recData.Fuel, data.Fuel);
+      Assert.AreEqual(recData.Speedometer, data.Speedometer);
+
+      Assert.AreEqual(recData.PosX, data.PosX);
+      Assert.AreEqual(recData.PosY, data.PosY);
+      Assert.AreEqual(recData.PosZ, data.PosZ);
+
+      Assert.AreEqual(recData.VelocityX, data.VelocityX);
+      Assert.AreEqual(recData.VelocityY, data.VelocityY);
+      Assert.AreEqual(recData.VelocityZ, data.VelocityZ);
+
+      Assert.AreEqual(recData.AccelerationX, data.AccelerationX);
+      Assert.AreEqual(recData.AccelerationY, data.AccelerationY);
+      Assert.AreEqual(recData.AccelerationZ, data.AccelerationZ);
+
+      for (var i = 0; i < 9; i++)
+      {
+        Assert.AreEqual(recData.Rot[i], data.Rot[i]);
+      }
+
+      Assert.AreEqual(recData.Yaw, data.Yaw);
+      Assert.AreEqual(recData.Pitch, data.Pitch);
+      Assert.AreEqual(recData.Roll, data.Roll);
+
+      Assert.AreEqual(recData.YawVelocity, data.YawVelocity);
+      Assert.AreEqual(recData.PitchVelocity, data.PitchVelocity);
+      Assert.AreEqual(recData.RollVelocity, data.RollVelocity);
+
+      for (var i = 0; i < 2; i++)
+      {
+        Assert.AreEqual(recData.SuspNormLength[i], data.SuspNormLength[i]);
+      }
+
+      Assert.AreEqual(recData.Crashed, data.Crashed);
+      Assert.AreEqual(recData.Throttle, data.Throttle);
+      Assert.AreEqual(recData.FrontBrake, data.FrontBrake);
+      Assert.AreEqual(recData.RearBrake, data.RearBrake);
+      Assert.AreEqual(recData.Clutch, data.Clutch);
+
+      for (var i = 0; i < 2; i++)
+      {
+        Assert.AreEqual(recData.WheelSpeed[i], data.WheelSpeed[i]);
+      }
+
+      Assert.AreEqual(recData.PitLimiter, data.PitLimiter);
+      Assert.AreEqual(recData.EngineMapping, data.EngineMapping);
+    }
+
+    public static void AssertAreEqual(BikeData recData, GPBikes.SPluginsBikeData_t data)
+    {
+      Assert.AreEqual(recData.TrackTime, data.TrackTime);
+      Assert.AreEqual(recData.TrackPosition, data.TrackPosition);
+
+      Assert.AreEqual(recData.RPM, data.RPM);
+      Assert.AreEqual(recData.EngineTemperature, data.EngineTemperature);
+      Assert.AreEqual(recData.WaterTemperature, data.WaterTemperature);
+      Assert.AreEqual(recData.Gear, data.Gear);
+      Assert.AreEqual(recData.Fuel, data.Fuel);
+      Assert.AreEqual(recData.Speedometer, data.Speedometer);
+
+      Assert.AreEqual(recData.PosX, data.PosX);
+      Assert.AreEqual(recData.PosY, data.PosY);
+      Assert.AreEqual(recData.PosZ, data.PosZ);
+
+      Assert.AreEqual(recData.VelocityX, data.VelocityX);
+      Assert.AreEqual(recData.VelocityY, data.VelocityY);
+      Assert.AreEqual(recData.VelocityZ, data.VelocityZ);
+
+      Assert.AreEqual(recData.AccelerationX, data.AccelerationX);
+      Assert.AreEqual(recData.AccelerationY, data.AccelerationY);
+      Assert.AreEqual(recData.AccelerationZ, data.AccelerationZ);
+
+      Assert.AreEqual(recData.Rot0, data.Rot[0]);
+      Assert.AreEqual(recData.Rot1, data.Rot[1]);
+      Assert.AreEqual(recData.Rot2, data.Rot[2]);
+      Assert.AreEqual(recData.Rot3, data.Rot[3]);
+      Assert.AreEqual(recData.Rot4, data.Rot[4]);
+      Assert.AreEqual(recData.Rot5, data.Rot[5]);
+      Assert.AreEqual(recData.Rot6, data.Rot[6]);
+      Assert.AreEqual(recData.Rot7, data.Rot[7]);
+      Assert.AreEqual(recData.Rot8, data.Rot[8]);
+
+      Assert.AreEqual(recData.Yaw, data.Yaw);
+      Assert.AreEqual(recData.Pitch, data.Pitch);
+      Assert.AreEqual(recData.Roll, data.Roll);
+
+      Assert.AreEqual(recData.YawVelocity, data.YawVelocity);
+      Assert.AreEqual(recData.PitchVelocity, data.PitchVelocity);
+      Assert.AreEqual(recData.RollVelocity, data.RollVelocity);
+
+      Assert.AreEqual(recData.SuspNormLengthFront, data.SuspNormLength[0]);
+      Assert.AreEqual(recData.SuspNormLengthRear, data.SuspNormLength[1]);
+
+      Assert.AreEqual(recData.Crashed, data.Crashed);
+      Assert.AreEqual(recData.Throttle, data.Throttle);
+      Assert.AreEqual(recData.FrontBrake, data.FrontBrake);
+      Assert.AreEqual(recData.RearBrake, data.RearBrake);
+      Assert.AreEqual(recData.Clutch, data.Clutch);
+
+      Assert.AreEqual(recData.WheelSpeedFront, data.WheelSpeed[0]);
+      Assert.AreEqual(recData.WheelSpeedRear, data.WheelSpeed[1]);
+
+      Assert.AreEqual(recData.PitLimiter, data.PitLimiter);
+      Assert.AreEqual(recData.EngineMapping, data.EngineMapping);
+    }
+
+    public static void AssertAreEqual(GPBikes.SPluginsTrackSegment_t recData, GPBikes.SPluginsTrackSegment_t data)
+    {
+      Assert.AreEqual(recData.Type, data.Type);
+      Assert.AreEqual(recData.Length, data.Length);
+      Assert.AreEqual(recData.Radius, data.Radius);
+      Assert.AreEqual(recData.Angle, data.Angle);
+      Assert.AreEqual(recData.Start[0], data.Start[0]);
+      Assert.AreEqual(recData.Start[1], data.Start[1]);
+    }
+
+    public static void AssertAreEqual(TrackSegment recData, GPBikes.SPluginsTrackSegment_t data)
+    {
+      Assert.AreEqual(recData.Type, data.Type);
+      Assert.AreEqual(recData.Length, data.Length);
+      Assert.AreEqual(recData.Radius, data.Radius);
+      Assert.AreEqual(recData.Angle, data.Angle);
+      Assert.AreEqual(recData.Start1, data.Start[0]);
+      Assert.AreEqual(recData.Start2, data.Start[1]);
     }
   }
 }

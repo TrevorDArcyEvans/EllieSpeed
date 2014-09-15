@@ -187,21 +187,7 @@ namespace EllieSpeed.Plugin.Test
           msgReceived = true;
           var recData = args.Data;
 
-          Assert.AreEqual(recData.RiderName, data.RiderName);
-          Assert.AreEqual(recData.BikeID, data.BikeID);
-          Assert.AreEqual(recData.BikeName, data.BikeName);
-          Assert.AreEqual(recData.NumberOfGears, data.NumberOfGears);
-          Assert.AreEqual(recData.MaxRPM, data.MaxRPM);
-          Assert.AreEqual(recData.Limiter, data.Limiter);
-          Assert.AreEqual(recData.ShiftRPM, data.ShiftRPM);
-          Assert.AreEqual(recData.EngineOptTemperature, data.EngineOptTemperature);
-          Assert.AreEqual(recData.EngineTemperatureAlarm[0], data.EngineTemperatureAlarm[0]);
-          Assert.AreEqual(recData.EngineTemperatureAlarm[1], data.EngineTemperatureAlarm[1]);
-          Assert.AreEqual(recData.MaxFuel, data.MaxFuel);
-          Assert.AreEqual(recData.Category, data.Category);
-          Assert.AreEqual(recData.TrackID, data.TrackID);
-          Assert.AreEqual(recData.TrackName, data.TrackName);
-          Assert.AreEqual(recData.TrackLength, data.TrackLength);
+          TestUtils.AssertAreEqual(recData, data);
         };
 
         EventInit(ptr, default(int));
@@ -229,11 +215,7 @@ namespace EllieSpeed.Plugin.Test
           msgReceived = true;
           var recData = args.Data;
 
-          Assert.AreEqual(recData.Session, data.Session);
-          Assert.AreEqual(recData.Conditions, data.Conditions);
-          Assert.AreEqual(recData.AirTemperature, data.AirTemperature);
-          Assert.AreEqual(recData.TrackTemperature, data.TrackTemperature);
-          Assert.AreEqual(recData.SetupFileName, data.SetupFileName);
+          TestUtils.AssertAreEqual(recData, data);
         };
 
         RunInit(ptr, default(int));
@@ -315,9 +297,7 @@ namespace EllieSpeed.Plugin.Test
           msgReceived = true;
           var recData = args.Data;
 
-          Assert.AreEqual(recData.LapTime, data.LapTime);
-          Assert.AreEqual(recData.Best, data.Best);
-          Assert.AreEqual(recData.LapNum, data.LapNum);
+          TestUtils.AssertAreEqual(recData, data);
         };
 
         RunLap(ptr, default(int));
@@ -345,9 +325,7 @@ namespace EllieSpeed.Plugin.Test
           msgReceived = true;
           var recData = args.Data;
 
-          Assert.AreEqual(recData.Split, data.Split);
-          Assert.AreEqual(recData.SplitTime, data.SplitTime);
-          Assert.AreEqual(recData.BestDiff, data.BestDiff);
+          TestUtils.AssertAreEqual(recData, data);
         };
 
         RunSplit(ptr, default(int));
@@ -376,56 +354,7 @@ namespace EllieSpeed.Plugin.Test
           msgReceived = true;
           var recData = args.Data;
 
-          Assert.AreEqual(recData.RPM, data.RPM);
-          Assert.AreEqual(recData.EngineTemperature, data.EngineTemperature);
-          Assert.AreEqual(recData.WaterTemperature, data.WaterTemperature);
-          Assert.AreEqual(recData.Gear, data.Gear);
-          Assert.AreEqual(recData.Fuel, data.Fuel);
-          Assert.AreEqual(recData.Speedometer, data.Speedometer);
-
-          Assert.AreEqual(recData.PosX, data.PosX);
-          Assert.AreEqual(recData.PosY, data.PosY);
-          Assert.AreEqual(recData.PosZ, data.PosZ);
-
-          Assert.AreEqual(recData.VelocityX, data.VelocityX);
-          Assert.AreEqual(recData.VelocityY, data.VelocityY);
-          Assert.AreEqual(recData.VelocityZ, data.VelocityZ);
-
-          Assert.AreEqual(recData.AccelerationX, data.AccelerationX);
-          Assert.AreEqual(recData.AccelerationY, data.AccelerationY);
-          Assert.AreEqual(recData.AccelerationZ, data.AccelerationZ);
-
-          for (var i = 0; i < 9; i++)
-          {
-            Assert.AreEqual(recData.Rot[i], data.Rot[i]);
-          }
-
-          Assert.AreEqual(recData.Yaw, data.Yaw);
-          Assert.AreEqual(recData.Pitch, data.Pitch);
-          Assert.AreEqual(recData.Roll, data.Roll);
-
-          Assert.AreEqual(recData.YawVelocity, data.YawVelocity);
-          Assert.AreEqual(recData.PitchVelocity, data.PitchVelocity);
-          Assert.AreEqual(recData.RollVelocity, data.RollVelocity);
-
-          for (var i = 0; i < 2; i++)
-          {
-            Assert.AreEqual(recData.SuspNormLength[i], data.SuspNormLength[i]);
-          }
-
-          Assert.AreEqual(recData.Crashed, data.Crashed);
-          Assert.AreEqual(recData.Throttle, data.Throttle);
-          Assert.AreEqual(recData.FrontBrake, data.FrontBrake);
-          Assert.AreEqual(recData.RearBrake, data.RearBrake);
-          Assert.AreEqual(recData.Clutch, data.Clutch);
-
-          for (var i = 0; i < 2; i++)
-          {
-            Assert.AreEqual(recData.WheelSpeed[i], data.WheelSpeed[i]);
-          }
-
-          Assert.AreEqual(recData.PitLimiter, data.PitLimiter);
-          Assert.AreEqual(recData.EngineMapping, data.EngineMapping);
+          TestUtils.AssertAreEqual(recData, data);
         };
 
         RunTelemetry(ptr, default(int), default(float), default(float));
@@ -461,12 +390,7 @@ namespace EllieSpeed.Plugin.Test
 
           for (var i = 0; i < NumTrackSegs; i++)
           {
-            Assert.AreEqual(recData[i].Type, data[i].Type);
-            Assert.AreEqual(recData[i].Length, data[i].Length);
-            Assert.AreEqual(recData[i].Radius, data[i].Radius);
-            Assert.AreEqual(recData[i].Angle, data[i].Angle);
-            Assert.AreEqual(recData[i].Start[0], data[i].Start[0]);
-            Assert.AreEqual(recData[i].Start[1], data[i].Start[1]);
+            TestUtils.AssertAreEqual(recData[i], data[i]);
           }
         };
 

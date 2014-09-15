@@ -132,6 +132,8 @@ namespace EllieSpeed.DataLogger
       var data = e.Data;
       var dbObj = new BikeData
                       {
+                        TrackTime = data.TrackTime,
+                        TrackPosition = data.TrackPosition,
                         RPM = data.RPM,
                         EngineTemperature = data.EngineTemperature,
                         WaterTemperature = data.WaterTemperature,
