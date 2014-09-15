@@ -66,11 +66,11 @@ namespace EllieSpeed.DataLogger.Visualiser
         var rpm = (from bd in mLogger.BikeDatas.OrderBy(bd => bd.ID) select bd.RPM).ToList();
         AddTrace(pane, "RPM", rpm, Color.Blue, SymbolType.Diamond);
 
-        var wt = (from bd in mLogger.BikeDatas.OrderBy(bd => bd.ID) select bd.WaterTemperature).ToList();
-        AddTrace(pane, "Water Temp", wt, Color.Green, SymbolType.Square);
+        //var wt = (from bd in mLogger.BikeDatas.OrderBy(bd => bd.ID) select bd.WaterTemperature).ToList();
+        //AddTrace(pane, "Water Temp", wt, Color.Green, SymbolType.Square);
 
-        var spd = (from bd in mLogger.BikeDatas.OrderBy(bd => bd.ID) select bd.Speedometer).ToList();
-        AddTrace(pane, "Speed", spd, Color.Indigo, SymbolType.Triangle);
+        //var spd = (from bd in mLogger.BikeDatas.OrderBy(bd => bd.ID) select bd.Speedometer).ToList();
+        //AddTrace(pane, "Speed", spd, Color.Indigo, SymbolType.Triangle);
 
 
         // OPTIONAL: Show tooltips when the mouse hovers over a point
