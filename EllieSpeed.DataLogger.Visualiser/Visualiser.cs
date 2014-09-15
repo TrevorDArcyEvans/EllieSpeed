@@ -42,8 +42,11 @@ namespace EllieSpeed.DataLogger.Visualiser
         var pane = ZedGraph.GraphPane;
 
         // Set the titles and axis labels
+        pane.XAxis.MajorGrid.IsZeroLine = pane.X2Axis.MajorGrid.IsZeroLine = false;
         pane.XAxis.Title.Text = "Time (s)";
-        pane.YAxis.IsVisible = false;
+        pane.XAxis.Title.FontSpec.Size = pane.XAxis.Scale.FontSpec.Size = 8f;
+        pane.YAxis.IsVisible = pane.Y2Axis.IsVisible = false;
+        pane.Title.IsVisible = false;
 
         // Show the x axis grid
         pane.XAxis.MajorGrid.IsVisible = true;
@@ -66,10 +69,10 @@ namespace EllieSpeed.DataLogger.Visualiser
         var rpm = (from bd in mLogger.BikeDatas.OrderBy(bd => bd.ID) select bd.RPM).ToList();
         AddTrace(pane, "RPM", rpm, Color.Blue, SymbolType.Diamond);
 
-        //var wt = (from bd in mLogger.BikeDatas.OrderBy(bd => bd.ID) select bd.WaterTemperature).ToList();
-        //AddTrace(pane, "Water Temp", wt, Color.Green, SymbolType.Square);
+        var wt = (from bd in mLogger.BikeDatas.OrderBy(bd => bd.ID) select bd.WaterTemperature).ToList();
+        AddTrace(pane, "Water Temp", wt, Color.Green, SymbolType.Square);
 
-        //var spd = (from bd in mLogger.BikeDatas.OrderBy(bd => bd.ID) select bd.Speedometer).ToList();
+        //var spd = (from bd in mLogger.BikeDatas.OrderBy(bd => bd.ID) select bd.Speedometer * 3.6).ToList();
         //AddTrace(pane, "Speed", spd, Color.Indigo, SymbolType.Triangle);
 
 
@@ -107,12 +110,16 @@ namespace EllieSpeed.DataLogger.Visualiser
       // Fill the symbols with white
       curve.Symbol.Fill = new Fill(Color.White);
 
-      var index = pane.AddYAxis(title);
-      var yaxis = pane.YAxisList[title];
+      var yaxis = new YAxis(title);
       yaxis.Scale.IsUseTenPower = false;
       yaxis.Scale.MagAuto = false;
       yaxis.Color = clr;
+      yaxis.MajorGrid.IsZeroLine = false;
       yaxis.Scale.FontSpec.FontColor = yaxis.Title.FontSpec.FontColor = clr;
+      yaxis.Scale.FontSpec.Size = yaxis.Title.FontSpec.Size = 8f;
+      pane.YAxisList.Add(yaxis);
+
+      curve.YAxisIndex = pane.YAxisList.IndexOf(title);
     }
 
     /// <summary>
@@ -143,7 +150,7 @@ namespace EllieSpeed.DataLogger.Visualiser
     // Respond to a Zoom Event
     private void OnZoomEvent(ZedGraphControl control, ZoomState oldState, ZoomState newState)
     {
-      // Here we get notification everytime the user zooms
+      // Here we get notification everytime the user zooms or pans
     }
   }
 }
