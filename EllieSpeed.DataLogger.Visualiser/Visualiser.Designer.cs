@@ -54,14 +54,14 @@ namespace EllieSpeed.DataLogger.Visualiser
       this.ZedGraph.ScrollMinX = 0D;
       this.ZedGraph.ScrollMinY = 0D;
       this.ZedGraph.ScrollMinY2 = 0D;
-      this.ZedGraph.Size = new System.Drawing.Size(284, 261);
+      this.ZedGraph.Size = new System.Drawing.Size(620, 457);
       this.ZedGraph.TabIndex = 0;
       // 
       // Visualiser
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(284, 261);
+      this.ClientSize = new System.Drawing.Size(620, 457);
       this.Controls.Add(this.ZedGraph);
       this.Name = "Visualiser";
       this.Text = "Visualiser";
