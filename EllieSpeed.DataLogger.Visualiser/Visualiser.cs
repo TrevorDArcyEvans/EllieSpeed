@@ -115,6 +115,7 @@ namespace EllieSpeed.DataLogger.Visualiser
       yaxis.Scale.MagAuto = false;
       yaxis.Color = clr;
       yaxis.MajorGrid.IsZeroLine = false;
+      yaxis.MajorTic.IsOpposite = yaxis.MinorTic.IsOpposite = false;
       yaxis.Scale.FontSpec.FontColor = yaxis.Title.FontSpec.FontColor = clr;
       yaxis.Scale.FontSpec.Size = yaxis.Title.FontSpec.Size = 8f;
       pane.YAxisList.Add(yaxis);
