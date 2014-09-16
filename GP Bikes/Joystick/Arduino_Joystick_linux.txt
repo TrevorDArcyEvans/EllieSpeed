@@ -1,0 +1,2 @@
+{arduino executable dir}\hardware\arduino\cores\arduino\
+  /usr/share/arduino/hardware/arduino/cores/arduino/
