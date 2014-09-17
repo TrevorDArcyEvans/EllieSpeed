@@ -105,9 +105,9 @@ typedef struct
 
 typedef struct
 {
-  int m_iType;
-  float m_fLength;
-  float m_fRadius;
-  float m_fAngle;
-  float m_afStart[2];
+  int m_iType;                          /* 0 = straight; 1 = curve */
+  float m_fLength;                      /* meters */
+  float m_fRadius;                      /* curve radius in meters. < 0 for left curves; 0 for straights */
+  float m_fAngle;                       /* start angle in degrees. 0 = north */
+  float m_afStart[2];                   /* start position in meters */
 } SPluginsTrackSegment_t;
