@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E9BABA9B-B8F9-418A-8440-A2570AC21441}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EllieSpeed.Arduino</RootNamespace>
     <AssemblyName>EllieSpeed.Arduino</AssemblyName>
@@ -36,6 +36,9 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\EllieSpeed.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>EllieSpeed.Arduino.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,6 +52,7 @@
     <Compile Include="..\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Receiver.cs" />
     <Compile Include="Sender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +63,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EllieSpeed.Broadcast\EllieSpeed.Broadcast.csproj">
+      <Project>{180EA89E-CB8D-4889-B70E-4F5A77B219ED}</Project>
+      <Name>EllieSpeed.Broadcast</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EllieSpeed.Receive\EllieSpeed.Receive.csproj">
       <Project>{6501D7FC-E71A-4BF9-A585-56126183883B}</Project>
       <Name>EllieSpeed.Receive</Name>
