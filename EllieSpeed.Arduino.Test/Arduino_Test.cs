@@ -8,6 +8,9 @@
 
 using System;
 using System.Threading;
+using EllieSpeed.Broadcast;
+using EllieSpeed.Receive;
+using Moq;
 using NUnit.Framework;
 
 namespace EllieSpeed.Arduino.Test
@@ -22,13 +25,14 @@ namespace EllieSpeed.Arduino.Test
     // In the com0com 'Setup Command Prompt' type:
     //
     //    install PortName=COM7 PortName=COM8<return>
-    private const string ReceivePort = "COM7";
-    private const string SendPort = "COM8";
+    private const string ReceiveCOMPort = "COM7";
+    private const string SendCOMPort = "COM8";
 
     [Test]
     public void ReceiverConstructor_Completes()
     {
-      using (new Receiver(ReceivePort))
+      var mockBroadcaster = new Mock<ISerialDataBroadcaster>();
+      using (new ArduinoReceiver(ReceiveCOMPort, mockBroadcaster.Object))
       {
       }
     }
@@ -37,9 +41,10 @@ namespace EllieSpeed.Arduino.Test
     [ExpectedException(typeof(UnauthorizedAccessException))]
     public void SecondReceiverConstructor_ThrowsException()
     {
-      using (new Receiver(ReceivePort))
+      var mockBroadcaster = new Mock<ISerialDataBroadcaster>();
+      using (new ArduinoReceiver(ReceiveCOMPort, mockBroadcaster.Object))
       {
-        using (new Receiver(ReceivePort))
+        using (new ArduinoReceiver(ReceiveCOMPort, mockBroadcaster.Object))
         {
         }
       }
@@ -48,7 +53,7 @@ namespace EllieSpeed.Arduino.Test
     [Test]
     public void SenderConstructor_Completes()
     {
-      using (new Sender(SendPort))
+      using (new Sender(SendCOMPort))
       {
       }
     }
@@ -57,9 +62,9 @@ namespace EllieSpeed.Arduino.Test
     [ExpectedException(typeof(UnauthorizedAccessException))]
     public void SecondSenderConstructor_ThrowsException()
     {
-      using (new Sender(SendPort))
+      using (new Sender(SendCOMPort))
       {
-        using (new Sender(SendPort))
+        using (new Sender(SendCOMPort))
         {
         }
       }
@@ -69,7 +74,7 @@ namespace EllieSpeed.Arduino.Test
     [Timeout(5000)]
     public void SenderSend_Completes()
     {
-      using (var send = new Sender(SendPort))
+      using (var send = new Sender(SendCOMPort))
       {
         send.Send("Hello, world!");
       }
@@ -81,22 +86,29 @@ namespace EllieSpeed.Arduino.Test
     {
       const string Message = "Hello, world!";
 
-      var msgReceived = false;
-      using (var rec = new Receiver(ReceivePort))
+      using (var broadcaster = new Broadcaster())
       {
-        rec.OnDataReceived += (sender, args) =>
+        using (new ArduinoReceiver(ReceiveCOMPort, broadcaster))
         {
-          msgReceived = true;
-          Assert.AreEqual(args.Data, Message);
-        };
-        using (var send = new Sender(SendPort))
-        {
-          send.Send(Message);
-        }
+          var msgReceived = false;
+          using (var rec = new SerialDataReceiver(Broadcaster.BroadcastPort))
+          {
+            rec.OnSerialDataReceived += (sender, args) =>
+            {
+              msgReceived = true;
+              Assert.AreEqual(args.Data, Message);
+            };
 
-        while (!msgReceived)
-        {
-          Thread.Sleep(100);
+            using (var send = new Sender(SendCOMPort))
+            {
+              send.Send(Message);
+            }
+
+            while (!msgReceived)
+            {
+              Thread.Sleep(100);
+            }
+          }
         }
       }
     }
