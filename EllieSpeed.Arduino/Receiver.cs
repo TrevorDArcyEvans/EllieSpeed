@@ -8,13 +8,13 @@
 
 using System;
 using System.IO.Ports;
-using EllieSpeed.Receive;
+using EllieSpeed.Broadcast;
 
 namespace EllieSpeed.Arduino
 {
   public class Receiver : IDisposable
   {
-    public event EventHandler<DataEventArgs<string>> OnDataReceived;
+    public event EventHandler<SerialDataEventArgs> OnDataReceived;
     public bool Disposed { get; private set; }
 
     private readonly SerialPort mPort;
@@ -30,7 +30,7 @@ namespace EllieSpeed.Arduino
     {
       if (OnDataReceived != null && mPort.IsOpen)
       {
-        OnDataReceived(this, new DataEventArgs<string>(mPort.ReadExisting()));
+        OnDataReceived(this, new SerialDataEventArgs(mPort.ReadExisting()));
       }
     }
 

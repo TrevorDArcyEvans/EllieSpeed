@@ -68,7 +68,7 @@ namespace EllieSpeed.Broadcast
       }
     }
 
-    public void OnSerialData(Receive.SerialDataEventArgs data)
+    public void OnSerialData(SerialDataEventArgs data)
     {
       var msg = ObjectToByteArray(data);
       SendMessage(msg);

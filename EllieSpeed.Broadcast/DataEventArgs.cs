@@ -8,7 +8,7 @@
 
 using System;
 
-namespace EllieSpeed.Receive
+namespace EllieSpeed.Broadcast
 {
   public class DataEventArgs<T> : EventArgs
   {

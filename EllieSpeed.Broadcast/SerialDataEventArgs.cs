@@ -6,7 +6,7 @@
 //  www.EllieSpeed.com
 //
 
-namespace EllieSpeed.Receive
+namespace EllieSpeed.Broadcast
 {
   public class SerialDataEventArgs : DataEventArgs<string>
   {
