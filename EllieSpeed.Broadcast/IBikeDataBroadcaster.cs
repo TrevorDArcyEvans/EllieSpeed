@@ -6,11 +6,9 @@
 //  www.EllieSpeed.com
 //
 
-using System;
-
 namespace EllieSpeed.Broadcast
 {
-  public interface IBikeDataBroadcaster : IDisposable
+  public interface IBikeDataBroadcaster
   {
     void OnStartup();
     void OnShutdown();
