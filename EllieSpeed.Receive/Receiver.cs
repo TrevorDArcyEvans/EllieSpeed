@@ -7,16 +7,12 @@
 //
 
 using System;
-using System.IO;
-using System.Net;
-using System.Net.Sockets;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using EllieSpeed.Broadcast;
 
 namespace EllieSpeed.Receive
 {
-  public class Receiver : IDisposable
+  public class Receiver : ReceiverBase
   {
     public event EventHandler OnStartup;
     public event EventHandler OnShutdown;
@@ -30,46 +26,12 @@ namespace EllieSpeed.Receive
     public event EventHandler<DataEventArgs<GPBikes.SPluginsBikeData_t>> OnRunTelemetry;
     public event EventHandler<DataEventArgs<GPBikes.SPluginsTrackSegment_t[]>> OnTrackCenterline;
 
-    public bool Disposed { get; private set; }
-
-    private readonly UdpClient mReceiver;
-    private IPEndPoint mEndPt;
-
-    public Receiver(int port)
+    public Receiver(int port) :
+      base (port)
     {
-      mEndPt = new IPEndPoint(IPAddress.Any, port);
-      mReceiver = new UdpClient();
-      mReceiver.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-      mReceiver.Client.Bind(mEndPt);
-      StartListening();
     }
 
-    private void StartListening()
-    {
-      mReceiver.BeginReceive(Receive, null);
-    }
-
-    private void Receive(IAsyncResult ar)
-    {
-      var msgBytes = mReceiver.EndReceive(ar, ref mEndPt);
-      ProcessMessage(msgBytes);
-      StartListening();
-    }
-
-    private Object ByteArrayToObject(byte[] arrBytes)
-    {
-      var memStream = new MemoryStream();
-      var bf = new BinaryFormatter();
-
-      memStream.Write(arrBytes, 0, arrBytes.Length);
-      memStream.Seek(0, SeekOrigin.Begin);
-
-      var obj = bf.Deserialize(memStream);
-
-      return obj;
-    }
-
-    private void ProcessMessage(byte[] msgBytes)
+    protected override void ProcessMessage(byte[] msgBytes)
     {
       var msg = Encoding.ASCII.GetString(msgBytes);
 
@@ -141,17 +103,6 @@ namespace EllieSpeed.Receive
         OnTrackCenterline(this, new DataEventArgs<GPBikes.SPluginsTrackSegment_t[]>((GPBikes.SPluginsTrackSegment_t[])obj));
         return;
       }
-    }
-
-    public void Dispose()
-    {
-      if (Disposed)
-      {
-        return;
-      }
-
-      mReceiver.Close();
-      Disposed = true;
     }
   }
 }
