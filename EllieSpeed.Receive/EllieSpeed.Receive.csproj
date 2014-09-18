@@ -49,7 +49,7 @@
     <Compile Include="..\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
-    <Compile Include="Receiver.cs" />
+    <Compile Include="BikeDataReceiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiverBase.cs" />
     <Compile Include="SerialDataReceiver.cs" />
