@@ -30,6 +30,8 @@ namespace EllieSpeed.Receive
     public event EventHandler<DataEventArgs<GPBikes.SPluginsBikeData_t>> OnRunTelemetry;
     public event EventHandler<DataEventArgs<GPBikes.SPluginsTrackSegment_t[]>> OnTrackCenterline;
 
+    public bool Disposed { get; private set; }
+
     private readonly UdpClient mReceiver;
     private IPEndPoint mEndPt;
 
@@ -143,7 +145,13 @@ namespace EllieSpeed.Receive
 
     public void Dispose()
     {
+      if (Disposed)
+      {
+        return;
+      }
+
       mReceiver.Close();
+      Disposed = true;
     }
   }
 }

@@ -13,6 +13,8 @@ namespace EllieSpeed.Utilities
 {
   public class AutoCursor : IDisposable
   {
+    public bool Disposed { get; private set; }
+
     private readonly Cursor mOldCursor;
 
     public AutoCursor()
@@ -28,7 +30,13 @@ namespace EllieSpeed.Utilities
 
     public void Dispose()
     {
+      if (Disposed)
+      {
+        return;
+      }
+
       Cursor.Current = mOldCursor;
+      Disposed = true;
     }
   }
 }

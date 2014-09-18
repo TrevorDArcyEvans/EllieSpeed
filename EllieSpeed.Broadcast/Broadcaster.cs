@@ -18,6 +18,8 @@ namespace EllieSpeed.Broadcast
 {
   public class Broadcaster : IBroadcaster
   {
+    public bool Disposed { get; private set; }
+
     private readonly IPEndPoint mEndPt;
     private readonly UdpClient mSender;
 
@@ -134,7 +136,13 @@ namespace EllieSpeed.Broadcast
 
     public void Dispose()
     {
+      if (Disposed)
+      {
+        return;
+      }
+
       mSender.Close();
+      Disposed = true;
     }
   }
 }
