@@ -7,13 +7,10 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 
 namespace EllieSpeed.Receive
 {
@@ -24,14 +21,13 @@ namespace EllieSpeed.Receive
     private readonly UdpClient mReceiver;
     private IPEndPoint mEndPt;
 
-    public ReceiverBase(int port)
+    protected ReceiverBase(int port)
     {
       mEndPt = new IPEndPoint(IPAddress.Any, port);
       mReceiver = new UdpClient();
       mReceiver.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
       mReceiver.Client.Bind(mEndPt);
       StartListening();
-      
     }
 
     protected abstract void ProcessMessage(byte[] msgBytes);
@@ -43,6 +39,11 @@ namespace EllieSpeed.Receive
 
     private void Receive(IAsyncResult ar)
     {
+      if (Disposed)
+      {
+        return;
+      }
+
       var msgBytes = mReceiver.EndReceive(ar, ref mEndPt);
       ProcessMessage(msgBytes);
       StartListening();
