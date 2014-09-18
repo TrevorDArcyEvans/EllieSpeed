@@ -16,7 +16,7 @@ using namespace System::Runtime::InteropServices;
 
 #using "EllieSpeed.Broadcast.dll"
 
-EllieSpeed::Broadcast::IBroadcaster^ CreateBroadcaster()
+EllieSpeed::Broadcast::IBikeDataBroadcaster^ CreateBroadcaster()
 {
   return gcnew EllieSpeed::Broadcast::Broadcaster();
 }
