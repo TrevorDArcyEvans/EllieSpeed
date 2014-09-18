@@ -16,7 +16,7 @@ using System.Text;
 
 namespace EllieSpeed.Broadcast
 {
-  public class Broadcaster : IBroadcaster, ISerialDataBroadcaster
+  public class Broadcaster : IBikeDataBroadcaster, ISerialDataBroadcaster
   {
     public bool Disposed { get; private set; }
 

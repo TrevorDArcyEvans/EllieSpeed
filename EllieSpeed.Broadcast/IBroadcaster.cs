@@ -10,7 +10,7 @@ using System;
 
 namespace EllieSpeed.Broadcast
 {
-  public interface IBroadcaster : IDisposable
+  public interface IBikeDataBroadcaster : IDisposable
   {
     void OnStartup();
     void OnShutdown();
