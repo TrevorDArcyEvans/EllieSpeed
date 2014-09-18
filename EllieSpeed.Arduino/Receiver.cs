@@ -12,26 +12,24 @@ using EllieSpeed.Broadcast;
 
 namespace EllieSpeed.Arduino
 {
-  public class Receiver : IDisposable
+  public class ArduinoReceiver : IDisposable
   {
-    public event EventHandler<SerialDataEventArgs> OnDataReceived;
     public bool Disposed { get; private set; }
 
     private readonly SerialPort mPort;
+    private readonly ISerialDataBroadcaster mBroadcaster;
 
-    public Receiver(string portName)
+    public ArduinoReceiver(string portName, ISerialDataBroadcaster broadcaster)
     {
       mPort = new SerialPort(portName, 9600);
       mPort.DataReceived += Port_DataReceived;
       mPort.Open();
+      mBroadcaster = broadcaster;
     }
 
     private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
     {
-      if (OnDataReceived != null && mPort.IsOpen)
-      {
-        OnDataReceived(this, new SerialDataEventArgs(mPort.ReadExisting()));
-      }
+      mBroadcaster.OnSerialData(new SerialDataEventArgs(mPort.ReadExisting()));
     }
 
     public void Dispose()
