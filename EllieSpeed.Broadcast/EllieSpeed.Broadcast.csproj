@@ -53,9 +53,11 @@
     </Compile>
     <Compile Include="Broadcast.cs" />
     <Compile Include="Broadcaster.cs" />
+    <Compile Include="DataEventArgs.cs" />
     <Compile Include="GPBikes.cs" />
     <Compile Include="IBroadcaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerialDataEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\EllieSpeed.snk">

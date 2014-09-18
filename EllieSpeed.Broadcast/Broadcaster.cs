@@ -68,6 +68,12 @@ namespace EllieSpeed.Broadcast
       }
     }
 
+    public void OnSerialData(Receive.SerialDataEventArgs data)
+    {
+      var msg = ObjectToByteArray(data);
+      SendMessage(msg);
+    }
+
     public void OnStartup()
     {
       var msg = Encoding.ASCII.GetBytes(@"OnStartup");
