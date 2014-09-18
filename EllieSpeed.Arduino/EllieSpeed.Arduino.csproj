@@ -53,7 +53,7 @@
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Receiver.cs" />
+    <Compile Include="ArduinoReceiver.cs" />
     <Compile Include="Sender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
