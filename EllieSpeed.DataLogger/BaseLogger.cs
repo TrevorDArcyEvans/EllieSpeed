@@ -16,7 +16,7 @@ namespace EllieSpeed.DataLogger
   public abstract class BaseLogger : IDisposable
   {
     private readonly DataLogger mLogger;
-    private readonly Receiver mReceiver = new Receiver(Broadcaster.BroadcastPort);
+    private readonly BikeDataReceiver mReceiver = new BikeDataReceiver(Broadcaster.BroadcastPort);
 
     protected abstract string ConnectionString { get; }
 

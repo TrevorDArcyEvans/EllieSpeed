@@ -12,7 +12,7 @@ namespace EllieSpeed.Receive.Console
   {
     static void Main()
     {
-      using (var rec = new Receiver(Broadcast.Broadcaster.BroadcastPort))
+      using (var rec = new BikeDataReceiver(Broadcast.Broadcaster.BroadcastPort))
       {
         rec.OnStartup += (s, e) => System.Console.WriteLine("OnStartup");
         rec.OnShutdown += (s, e) => System.Console.WriteLine("OnShutdown");

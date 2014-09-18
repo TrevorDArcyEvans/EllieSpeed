@@ -138,7 +138,7 @@ namespace EllieSpeed.Plugin.Test
     public void Startup_ReturnsExpected()
     {
       var msgReceived = false;
-      using (var rec = new Receiver(BroadcastPort))
+      using (var rec = new BikeDataReceiver(BroadcastPort))
       {
         rec.OnStartup += (sender, args) => { msgReceived = true; };
 
@@ -158,7 +158,7 @@ namespace EllieSpeed.Plugin.Test
     public void Shutdown_Completes()
     {
       var msgReceived = false;
-      using (var rec = new Receiver(BroadcastPort))
+      using (var rec = new BikeDataReceiver(BroadcastPort))
       {
         rec.OnShutdown += (sender, args) => { msgReceived = true; };
 
@@ -180,7 +180,7 @@ namespace EllieSpeed.Plugin.Test
       Marshal.StructureToPtr(data, ptr, true);
 
       var msgReceived = false;
-      using (var rec = new Receiver(BroadcastPort))
+      using (var rec = new BikeDataReceiver(BroadcastPort))
       {
         rec.OnEventInit += (sender, args) =>
         {
@@ -208,7 +208,7 @@ namespace EllieSpeed.Plugin.Test
       Marshal.StructureToPtr(data, ptr, true);
 
       var msgReceived = false;
-      using (var rec = new Receiver(BroadcastPort))
+      using (var rec = new BikeDataReceiver(BroadcastPort))
       {
         rec.OnRunInit += (sender, args) =>
         {
@@ -232,7 +232,7 @@ namespace EllieSpeed.Plugin.Test
     public void RunDeinit_Completes()
     {
       var msgReceived = false;
-      using (var rec = new Receiver(BroadcastPort))
+      using (var rec = new BikeDataReceiver(BroadcastPort))
       {
         rec.OnRunDeinit += (sender, args) => { msgReceived = true; };
 
@@ -250,7 +250,7 @@ namespace EllieSpeed.Plugin.Test
     public void RunStart_Completes()
     {
       var msgReceived = false;
-      using (var rec = new Receiver(BroadcastPort))
+      using (var rec = new BikeDataReceiver(BroadcastPort))
       {
         rec.OnRunStart += (sender, args) => { msgReceived = true; };
 
@@ -268,7 +268,7 @@ namespace EllieSpeed.Plugin.Test
     public void RunStop_Completes()
     {
       var msgReceived = false;
-      using (var rec = new Receiver(BroadcastPort))
+      using (var rec = new BikeDataReceiver(BroadcastPort))
       {
         rec.OnRunStop += (sender, args) => { msgReceived = true; };
 
@@ -290,7 +290,7 @@ namespace EllieSpeed.Plugin.Test
       Marshal.StructureToPtr(data, ptr, true);
 
       var msgReceived = false;
-      using (var rec = new Receiver(BroadcastPort))
+      using (var rec = new BikeDataReceiver(BroadcastPort))
       {
         rec.OnRunLap += (sender, args) =>
         {
@@ -318,7 +318,7 @@ namespace EllieSpeed.Plugin.Test
       Marshal.StructureToPtr(data, ptr, true);
 
       var msgReceived = false;
-      using (var rec = new Receiver(BroadcastPort))
+      using (var rec = new BikeDataReceiver(BroadcastPort))
       {
         rec.OnRunSplit += (sender, args) =>
         {
@@ -347,7 +347,7 @@ namespace EllieSpeed.Plugin.Test
       Marshal.StructureToPtr(data, ptr, true);
 
       var msgReceived = false;
-      using (var rec = new Receiver(BroadcastPort))
+      using (var rec = new BikeDataReceiver(BroadcastPort))
       {
         rec.OnRunTelemetry += (sender, args) =>
         {
@@ -381,7 +381,7 @@ namespace EllieSpeed.Plugin.Test
       }
 
       var msgReceived = false;
-      using (var rec = new Receiver(BroadcastPort))
+      using (var rec = new BikeDataReceiver(BroadcastPort))
       {
         rec.OnTrackCenterline += (sender, args) =>
         {

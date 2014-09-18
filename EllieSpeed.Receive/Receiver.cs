@@ -12,7 +12,7 @@ using EllieSpeed.Broadcast;
 
 namespace EllieSpeed.Receive
 {
-  public class Receiver : ReceiverBase
+  public class BikeDataReceiver : ReceiverBase
   {
     public event EventHandler OnStartup;
     public event EventHandler OnShutdown;
@@ -26,7 +26,7 @@ namespace EllieSpeed.Receive
     public event EventHandler<DataEventArgs<GPBikes.SPluginsBikeData_t>> OnRunTelemetry;
     public event EventHandler<DataEventArgs<GPBikes.SPluginsTrackSegment_t[]>> OnTrackCenterline;
 
-    public Receiver(int port) :
+    public BikeDataReceiver(int port) :
       base (port)
     {
     }
