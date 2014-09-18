@@ -56,6 +56,7 @@
     <Compile Include="DataEventArgs.cs" />
     <Compile Include="GPBikes.cs" />
     <Compile Include="IBroadcaster.cs" />
+    <Compile Include="ISerialDataBroadcaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerialDataEventArgs.cs" />
   </ItemGroup>

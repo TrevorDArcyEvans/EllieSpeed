@@ -10,6 +10,7 @@ using System;
 
 namespace EllieSpeed.Broadcast
 {
+  [Serializable]
   public class DataEventArgs<T> : EventArgs
   {
     public T Data { get; private set; }

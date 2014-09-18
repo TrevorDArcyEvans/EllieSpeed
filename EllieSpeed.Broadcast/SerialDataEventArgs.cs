@@ -6,8 +6,11 @@
 //  www.EllieSpeed.com
 //
 
+using System;
+
 namespace EllieSpeed.Broadcast
 {
+  [Serializable]
   public class SerialDataEventArgs : DataEventArgs<string>
   {
     public SerialDataEventArgs(string msg) :
