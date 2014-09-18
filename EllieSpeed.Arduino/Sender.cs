@@ -11,13 +11,13 @@ using System.IO.Ports;
 
 namespace EllieSpeed.Arduino
 {
-  public class Sender : IDisposable
+  public class ArduinoSender : IDisposable
   {
     public bool Disposed { get; private set; }
 
     private readonly SerialPort mPort;
 
-    public Sender(string portName)
+    public ArduinoSender(string portName)
     {
       mPort = new SerialPort(portName, 9600);
       mPort.Open();
