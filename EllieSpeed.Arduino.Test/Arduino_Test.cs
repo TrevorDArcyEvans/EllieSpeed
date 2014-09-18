@@ -53,7 +53,7 @@ namespace EllieSpeed.Arduino.Test
     [Test]
     public void SenderConstructor_Completes()
     {
-      using (new Sender(SendCOMPort))
+      using (new ArduinoSender(SendCOMPort))
       {
       }
     }
@@ -62,9 +62,9 @@ namespace EllieSpeed.Arduino.Test
     [ExpectedException(typeof(UnauthorizedAccessException))]
     public void SecondSenderConstructor_ThrowsException()
     {
-      using (new Sender(SendCOMPort))
+      using (new ArduinoSender(SendCOMPort))
       {
-        using (new Sender(SendCOMPort))
+        using (new ArduinoSender(SendCOMPort))
         {
         }
       }
@@ -74,7 +74,7 @@ namespace EllieSpeed.Arduino.Test
     [Timeout(5000)]
     public void SenderSend_Completes()
     {
-      using (var send = new Sender(SendCOMPort))
+      using (var send = new ArduinoSender(SendCOMPort))
       {
         send.Send("Hello, world!");
       }
@@ -99,7 +99,7 @@ namespace EllieSpeed.Arduino.Test
               Assert.AreEqual(args.Data, Message);
             };
 
-            using (var send = new Sender(SendCOMPort))
+            using (var send = new ArduinoSender(SendCOMPort))
             {
               send.Send(Message);
             }
