@@ -11,7 +11,6 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using EllieSpeed.Broadcast;
-using EllieSpeed.Receive;
 
 namespace EllieSpeed.Arduino
 {
@@ -29,17 +28,12 @@ namespace EllieSpeed.Arduino
 
       if (ArduinoMutex.WaitOne(TimeSpan.Zero, true))
       {
-        using (var rec = new Receiver(args[0]))
+        using (var broadcast = new Broadcaster())
         {
-          using (var broadcast = new Broadcaster())
+          using (new ArduinoReceiver(args[0], broadcast))
           {
-            rec.OnDataReceived += (s, e) =>
-            {
-              var data = new SerialDataEventArgs(e.Data);
-              broadcast.OnSerialData(data);
-            };
-            Console.WriteLine(@"Listening for data on " + args[0]);
-            Console.WriteLine(@"Broadcasting data on port " + Broadcast.Broadcaster.BroadcastPort);
+            Console.WriteLine(@"Listening for Arduino data on " + args[0]);
+            Console.WriteLine(@"Broadcasting data on port " + Broadcaster.BroadcastPort);
             Console.WriteLine();
             Console.WriteLine(@"Press any key to exit");
             Console.ReadKey();
@@ -50,7 +44,7 @@ namespace EllieSpeed.Arduino
       }
       else
       {
-        Console.WriteLine("only one instance at a time");
+        Console.WriteLine("Only one instance at a time!");
       }
     }
 
@@ -59,10 +53,10 @@ namespace EllieSpeed.Arduino
       var assyPath = Assembly.GetExecutingAssembly().Location;
       var exeName = Path.GetFileName(assyPath);
       Console.WriteLine(@"Usage:");
-      Console.WriteLine(@"  " + exeName + " [database file name]");
+      Console.WriteLine(@"  " + exeName + " [COM port]");
       Console.WriteLine();
       Console.WriteLine(@"  Example:");
-      Console.WriteLine(@"    " + exeName + " MyDataFile.sqlite3");
+      Console.WriteLine(@"    " + exeName + " COM4");
     }
   }
 }
