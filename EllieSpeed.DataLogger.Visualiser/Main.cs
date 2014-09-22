@@ -9,6 +9,7 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
+using EllieSpeed.DataLogger.Visualiser.Properties;
 
 namespace EllieSpeed.DataLogger.Visualiser
 {
@@ -26,12 +27,21 @@ namespace EllieSpeed.DataLogger.Visualiser
         return;
       }
 
+      var title = Path.GetFileNameWithoutExtension(FileOpenDlg.FileName);
       var logger = new DataLogger(SQLiteLogger.GetConnectionString(FileOpenDlg.FileName));
-      var vis = new Visualiser(Path.GetFileNameWithoutExtension(FileOpenDlg.FileName), logger)
+      var vis = new Visualiser(title, logger)
                     {
                       MdiParent = this
                     };
       vis.Show();
+      var track = new Track(title, logger)
+                 {
+                   MdiParent = this
+                 };
+      track.Show();
+
+      ViewDataMenuItem.DropDownItems.Add(title);
+      ViewTrackMenuItem.DropDownItems.Add(title);
     }
 
     private void FileClose_Click(object sender, EventArgs e)

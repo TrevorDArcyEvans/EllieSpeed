@@ -37,6 +37,7 @@ namespace EllieSpeed.DataLogger.Visualiser
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Visualiser));
       this.ZedGraph = new ZedGraph.ZedGraphControl();
       this.SuspendLayout();
       // 
@@ -63,6 +64,7 @@ namespace EllieSpeed.DataLogger.Visualiser
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(620, 457);
       this.Controls.Add(this.ZedGraph);
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "Visualiser";
       this.Text = "Visualiser";
       this.Load += new System.EventHandler(this.Visualiser_Load);

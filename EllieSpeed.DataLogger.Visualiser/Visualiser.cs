@@ -14,6 +14,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using EllieSpeed.DataLogger.Visualiser.Properties;
 using EllieSpeed.Utilities;
 using ZedGraph;
 
