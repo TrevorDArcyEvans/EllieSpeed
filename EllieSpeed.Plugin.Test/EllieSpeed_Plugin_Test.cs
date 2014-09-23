@@ -22,6 +22,10 @@ namespace EllieSpeed.Plugin.Test
   {
     #region Plugin Exports
 
+    /// Return Type: int
+    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "GetDataRate")]
+    public static extern int GetDataRate();
+
     /// Return Type: char*
     [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "GetModID")]
     public static extern IntPtr GetModID();

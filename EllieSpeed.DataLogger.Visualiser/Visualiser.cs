@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using EllieSpeed.Utilities;
 using ZedGraph;
@@ -18,6 +19,14 @@ namespace EllieSpeed.DataLogger.Visualiser
 {
   public partial class Visualiser : DataForm
   {
+    /*
+      return value is requested rate
+      0 = 100hz; 1 = 50hz; 2 = 20hz; 3 = 10hz; -1 = disable
+    */
+    /// Return Type: int
+    [DllImport("EllieSpeed.Plugin.dlo", EntryPoint = "GetDataRate")]
+    public static extern int GetDataRate();
+
     public Visualiser()
     {
       InitializeComponent();
@@ -69,15 +78,35 @@ namespace EllieSpeed.DataLogger.Visualiser
 
     private void AddTrace(GraphPane pane, PlottableDataEnum dataName)
     {
-      // TODO   read data rate from DLL plugin:
-      //        EXTERN_DLL_EXPORT int Startup(char *szSavePath)
-      const double DataFrequency = 0.1;
+      double dataFreq;
+      //  0 = 100hz; 1 = 50hz; 2 = 20hz; 3 = 10hz; -1 = disable
+      switch (GetDataRate())
+      {
+        case 0:
+          dataFreq = 1d/100d;
+          break;
+
+        case 1:
+          dataFreq = 1d/50d;
+          break;
+
+        case 2:
+          dataFreq = 1d/20d;
+          break;
+
+        case 3:
+          dataFreq = 1d/10d;
+          break;
+
+        default:
+          throw new ArgumentOutOfRangeException("DataRate = " + GetDataRate());
+      }
 
       var pts = new PointPairList();
       var yPts = GetData(dataName);
       for (var i = 0; i < yPts.Count(); i++)
       {
-        pts.Add(i * DataFrequency, yPts[i]);
+        pts.Add(i * dataFreq, yPts[i]);
       }
       var title = GetDataName(dataName);
       var clr = GetDataColour(dataName);

@@ -49,6 +49,15 @@ X+ is right, Y+ is top and Z+ is forward.
 */
 #define EXTERN_DLL_EXPORT extern "C" _declspec(dllexport)
 
+EXTERN_DLL_EXPORT int GetDataRate()
+{
+  /*
+    return value is requested rate
+    0 = 100hz; 1 = 50hz; 2 = 20hz; 3 = 10hz; -1 = disable
+  */
+  return 3;
+}
+
 EXTERN_DLL_EXPORT int GetInterfaceVersion()
 {
   // have to call this in a function which does not reference any .NET code
@@ -78,7 +87,7 @@ EXTERN_DLL_EXPORT int Startup(char *szSavePath)
     return value is requested rate
     0 = 100hz; 1 = 50hz; 2 = 20hz; 3 = 10hz; -1 = disable
   */
-  return 3;
+  return GetDataRate();
 }
 
 /* called when software is closed */
