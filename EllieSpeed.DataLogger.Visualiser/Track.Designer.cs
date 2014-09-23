@@ -6,7 +6,7 @@
 //  www.EllieSpeed.com
 //
 
-namespace EllieSpeed.DataLogger.Visualiser.Properties
+namespace EllieSpeed.DataLogger.Visualiser
 {
   partial class Track
   {

@@ -12,7 +12,7 @@ using System.Linq;
 using EllieSpeed.Utilities;
 using ZedGraph;
 
-namespace EllieSpeed.DataLogger.Visualiser.Properties
+namespace EllieSpeed.DataLogger.Visualiser
 {
   public partial class Track : DataForm
   {
@@ -47,8 +47,10 @@ namespace EllieSpeed.DataLogger.Visualiser.Properties
 
         // Add a text box with instructions
         var text = new TextObj("Zoom: left mouse & drag\nPan: middle mouse & drag\nContext Menu: right mouse",
-                        0.05f, 0.95f, CoordType.ChartFraction, AlignH.Left, AlignV.Bottom);
-        text.FontSpec.StringAlignment = StringAlignment.Near;
+                        0.05f, 0.95f, CoordType.ChartFraction, AlignH.Left, AlignV.Bottom)
+                    {
+                      FontSpec = {StringAlignment = StringAlignment.Near}
+                    };
         pane.GraphObjList.Add(text);
 
         // Enable scrollbars if needed
