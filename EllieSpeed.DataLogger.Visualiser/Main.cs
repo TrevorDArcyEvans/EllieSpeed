@@ -8,9 +8,8 @@
 
 using System;
 using System.IO;
-using System.Windows.Forms;
-using EllieSpeed.DataLogger.Visualiser.Properties;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace EllieSpeed.DataLogger.Visualiser
 {
