@@ -80,10 +80,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Track.cs">
+    <Compile Include="Track.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Properties\Track.Designer.cs">
+    <Compile Include="Track.Designer.cs">
       <DependentUpon>Track.cs</DependentUpon>
     </Compile>
     <Compile Include="Visualiser.cs">
@@ -111,7 +111,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Properties\Track.resx">
+    <EmbeddedResource Include="Track.resx">
       <DependentUpon>Track.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visualiser.resx">
