@@ -56,8 +56,8 @@ namespace EllieSpeed.DataLogger.Visualiser
       this.statusStrip1 = new System.Windows.Forms.StatusStrip();
       this.FileOpenDlg = new System.Windows.Forms.OpenFileDialog();
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-      this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-      this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+      this.BtnOpen = new System.Windows.Forms.ToolStripButton();
+      this.BtnClose = new System.Windows.Forms.ToolStripButton();
       toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.toolStrip1.SuspendLayout();
@@ -172,13 +172,13 @@ namespace EllieSpeed.DataLogger.Visualiser
       // ViewDataMenuItem
       // 
       this.ViewDataMenuItem.Name = "ViewDataMenuItem";
-      this.ViewDataMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.ViewDataMenuItem.Size = new System.Drawing.Size(103, 22);
       this.ViewDataMenuItem.Text = "&Data";
       // 
       // ViewTrackMenuItem
       // 
       this.ViewTrackMenuItem.Name = "ViewTrackMenuItem";
-      this.ViewTrackMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.ViewTrackMenuItem.Size = new System.Drawing.Size(103, 22);
       this.ViewTrackMenuItem.Text = "&Track";
       // 
       // helpToolStripMenuItem
@@ -213,33 +213,34 @@ namespace EllieSpeed.DataLogger.Visualiser
       // toolStrip1
       // 
       this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2});
+            this.BtnOpen,
+            this.BtnClose});
       this.toolStrip1.Location = new System.Drawing.Point(0, 24);
       this.toolStrip1.Name = "toolStrip1";
       this.toolStrip1.Size = new System.Drawing.Size(721, 25);
       this.toolStrip1.TabIndex = 4;
       this.toolStrip1.Text = "toolStrip1";
       // 
-      // toolStripButton1
+      // BtnOpen
       // 
-      this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolStripButton1.Image = global::EllieSpeed.DataLogger.Visualiser.Properties.Resources.folder_document_32x32;
-      this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolStripButton1.Name = "toolStripButton1";
-      this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-      this.toolStripButton1.Text = "toolStripButton1";
-      this.toolStripButton1.Click += new System.EventHandler(this.FileOpen_Click);
+      this.BtnOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.BtnOpen.Image = global::EllieSpeed.DataLogger.Visualiser.Properties.Resources.folder_document_32x32;
+      this.BtnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.BtnOpen.Name = "BtnOpen";
+      this.BtnOpen.Size = new System.Drawing.Size(23, 22);
+      this.BtnOpen.Text = "toolStripButton1";
+      this.BtnOpen.Click += new System.EventHandler(this.FileOpen_Click);
       // 
-      // toolStripButton2
+      // BtnClose
       // 
-      this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolStripButton2.Image = global::EllieSpeed.DataLogger.Visualiser.Properties.Resources.document_delete_32x32;
-      this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolStripButton2.Name = "toolStripButton2";
-      this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-      this.toolStripButton2.Text = "toolStripButton2";
-      this.toolStripButton2.Click += new System.EventHandler(this.FileClose_Click);
+      this.BtnClose.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.BtnClose.Enabled = false;
+      this.BtnClose.Image = global::EllieSpeed.DataLogger.Visualiser.Properties.Resources.document_delete_32x32;
+      this.BtnClose.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.BtnClose.Name = "BtnClose";
+      this.BtnClose.Size = new System.Drawing.Size(23, 22);
+      this.BtnClose.Text = "toolStripButton2";
+      this.BtnClose.Click += new System.EventHandler(this.FileClose_Click);
       // 
       // Main
       // 
@@ -281,8 +282,8 @@ namespace EllieSpeed.DataLogger.Visualiser
     private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem HelpAboutMenuItem;
     private System.Windows.Forms.ToolStrip toolStrip1;
-    private System.Windows.Forms.ToolStripButton toolStripButton1;
-    private System.Windows.Forms.ToolStripButton toolStripButton2;
+    private System.Windows.Forms.ToolStripButton BtnOpen;
+    private System.Windows.Forms.ToolStripButton BtnClose;
     private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem ViewDataMenuItem;
     private System.Windows.Forms.ToolStripMenuItem ViewTrackMenuItem;

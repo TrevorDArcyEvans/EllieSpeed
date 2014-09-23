@@ -43,12 +43,12 @@ namespace EllieSpeed.DataLogger.Visualiser.Properties
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(284, 262);
+      this.ClientSize = new System.Drawing.Size(468, 370);
+      this.Controls.Add(this.ZedGraph);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "Track";
       this.ShowInTaskbar = false;
       this.Text = "Track";
-      this.Load += new System.EventHandler(this.Track_Load);
       this.ResumeLayout(false);
 
     }

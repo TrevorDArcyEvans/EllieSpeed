@@ -10,6 +10,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using EllieSpeed.DataLogger.Visualiser.Properties;
+using System.Linq;
 
 namespace EllieSpeed.DataLogger.Visualiser
 {
@@ -29,19 +30,45 @@ namespace EllieSpeed.DataLogger.Visualiser
 
       var title = Path.GetFileNameWithoutExtension(FileOpenDlg.FileName);
       var logger = new DataLogger(SQLiteLogger.GetConnectionString(FileOpenDlg.FileName));
-      var vis = new Visualiser(title, logger)
-                    {
-                      MdiParent = this
-                    };
-      vis.Show();
+
       var track = new Track(title, logger)
                  {
                    MdiParent = this
                  };
+      var trackMenuItem = ViewTrackMenuItem.DropDownItems.Add(title);
+      trackMenuItem.Tag = track;
+      trackMenuItem.Click += DataMenuItem_Click<Track>;
+      track.FormClosed += (s, ev) => Form_Closed(ViewTrackMenuItem, track);
       track.Show();
 
-      ViewDataMenuItem.DropDownItems.Add(title);
-      ViewTrackMenuItem.DropDownItems.Add(title);
+      var vis = new Visualiser(title, logger)
+                    {
+                      MdiParent = this
+                    };
+      var dataMenuItem = ViewDataMenuItem.DropDownItems.Add(title);
+      dataMenuItem.Tag = vis;
+      dataMenuItem.Click += DataMenuItem_Click<Visualiser>;
+      vis.FormClosed += (s, ev) => Form_Closed(ViewDataMenuItem, vis);
+      vis.Show();
+
+      BtnClose.Enabled = true;
+    }
+
+    private void Form_Closed(ToolStripMenuItem mi, DataForm form)
+    {
+      var tsi = mi.DropDownItems.Cast<ToolStripItem>().Single(x => x.Tag == form);
+      mi.DropDownItems.Remove(tsi);
+
+      // child form is still in list at this point,
+      // so disable button if this is the last child which is about to close
+      BtnClose.Enabled = MdiChildren.Count() != 1;
+    }
+
+    private void DataMenuItem_Click<T>(object sender, EventArgs e) where T : DataForm
+    {
+      var menuItem = (ToolStripItem)sender;
+      var vis = (T)menuItem.Tag;
+      vis.Activate();
     }
 
     private void FileClose_Click(object sender, EventArgs e)

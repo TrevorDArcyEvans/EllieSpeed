@@ -8,7 +8,7 @@
 
 namespace EllieSpeed.DataLogger.Visualiser
 {
-  partial class Visualiser
+  partial class DataForm
   {
     /// <summary>
     /// Required designer variable.
@@ -36,23 +36,42 @@ namespace EllieSpeed.DataLogger.Visualiser
     /// </summary>
     private void InitializeComponent()
     {
+      this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Visualiser));
+      this.ZedGraph = new ZedGraph.ZedGraphControl();
       this.SuspendLayout();
       // 
-      // Visualiser
+      // ZedGraph
+      // 
+      this.ZedGraph.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.ZedGraph.IsEnableVZoom = false;
+      this.ZedGraph.IsSynchronizeXAxes = true;
+      this.ZedGraph.Location = new System.Drawing.Point(0, 0);
+      this.ZedGraph.Name = "ZedGraph";
+      this.ZedGraph.ScrollGrace = 0D;
+      this.ZedGraph.ScrollMaxX = 0D;
+      this.ZedGraph.ScrollMaxY = 0D;
+      this.ZedGraph.ScrollMaxY2 = 0D;
+      this.ZedGraph.ScrollMinX = 0D;
+      this.ZedGraph.ScrollMinY = 0D;
+      this.ZedGraph.ScrollMinY2 = 0D;
+      this.ZedGraph.Size = new System.Drawing.Size(620, 457);
+      this.ZedGraph.TabIndex = 0;
+      // 
+      // DataForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(620, 457);
-      this.Controls.Add(this.ZedGraph);
-      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-      this.Name = "Visualiser";
-      this.ShowInTaskbar = false;
-      this.Text = "Visualiser";
+      this.ClientSize = new System.Drawing.Size(680, 575);
+      this.Name = "DataForm";
+      this.Text = "DataForm";
+      this.Load += new System.EventHandler(this.OnLoad);
       this.ResumeLayout(false);
 
     }
 
     #endregion
+
+    protected ZedGraph.ZedGraphControl ZedGraph;
   }
 }

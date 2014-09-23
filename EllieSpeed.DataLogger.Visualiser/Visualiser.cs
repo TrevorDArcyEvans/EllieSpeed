@@ -8,35 +8,28 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using EllieSpeed.DataLogger.Visualiser.Properties;
 using EllieSpeed.Utilities;
 using ZedGraph;
 
 namespace EllieSpeed.DataLogger.Visualiser
 {
-  public partial class Visualiser : Form
+  public partial class Visualiser : DataForm
   {
-    private readonly DataLogger mLogger;
-
     public Visualiser()
     {
       InitializeComponent();
     }
 
     public Visualiser(string title, DataLogger logger) :
-      this()
+      base(title, logger)
     {
-      mLogger = logger;
-      Text = title;
+      InitializeComponent();
     }
 
-    private void Visualiser_Load(object sender, EventArgs e)
+    protected override void OnLoadInternal(object sender, EventArgs e)
     {
       using (new AutoWaitCursor())
       {
@@ -67,45 +60,26 @@ namespace EllieSpeed.DataLogger.Visualiser
         ZedGraph.IsAutoScrollRange = true;
 
 
-        var rpm = (from bd in mLogger.BikeDatas.OrderBy(bd => bd.ID) select bd.RPM).ToList();
-        AddTrace(pane, "RPM", rpm, Color.Blue, SymbolType.Diamond);
-
-        var wt = (from bd in mLogger.BikeDatas.OrderBy(bd => bd.ID) select bd.WaterTemperature).ToList();
-        AddTrace(pane, "Water Temp", wt, Color.Green, SymbolType.Square);
-
-        //var spd = (from bd in mLogger.BikeDatas.OrderBy(bd => bd.ID) select bd.Speedometer * 3.6).ToList();
-        //AddTrace(pane, "Speed", spd, Color.Indigo, SymbolType.Triangle);
-
-
-        // OPTIONAL: Show tooltips when the mouse hovers over a point
-        ZedGraph.IsShowPointValues = true;
-        ZedGraph.PointValueEvent += PointValueHandler;
-
-        // OPTIONAL: Add a custom context menu item
-        ZedGraph.ContextMenuBuilder += OnContextMenuBuilder;
-
-        // OPTIONAL: Handle the Zoom Event
-        ZedGraph.ZoomEvent += OnZoomEvent;
-
-        // Tell ZedGraph to calculate the axis ranges
-        // Note that you MUST call this after enabling IsAutoScrollRange, since AxisChange() sets
-        // up the proper scrolling parameters
-        ZedGraph.AxisChange();
-
-        // Make sure the Graph gets redrawn
-        ZedGraph.Invalidate();
+        AddTrace(pane, PlottableDataEnum.RPM);
+        AddTrace(pane, PlottableDataEnum.Speedometer);
       }
     }
 
-    private void AddTrace(GraphPane pane, string title, IList<double> yPts, Color clr, SymbolType symbol)
+    private void AddTrace(GraphPane pane, PlottableDataEnum dataName)
     {
+      // TODO   read data rate from DLL plugin:
+      //        EXTERN_DLL_EXPORT int Startup(char *szSavePath)
       const double DataFrequency = 0.1;
 
       var pts = new PointPairList();
+      var yPts = GetData(dataName);
       for (var i = 0; i < yPts.Count(); i++)
       {
         pts.Add(i * DataFrequency, yPts[i]);
       }
+      var title = GetDataName(dataName);
+      var clr = GetDataColour(dataName);
+      var symbol = GetDataSymbol(dataName);
       var curve = pane.AddCurve(title, pts, clr, symbol);
 
       // Fill the symbols with white
@@ -121,38 +95,360 @@ namespace EllieSpeed.DataLogger.Visualiser
       yaxis.Scale.FontSpec.Size = yaxis.Title.FontSpec.Size = 8f;
       pane.YAxisList.Add(yaxis);
 
-      curve.YAxisIndex = pane.YAxisList.IndexOf(title);
+      AssignYAxes(pane);
     }
 
-    /// <summary>
-    /// Display customized tooltips when the mouse hovers over a point
-    /// </summary>
-    private string PointValueHandler(ZedGraphControl control, GraphPane pane, CurveItem curve, int iPt)
+    private void AssignYAxes(GraphPane pane)
+    {
+      foreach (var crv in pane.CurveList)
+      {
+        crv.YAxisIndex = pane.YAxisList.IndexOf(crv.Label.Text);
+      }
+    }
+
+    protected override string PointValueHandler(ZedGraphControl control, GraphPane pane, CurveItem curve, int iPt)
     {
       // Get the PointPair that is under the mouse
-      PointPair pt = curve[iPt];
+      var pt = curve[iPt];
 
       return curve.Label.Text + " = " + pt.Y.ToString("f2") + " @ " + pt.X.ToString("f1") + " s";
     }
 
-    /// <summary>
-    /// Customize the context menu by adding a new item to the end of the menu
-    /// </summary>
-    private void OnContextMenuBuilder(ZedGraphControl control, ContextMenuStrip menuStrip, Point mousePt, ZedGraphControl.ContextMenuObjectState objState)
+    private enum PlottableDataEnum
     {
-      //ToolStripMenuItem item = new ToolStripMenuItem();
-      //item.Name = "add-beta";
-      //item.Tag = "add-beta";
-      //item.Text = "Add a new Beta Point";
-      //item.Click += new System.EventHandler(AddBetaPoint);
-
-      //menuStrip.Items.Add(item);
+      RPM,
+      EngineTemperature,
+      WaterTemperature,
+      Gear,
+      Fuel,
+      Speedometer,
+      Yaw,
+      Pitch,
+      Roll,
+      YawVelocity,
+      PitchVelocity,
+      SuspNormLengthFront,
+      SuspNormLengthRear,
+      Steer,
+      Throttle,
+      FrontBrake,
+      RearBrake,
+      Clutch,
+      WheelSpeedFront,
+      WheelSpeedRear,
     }
 
-    // Respond to a Zoom Event
-    private void OnZoomEvent(ZedGraphControl control, ZoomState oldState, ZoomState newState)
+    protected override void OnContextMenuBuilder(ZedGraphControl control, ContextMenuStrip menuStrip, Point mousePt, ZedGraphControl.ContextMenuObjectState objState)
     {
-      // Here we get notification everytime the user zooms or pans
+      var allDataNames = Enum.GetValues(typeof(PlottableDataEnum)).Cast<PlottableDataEnum>();
+      foreach (var dataName in allDataNames)
+      {
+        var pane = ZedGraph.GraphPane;
+        var item = new ToolStripMenuItem
+        {
+          Tag = dataName,
+          Text = GetDataName(dataName)
+        };
+        item.CheckState = pane.CurveList.Any(crv => crv.Label.Text == item.Text) ?
+                            CheckState.Checked :
+                            CheckState.Unchecked;
+        item.Click += ItemOnClick;
+
+        menuStrip.Items.Add(item);
+      }
+    }
+
+    private void ItemOnClick(object sender, EventArgs eventArgs)
+    {
+      var pane = ZedGraph.GraphPane;
+      var item = (ToolStripMenuItem)sender;
+      if (pane.CurveList.Any(crv => crv.Label.Text == item.Text))
+      {
+        pane.CurveList.Remove(pane.CurveList.Single(crv => crv.Label.Text == item.Text));
+        pane.YAxisList.Remove(pane.YAxisList.Single(ax => ax.Title.Text == item.Text));
+
+        AssignYAxes(pane);
+      }
+      else
+      {
+        var dataNameTag = (PlottableDataEnum)item.Tag;
+        AddTrace(pane, dataNameTag);
+      }
+
+      ZedGraph.AxisChange();
+      ZedGraph.Invalidate();
+    }
+
+    private List<double> GetData(PlottableDataEnum dataName)
+    {
+      switch (dataName)
+      {
+        case PlottableDataEnum.RPM:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.RPM).ToList();
+
+        case PlottableDataEnum.EngineTemperature:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.EngineTemperature).ToList();
+
+        case PlottableDataEnum.WaterTemperature:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.WaterTemperature).ToList();
+
+        case PlottableDataEnum.Gear:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select (double)bd.Gear).ToList();
+
+        case PlottableDataEnum.Fuel:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.Fuel).ToList();
+
+        case PlottableDataEnum.Speedometer:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.Speedometer * 3.6).ToList();
+
+        case PlottableDataEnum.Yaw:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.Yaw).ToList();
+
+        case PlottableDataEnum.Pitch:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.Pitch).ToList();
+
+        case PlottableDataEnum.Roll:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.Roll).ToList();
+
+        case PlottableDataEnum.YawVelocity:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.YawVelocity).ToList();
+
+        case PlottableDataEnum.PitchVelocity:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.PitchVelocity).ToList();
+
+        case PlottableDataEnum.SuspNormLengthFront:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.SuspNormLengthFront).ToList();
+
+        case PlottableDataEnum.SuspNormLengthRear:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.SuspNormLengthRear).ToList();
+
+        case PlottableDataEnum.Steer:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.Steer).ToList();
+
+        case PlottableDataEnum.Throttle:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.Throttle).ToList();
+
+        case PlottableDataEnum.FrontBrake:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.FrontBrake).ToList();
+
+        case PlottableDataEnum.RearBrake:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.RearBrake).ToList();
+
+        case PlottableDataEnum.Clutch:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.Clutch).ToList();
+
+        case PlottableDataEnum.WheelSpeedFront:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.WheelSpeedFront).ToList();
+
+        case PlottableDataEnum.WheelSpeedRear:
+          return (from bd in Logger.BikeDatas.OrderBy(bd => bd.ID) select bd.WheelSpeedRear).ToList();
+      }
+
+      throw new ArgumentOutOfRangeException("Unknown data: " + dataName);
+    }
+
+    private string GetDataName(PlottableDataEnum dataName)
+    {
+      switch (dataName)
+      {
+        case PlottableDataEnum.RPM:
+          return "RPM";
+
+        case PlottableDataEnum.EngineTemperature:
+          return "Engine Temp";
+
+        case PlottableDataEnum.WaterTemperature:
+          return "Water Temp";
+
+        case PlottableDataEnum.Gear:
+          return "Gear";
+
+        case PlottableDataEnum.Fuel:
+          return "Fuel";
+
+        case PlottableDataEnum.Speedometer:
+          return "Speed";
+
+        case PlottableDataEnum.Yaw:
+          return "Yaw";
+
+        case PlottableDataEnum.Pitch:
+          return "Pitch";
+
+        case PlottableDataEnum.Roll:
+          return "Roll";
+
+        case PlottableDataEnum.YawVelocity:
+          return "Yaw Vel";
+
+        case PlottableDataEnum.PitchVelocity:
+          return "Pitch Vel";
+
+        case PlottableDataEnum.SuspNormLengthFront:
+          return "Susp Length (F)";
+
+        case PlottableDataEnum.SuspNormLengthRear:
+          return "Susp Length (R)";
+
+        case PlottableDataEnum.Steer:
+          return "Steer";
+
+        case PlottableDataEnum.Throttle:
+          return "Throttle";
+
+        case PlottableDataEnum.FrontBrake:
+          return "Brake (F)";
+
+        case PlottableDataEnum.RearBrake:
+          return "Brake (R)";
+
+        case PlottableDataEnum.Clutch:
+          return "Clutch";
+
+        case PlottableDataEnum.WheelSpeedFront:
+          return "Wheel Speed (F)";
+
+        case PlottableDataEnum.WheelSpeedRear:
+          return "Wheel Speed (R)";
+      }
+
+      throw new ArgumentOutOfRangeException("Unknown data: " + dataName);
+    }
+
+    private Color GetDataColour(PlottableDataEnum dataName)
+    {
+      switch (dataName)
+      {
+        case PlottableDataEnum.RPM:
+          return Color.Indigo;
+
+        case PlottableDataEnum.EngineTemperature:
+          return Color.Green;
+
+        case PlottableDataEnum.WaterTemperature:
+          return Color.Blue;
+
+        case PlottableDataEnum.Gear:
+          return Color.LawnGreen;
+
+        case PlottableDataEnum.Fuel:
+          return Color.Magenta;
+
+        case PlottableDataEnum.Speedometer:
+          return Color.MediumPurple;
+
+        case PlottableDataEnum.Yaw:
+          return Color.MediumSeaGreen;
+
+        case PlottableDataEnum.Pitch:
+          return Color.MediumSpringGreen;
+
+        case PlottableDataEnum.Roll:
+          return Color.MediumTurquoise;
+
+        case PlottableDataEnum.YawVelocity:
+          return Color.Orange;
+
+        case PlottableDataEnum.PitchVelocity:
+          return Color.Orchid;
+
+        case PlottableDataEnum.SuspNormLengthFront:
+          return Color.SaddleBrown;
+
+        case PlottableDataEnum.SuspNormLengthRear:
+          return Color.SandyBrown;
+
+        case PlottableDataEnum.Steer:
+          return Color.SkyBlue;
+
+        case PlottableDataEnum.Throttle:
+          return Color.Red;
+
+        case PlottableDataEnum.FrontBrake:
+          return Color.Lime;
+
+        case PlottableDataEnum.RearBrake:
+          return Color.DarkTurquoise;
+
+        case PlottableDataEnum.Clutch:
+          return Color.DarkSeaGreen;
+
+        case PlottableDataEnum.WheelSpeedFront:
+          return Color.BurlyWood;
+
+        case PlottableDataEnum.WheelSpeedRear:
+          return Color.DeepSkyBlue;
+      }
+
+      throw new ArgumentOutOfRangeException("Unknown data: " + dataName);
+    }
+
+    private SymbolType GetDataSymbol(PlottableDataEnum dataName)
+    {
+      switch (dataName)
+      {
+        case PlottableDataEnum.RPM:
+          return SymbolType.Circle;
+
+        case PlottableDataEnum.EngineTemperature:
+          return SymbolType.Diamond;
+
+        case PlottableDataEnum.WaterTemperature:
+          return SymbolType.HDash;
+
+        case PlottableDataEnum.Gear:
+          return SymbolType.Plus;
+
+        case PlottableDataEnum.Fuel:
+          return SymbolType.Square;
+
+        case PlottableDataEnum.Speedometer:
+          return SymbolType.Star;
+
+        case PlottableDataEnum.Yaw:
+          return SymbolType.Triangle;
+
+        case PlottableDataEnum.Pitch:
+          return SymbolType.TriangleDown;
+
+        case PlottableDataEnum.Roll:
+          return SymbolType.VDash;
+
+        case PlottableDataEnum.YawVelocity:
+          return SymbolType.XCross;
+
+        case PlottableDataEnum.PitchVelocity:
+          return SymbolType.Circle;
+
+        case PlottableDataEnum.SuspNormLengthFront:
+          return SymbolType.Diamond;
+
+        case PlottableDataEnum.SuspNormLengthRear:
+          return SymbolType.HDash;
+
+        case PlottableDataEnum.Steer:
+          return SymbolType.Plus;
+
+        case PlottableDataEnum.Throttle:
+          return SymbolType.Square;
+
+        case PlottableDataEnum.FrontBrake:
+          return SymbolType.Star;
+
+        case PlottableDataEnum.RearBrake:
+          return SymbolType.Triangle;
+
+        case PlottableDataEnum.Clutch:
+          return SymbolType.TriangleDown;
+
+        case PlottableDataEnum.WheelSpeedFront:
+          return SymbolType.VDash;
+
+        case PlottableDataEnum.WheelSpeedRear:
+          return SymbolType.XCross;
+      }
+
+      throw new ArgumentOutOfRangeException("Unknown data: " + dataName);
     }
   }
 }
