@@ -39,6 +39,9 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\EllieSpeed.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\free-vector-icon-console-clip-art_116913_Icon_Console_clip_art_medium.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -69,6 +72,10 @@
     <None Include="..\EllieSpeed.snk">
       <Link>EllieSpeed.snk</Link>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\free-vector-icon-console-clip-art_116913_Icon_Console_clip_art_medium.ico" />
+    <Content Include="Resources\free-vector-icon-console-clip-art_116913_Icon_Console_clip_art_medium.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
