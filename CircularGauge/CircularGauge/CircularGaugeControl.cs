@@ -23,19 +23,11 @@ DAMAGE.*/
 
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Media.Animation;
+using System.Windows.Shapes;
 
 namespace CircularGauge
 {
@@ -50,7 +42,7 @@ namespace CircularGauge
   {
     #region Private variables
 
-    private const int AnimatingSpeedFactor = 6;
+    private const int AnimatingSpeedFactor = 3;
 
     private Grid mRootGrid;
     private Path mRangeIndicator;
@@ -58,8 +50,6 @@ namespace CircularGauge
     private Ellipse mPointerCap;
     private Ellipse mLightIndicator;
     private bool mIsInitialValueSet = false;
-    private Double mArcRadius1;
-    private Double mArcRadius2;
 
     #endregion
 
@@ -1306,38 +1296,38 @@ namespace CircularGauge
       Double optimalEndAngleFromStart = (ScaleStartAngle + optimalEndAngle);
 
       // Calculating the Radius of the two arc for segment 
-      mArcRadius1 = (RangeIndicatorRadius + RangeIndicatorThickness);
-      mArcRadius2 = RangeIndicatorRadius;
+      var arcRadius1 = (RangeIndicatorRadius + RangeIndicatorThickness);
+      var arcRadius2 = RangeIndicatorRadius;
 
       // Calculating the Points for the below Optimal Range segment from the center of the gauge
-      Point A = GetCircumferencePoint(ScaleStartAngle, mArcRadius1);
-      Point B = GetCircumferencePoint(ScaleStartAngle, mArcRadius2);
-      Point C = GetCircumferencePoint(optimalStartAngleFromStart, mArcRadius2);
-      Point D = GetCircumferencePoint(optimalStartAngleFromStart, mArcRadius1);
+      Point A = GetCircumferencePoint(ScaleStartAngle, arcRadius1);
+      Point B = GetCircumferencePoint(ScaleStartAngle, arcRadius2);
+      Point C = GetCircumferencePoint(optimalStartAngleFromStart, arcRadius2);
+      Point D = GetCircumferencePoint(optimalStartAngleFromStart, arcRadius1);
 
       bool isReflexAngle = Math.Abs(optimalStartAngleFromStart - ScaleStartAngle) > 180.0;
-      DrawSegment(A, B, C, D, isReflexAngle, BelowOptimalRangeColor);
+      DrawSegment(A, B, C, D, isReflexAngle, BelowOptimalRangeColor, arcRadius1, arcRadius2);
 
       // Calculating the Points for the Optimal Range segment from the center of the gauge
-      Point A1 = GetCircumferencePoint(optimalStartAngleFromStart, mArcRadius1);
-      Point B1 = GetCircumferencePoint(optimalStartAngleFromStart, mArcRadius2);
-      Point C1 = GetCircumferencePoint(optimalEndAngleFromStart, mArcRadius2);
-      Point D1 = GetCircumferencePoint(optimalEndAngleFromStart, mArcRadius1);
+      Point A1 = GetCircumferencePoint(optimalStartAngleFromStart, arcRadius1);
+      Point B1 = GetCircumferencePoint(optimalStartAngleFromStart, arcRadius2);
+      Point C1 = GetCircumferencePoint(optimalEndAngleFromStart, arcRadius2);
+      Point D1 = GetCircumferencePoint(optimalEndAngleFromStart, arcRadius1);
       bool isReflexAngle1 = Math.Abs(optimalEndAngleFromStart - optimalStartAngleFromStart) > 180.0;
-      DrawSegment(A1, B1, C1, D1, isReflexAngle1, OptimalRangeColor);
+      DrawSegment(A1, B1, C1, D1, isReflexAngle1, OptimalRangeColor, arcRadius1, arcRadius2);
 
       // Calculating the Points for the Above Optimal Range segment from the center of the gauge
       double endAngle = ScaleStartAngle + ScaleSweepAngle;
-      Point A2 = GetCircumferencePoint(optimalEndAngleFromStart, mArcRadius1);
-      Point B2 = GetCircumferencePoint(optimalEndAngleFromStart, mArcRadius2);
-      Point C2 = GetCircumferencePoint(endAngle, mArcRadius2);
-      Point D2 = GetCircumferencePoint(endAngle, mArcRadius1);
+      Point A2 = GetCircumferencePoint(optimalEndAngleFromStart, arcRadius1);
+      Point B2 = GetCircumferencePoint(optimalEndAngleFromStart, arcRadius2);
+      Point C2 = GetCircumferencePoint(endAngle, arcRadius2);
+      Point D2 = GetCircumferencePoint(endAngle, arcRadius1);
       bool isReflexAngle2 = Math.Abs(endAngle - optimalEndAngleFromStart) > 180.0;
-      DrawSegment(A2, B2, C2, D2, isReflexAngle2, AboveOptimalRangeColor);
+      DrawSegment(A2, B2, C2, D2, isReflexAngle2, AboveOptimalRangeColor, arcRadius1, arcRadius2);
     }
 
     // Drawing the segment with two arc and two line
-    private void DrawSegment(Point p1, Point p2, Point p3, Point p4, bool reflexangle, Color clr)
+    private void DrawSegment(Point p1, Point p2, Point p3, Point p4, bool reflexangle, Color clr, Double arcRadius1, Double arcRadius2)
     {
       // Segment Geometry
       PathSegmentCollection segments = new PathSegmentCollection();
@@ -1348,7 +1338,7 @@ namespace CircularGauge
       //Arc drawn from pt p2 - pt p3 with the RangeIndicatorRadius 
       segments.Add(new ArcSegment
                         {
-                          Size = new Size(mArcRadius2, mArcRadius2),
+                          Size = new Size(arcRadius2, arcRadius2),
                           Point = p3,
                           SweepDirection = SweepDirection.Clockwise,
                           IsLargeArc = reflexangle
@@ -1360,7 +1350,7 @@ namespace CircularGauge
       //Arc drawn from pt p4 - pt p1 with the Radius of arcradius1 
       segments.Add(new ArcSegment
                         {
-                          Size = new Size(mArcRadius1, mArcRadius1),
+                          Size = new Size(arcRadius1, arcRadius1),
                           Point = p1,
                           SweepDirection = SweepDirection.Counterclockwise,
                           IsLargeArc = reflexangle
