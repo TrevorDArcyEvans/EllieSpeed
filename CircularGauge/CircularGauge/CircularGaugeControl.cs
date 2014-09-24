@@ -1113,6 +1113,43 @@ namespace CircularGauge
       }
     }
 
+    public void RefreshScale()
+    {
+      mRootGrid = (Grid)GetTemplateChild("LayoutRoot");
+      for (var i = mRootGrid.Children.Count - 1; i >= 0; i--)
+      {
+        var child = mRootGrid.Children[i];
+        var textblock = child as TextBlock;
+        if (textblock != null)// If the UIElement is a Textbox
+        {
+          if (textblock.Text != DialText) //don't remove dial text
+          {
+            mRootGrid.Children.Remove(textblock);
+          }
+          continue;
+        }
+
+        var rectangle = child as Rectangle;
+        if (rectangle != null)  // If the UIElement is a Rectangle
+        {
+          mRootGrid.Children.Remove(rectangle);
+          continue;
+        }
+
+        var path = child as Path;
+        if (path != null)  // If the UIElement is a Path
+        {
+          if (path.Name == string.Empty)
+          {
+            mRootGrid.Children.Remove(path);
+          }
+          continue;
+        }
+      }
+
+      OnApplyTemplate();
+    }
+
     // Drawing the scale with the Scale Radius
     private void DrawScale()
     {
