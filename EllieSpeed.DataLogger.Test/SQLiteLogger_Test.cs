@@ -210,7 +210,7 @@ namespace EllieSpeed.DataLogger.Test
     [Test]
     public void OnRunTelemetry()
     {
-      var data = TestUtils.CreateBikeData();
+      var data = TestUtils.CreateBikeDataEx();
       using (new SQLiteLogger(mDataFilePath))
       {
         mBroadcaster.OnRunTelemetry(data);

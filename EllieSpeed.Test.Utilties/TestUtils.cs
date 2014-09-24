@@ -78,8 +78,8 @@ namespace EllieSpeed.Test.Utilties
     {
       var data = new GPBikes.SPluginsBikeData_t
       {
-        TrackTime = 1.57f,
-        TrackPosition = 0.657f,
+        //TrackTime = 1.57f,
+        //TrackPosition = 0.657f,
         RPM = 13500f,
         EngineTemperature = 220f,
         WaterTemperature = 85f,
@@ -124,6 +124,18 @@ namespace EllieSpeed.Test.Utilties
       {
         data.WheelSpeed[i] = 100f * (i + 1);
       }
+      return data;
+    }
+
+    public static GPBikes.SPluginsBikeDataEx_t CreateBikeDataEx()
+    {
+      var data = new GPBikes.SPluginsBikeDataEx_t
+      {
+        TrackTime = 1.57f,
+        TrackPosition = 0.657f,
+        BikeData = CreateBikeData()
+      };
+
       return data;
     }
 
@@ -232,8 +244,8 @@ namespace EllieSpeed.Test.Utilties
 
     public static void AssertAreEqual(GPBikes.SPluginsBikeData_t recData, GPBikes.SPluginsBikeData_t data)
     {
-      Assert.AreEqual(recData.TrackTime, data.TrackTime);
-      Assert.AreEqual(recData.TrackPosition, data.TrackPosition);
+      //Assert.AreEqual(recData.TrackTime, data.TrackTime);
+      //Assert.AreEqual(recData.TrackPosition, data.TrackPosition);
 
       Assert.AreEqual(recData.RPM, data.RPM);
       Assert.AreEqual(recData.EngineTemperature, data.EngineTemperature);
@@ -289,9 +301,6 @@ namespace EllieSpeed.Test.Utilties
 
     public static void AssertAreEqual(BikeData recData, GPBikes.SPluginsBikeData_t data)
     {
-      Assert.AreEqual(recData.TrackTime, data.TrackTime);
-      Assert.AreEqual(recData.TrackPosition, data.TrackPosition);
-
       Assert.AreEqual(recData.RPM, data.RPM);
       Assert.AreEqual(recData.EngineTemperature, data.EngineTemperature);
       Assert.AreEqual(recData.WaterTemperature, data.WaterTemperature);
@@ -363,6 +372,13 @@ namespace EllieSpeed.Test.Utilties
       Assert.AreEqual(recData.Angle, data.Angle);
       Assert.AreEqual(recData.Start1, data.Start[0]);
       Assert.AreEqual(recData.Start2, data.Start[1]);
+    }
+
+    public static void AssertAreEqual(BikeData recData, GPBikes.SPluginsBikeDataEx_t data)
+    {
+      Assert.AreEqual(recData.TrackTime, data.TrackTime);
+      Assert.AreEqual(recData.TrackPosition, data.TrackPosition);
+      AssertAreEqual(recData, data.BikeData);
     }
   }
 }

@@ -146,7 +146,7 @@ namespace EllieSpeed.Plugin.Test
       {
         rec.OnStartup += (sender, args) => { msgReceived = true; };
 
-        var retVal = Startup(Marshal.StringToHGlobalAnsi(@"dummy.txt"));
+        int retVal = Startup(Marshal.StringToHGlobalAnsi(@"dummy.txt"));
 
         Assert.AreEqual(3, retVal);
 
@@ -186,12 +186,11 @@ namespace EllieSpeed.Plugin.Test
       var msgReceived = false;
       using (var rec = new BikeDataReceiver(BroadcastPort))
       {
+        var recData = new GPBikes.SPluginsBikeEvent_t();
         rec.OnEventInit += (sender, args) =>
         {
           msgReceived = true;
-          var recData = args.Data;
-
-          TestUtils.AssertAreEqual(recData, data);
+          recData = args.Data;
         };
 
         EventInit(ptr, default(int));
@@ -200,6 +199,8 @@ namespace EllieSpeed.Plugin.Test
         {
           Thread.Sleep(100);
         }
+
+        TestUtils.AssertAreEqual(recData, data);
       }
     }
 
@@ -214,12 +215,11 @@ namespace EllieSpeed.Plugin.Test
       var msgReceived = false;
       using (var rec = new BikeDataReceiver(BroadcastPort))
       {
+        var recData = new GPBikes.SPluginsBikeSession_t();
         rec.OnRunInit += (sender, args) =>
         {
           msgReceived = true;
-          var recData = args.Data;
-
-          TestUtils.AssertAreEqual(recData, data);
+          recData = args.Data;
         };
 
         RunInit(ptr, default(int));
@@ -228,6 +228,8 @@ namespace EllieSpeed.Plugin.Test
         {
           Thread.Sleep(100);
         }
+
+        TestUtils.AssertAreEqual(recData, data);
       }
     }
 
@@ -296,12 +298,11 @@ namespace EllieSpeed.Plugin.Test
       var msgReceived = false;
       using (var rec = new BikeDataReceiver(BroadcastPort))
       {
+        var recData = new GPBikes.SPluginsBikeLap_t();
         rec.OnRunLap += (sender, args) =>
         {
           msgReceived = true;
-          var recData = args.Data;
-
-          TestUtils.AssertAreEqual(recData, data);
+          recData = args.Data;
         };
 
         RunLap(ptr, default(int));
@@ -310,6 +311,8 @@ namespace EllieSpeed.Plugin.Test
         {
           Thread.Sleep(100);
         }
+
+        TestUtils.AssertAreEqual(recData, data);
       }
     }
 
@@ -324,12 +327,11 @@ namespace EllieSpeed.Plugin.Test
       var msgReceived = false;
       using (var rec = new BikeDataReceiver(BroadcastPort))
       {
+        var recData = new GPBikes.SPluginsBikeSplit_t();
         rec.OnRunSplit += (sender, args) =>
         {
           msgReceived = true;
-          var recData = args.Data;
-
-          TestUtils.AssertAreEqual(recData, data);
+          recData = args.Data;
         };
 
         RunSplit(ptr, default(int));
@@ -338,6 +340,8 @@ namespace EllieSpeed.Plugin.Test
         {
           Thread.Sleep(100);
         }
+
+        TestUtils.AssertAreEqual(recData, data);
       }
     }
 
@@ -353,12 +357,11 @@ namespace EllieSpeed.Plugin.Test
       var msgReceived = false;
       using (var rec = new BikeDataReceiver(BroadcastPort))
       {
+        var recData = new GPBikes.SPluginsBikeDataEx_t();
         rec.OnRunTelemetry += (sender, args) =>
         {
           msgReceived = true;
-          var recData = args.Data;
-
-          TestUtils.AssertAreEqual(recData, data);
+          recData = args.Data;
         };
 
         RunTelemetry(ptr, default(int), default(float), default(float));
@@ -367,6 +370,8 @@ namespace EllieSpeed.Plugin.Test
         {
           Thread.Sleep(100);
         }
+
+        TestUtils.AssertAreEqual(recData.BikeData, data);
       }
     }
 
@@ -387,15 +392,11 @@ namespace EllieSpeed.Plugin.Test
       var msgReceived = false;
       using (var rec = new BikeDataReceiver(BroadcastPort))
       {
+        var recData = new GPBikes.SPluginsTrackSegment_t[2];
         rec.OnTrackCenterline += (sender, args) =>
         {
           msgReceived = true;
-          var recData = args.Data;
-
-          for (var i = 0; i < NumTrackSegs; i++)
-          {
-            TestUtils.AssertAreEqual(recData[i], data[i]);
-          }
+          recData = args.Data;
         };
 
         TrackCenterline(data.Count, data.ToArray(), IntPtr.Zero);
@@ -403,6 +404,11 @@ namespace EllieSpeed.Plugin.Test
         while (!msgReceived)
         {
           Thread.Sleep(100);
+        }
+
+        for (var i = 0; i < NumTrackSegs; i++)
+        {
+          TestUtils.AssertAreEqual(recData[i], data[i]);
         }
       }
     }

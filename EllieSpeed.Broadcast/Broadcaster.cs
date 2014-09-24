@@ -128,7 +128,7 @@ namespace EllieSpeed.Broadcast
       SendMessage(msg);
     }
 
-    public void OnRunTelemetry(GPBikes.SPluginsBikeData_t data)
+    public void OnRunTelemetry(GPBikes.SPluginsBikeDataEx_t data)
     {
       var msg = ObjectToByteArray(data);
       SendMessage(msg);

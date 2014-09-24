@@ -23,7 +23,7 @@ namespace EllieSpeed.Receive
     public event EventHandler OnRunStop;
     public event EventHandler<DataEventArgs<GPBikes.SPluginsBikeLap_t>> OnRunLap;
     public event EventHandler<DataEventArgs<GPBikes.SPluginsBikeSplit_t>> OnRunSplit;
-    public event EventHandler<DataEventArgs<GPBikes.SPluginsBikeData_t>> OnRunTelemetry;
+    public event EventHandler<DataEventArgs<GPBikes.SPluginsBikeDataEx_t>> OnRunTelemetry;
     public event EventHandler<DataEventArgs<GPBikes.SPluginsTrackSegment_t[]>> OnTrackCenterline;
 
     public BikeDataReceiver(int port) :
@@ -92,9 +92,9 @@ namespace EllieSpeed.Receive
         return;
       }
 
-      if (obj is GPBikes.SPluginsBikeData_t && OnRunTelemetry != null)
+      if (obj is GPBikes.SPluginsBikeDataEx_t && OnRunTelemetry != null)
       {
-        OnRunTelemetry(this, new DataEventArgs<GPBikes.SPluginsBikeData_t>((GPBikes.SPluginsBikeData_t)obj));
+        OnRunTelemetry(this, new DataEventArgs<GPBikes.SPluginsBikeDataEx_t>((GPBikes.SPluginsBikeDataEx_t)obj));
         return;
       }
 

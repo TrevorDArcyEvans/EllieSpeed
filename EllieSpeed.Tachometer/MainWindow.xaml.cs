@@ -25,14 +25,25 @@ namespace EllieSpeed.Tachometer
 
     private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
     {
+      mReceiver.OnEventInit += Receiver_OnEventInit;
       mReceiver.OnRunTelemetry += Receiver_OnRunTelemetry;
     }
 
-    void Receiver_OnRunTelemetry(object sender, Broadcast.DataEventArgs<Broadcast.GPBikes.SPluginsBikeData_t> e)
+    void Receiver_OnEventInit(object sender, Broadcast.DataEventArgs<Broadcast.GPBikes.SPluginsBikeEvent_t> e)
     {
       Dispatcher.Invoke((Action)(() =>
       {
-        Tachometer.CurrentValue = e.Data.RPM;
+        Tachometer.MajorDivisionsCount = (int)(e.Data.MaxRPM / 1000d) + 1;
+        Tachometer.MaxValue = e.Data.MaxRPM / 1000d;
+        Tachometer.OptimalRangeEndValue = e.Data.ShiftRPM / 1000d;
+      }));
+    }
+
+    void Receiver_OnRunTelemetry(object sender, Broadcast.DataEventArgs<Broadcast.GPBikes.SPluginsBikeDataEx_t> e)
+    {
+      Dispatcher.Invoke((Action)(() =>
+      {
+        Tachometer.CurrentValue = e.Data.BikeData.RPM;
       }));
     }
 

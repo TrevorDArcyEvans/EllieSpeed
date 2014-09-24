@@ -81,12 +81,6 @@ namespace EllieSpeed.Broadcast
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public struct SPluginsBikeData_t
     {
-      /*  TrackTime is the ontrack time, in seconds  */
-      public float TrackTime;
-
-      /*  Position on centerline, from 0 to 1  */
-      public float TrackPosition;
-
       /*  engine rpm  */
       public float RPM;
 
@@ -165,6 +159,19 @@ namespace EllieSpeed.Broadcast
 
       [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
       public string EngineMapping;
+    }
+
+    [Serializable]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    public struct SPluginsBikeDataEx_t
+    {
+      /*  TrackTime is the ontrack time, in seconds  */
+      public float TrackTime;
+
+      /*  Position on centerline, from 0 to 1  */
+      public float TrackPosition;
+
+      public SPluginsBikeData_t BikeData;
     }
 
     [Serializable]
