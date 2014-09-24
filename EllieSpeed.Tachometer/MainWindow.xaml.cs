@@ -36,6 +36,8 @@ namespace EllieSpeed.Tachometer
         Tachometer.MajorDivisionsCount = (int)(e.Data.MaxRPM / 1000d) + 1;
         Tachometer.MaxValue = e.Data.MaxRPM / 1000d;
         Tachometer.OptimalRangeEndValue = e.Data.ShiftRPM / 1000d;
+
+        Tachometer.OnApplyTemplate();
       }));
     }
 
@@ -43,7 +45,7 @@ namespace EllieSpeed.Tachometer
     {
       Dispatcher.Invoke((Action)(() =>
       {
-        Tachometer.CurrentValue = e.Data.BikeData.RPM;
+        Tachometer.CurrentValue = e.Data.BikeData.RPM / 1000d;
       }));
     }
 
