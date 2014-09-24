@@ -1,0 +1,65 @@
+﻿<!--
+  Copyright (C) 2014 EllieSpeed
+
+  All rights reserved
+
+  www.EllieSpeed.com
+-->
+  
+<Window x:Class="EllieSpeed.Tachometer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:gauge="clr-namespace:CircularGauge;assembly=CircularGauge"
+        Title="EllieSpeed Tachometer"
+        Height="700" Width="700"
+        Loaded="MainWindow_OnLoaded">
+  <Grid x:Name="LayoutRoot" >
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <!--Black Gauge -->
+      <gauge:CircularGaugeControl 
+        x:Name="Tachometer" 
+        Grid.Column="0" Grid.Row="0" 
+        Radius="250" 
+        ScaleRadius="210" 
+        ScaleStartAngle="45" 
+        ScaleSweepAngle="270"
+        PointerLength="185" 
+        PointerCapRadius="35" 
+        MinValue="0" 
+        MaxValue="16" 
+        MajorDivisionsCount="16" 
+        MinorDivisionsCount="5" 
+        RangeIndicatorThickness="8"
+        RangeIndicatorRadius="220"
+        RangeIndicatorLightRadius="20"
+        RangeIndicatorLightOffset="-150"
+        ScaleLabelRadius="190"
+        ScaleLabelSize="40,20"
+        ScaleLabelFontSize="16"
+        ScaleLabelForeground="LightGray"
+        MajorTickSize="10,3"
+        MinorTickSize="3,1"
+        MajorTickColor="LightGray"
+        MinorTickColor="LightGray"
+        GaugeBackgroundColor="Black"
+        PointerThickness ="16"
+        OptimalRangeStartValue="7"
+        OptimalRangeEndValue="13.5" 
+        DialTextOffset="100"
+        DialText="RPM x 1000"
+        DialTextColor="LightGray"
+        DialTextFontSize="24"
+        BelowOptimalRangeColor="LightGray"
+        OptimalRangeColor="LightGray" />
+
+    </Grid>
+  </Grid>
+
+</Window>

@@ -31,6 +31,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.Arduino", "Ellie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.Arduino.Test", "EllieSpeed.Arduino.Test\EllieSpeed.Arduino.Test.csproj", "{3E242F0F-2CEB-4C1B-AA92-C8D49DED3DA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircularGauge", "CircularGauge\CircularGauge\CircularGauge.csproj", "{6EFD5895-177B-4BBB-AF52-29F4D53B3FBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircularGaugeDemoWPF", "CircularGauge\CircularGaugeDemoWPF\CircularGaugeDemoWPF.csproj", "{4AF0278B-CEB2-477C-A3DC-0D5474757C4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.Tachometer", "EllieSpeed.Tachometer\EllieSpeed.Tachometer.csproj", "{F834E431-3E18-4409-A270-84F1B6981586}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -223,6 +229,42 @@ Global
 		{3E242F0F-2CEB-4C1B-AA92-C8D49DED3DA7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3E242F0F-2CEB-4C1B-AA92-C8D49DED3DA7}.Release|Win32.ActiveCfg = Release|Any CPU
 		{3E242F0F-2CEB-4C1B-AA92-C8D49DED3DA7}.Release|x86.ActiveCfg = Release|Any CPU
+		{6EFD5895-177B-4BBB-AF52-29F4D53B3FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EFD5895-177B-4BBB-AF52-29F4D53B3FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EFD5895-177B-4BBB-AF52-29F4D53B3FBD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6EFD5895-177B-4BBB-AF52-29F4D53B3FBD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6EFD5895-177B-4BBB-AF52-29F4D53B3FBD}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{6EFD5895-177B-4BBB-AF52-29F4D53B3FBD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6EFD5895-177B-4BBB-AF52-29F4D53B3FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EFD5895-177B-4BBB-AF52-29F4D53B3FBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EFD5895-177B-4BBB-AF52-29F4D53B3FBD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6EFD5895-177B-4BBB-AF52-29F4D53B3FBD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6EFD5895-177B-4BBB-AF52-29F4D53B3FBD}.Release|Win32.ActiveCfg = Release|Any CPU
+		{6EFD5895-177B-4BBB-AF52-29F4D53B3FBD}.Release|x86.ActiveCfg = Release|Any CPU
+		{4AF0278B-CEB2-477C-A3DC-0D5474757C4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AF0278B-CEB2-477C-A3DC-0D5474757C4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AF0278B-CEB2-477C-A3DC-0D5474757C4D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4AF0278B-CEB2-477C-A3DC-0D5474757C4D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4AF0278B-CEB2-477C-A3DC-0D5474757C4D}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{4AF0278B-CEB2-477C-A3DC-0D5474757C4D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4AF0278B-CEB2-477C-A3DC-0D5474757C4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AF0278B-CEB2-477C-A3DC-0D5474757C4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AF0278B-CEB2-477C-A3DC-0D5474757C4D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4AF0278B-CEB2-477C-A3DC-0D5474757C4D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4AF0278B-CEB2-477C-A3DC-0D5474757C4D}.Release|Win32.ActiveCfg = Release|Any CPU
+		{4AF0278B-CEB2-477C-A3DC-0D5474757C4D}.Release|x86.ActiveCfg = Release|Any CPU
+		{F834E431-3E18-4409-A270-84F1B6981586}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F834E431-3E18-4409-A270-84F1B6981586}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{F834E431-3E18-4409-A270-84F1B6981586}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{F834E431-3E18-4409-A270-84F1B6981586}.Debug|Win32.ActiveCfg = Debug|x86
+		{F834E431-3E18-4409-A270-84F1B6981586}.Debug|x86.ActiveCfg = Debug|x86
+		{F834E431-3E18-4409-A270-84F1B6981586}.Debug|x86.Build.0 = Debug|x86
+		{F834E431-3E18-4409-A270-84F1B6981586}.Release|Any CPU.ActiveCfg = Release|x86
+		{F834E431-3E18-4409-A270-84F1B6981586}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{F834E431-3E18-4409-A270-84F1B6981586}.Release|Mixed Platforms.Build.0 = Release|x86
+		{F834E431-3E18-4409-A270-84F1B6981586}.Release|Win32.ActiveCfg = Release|x86
+		{F834E431-3E18-4409-A270-84F1B6981586}.Release|x86.ActiveCfg = Release|x86
+		{F834E431-3E18-4409-A270-84F1B6981586}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
