@@ -33,11 +33,14 @@ namespace EllieSpeed.Tachometer
     {
       Dispatcher.Invoke((Action)(() =>
       {
-        Tachometer.MajorDivisionsCount = (int)(e.Data.MaxRPM / 1000d) + 1;
-        Tachometer.MaxValue = e.Data.MaxRPM / 1000d;
+        Tachometer.MajorDivisionsCount = Tachometer.MaxValue = (int)(e.Data.MaxRPM / 1000d) + 1;
         Tachometer.OptimalRangeEndValue = e.Data.ShiftRPM / 1000d;
 
-        Tachometer.OnApplyTemplate();
+        // gauge is setup up so that ShiftRPM points to sky:
+        //    13500RPM --> 45 degrees
+        Tachometer.ScaleStartAngle = 45d + (13500 - e.Data.ShiftRPM) / 30;
+
+        Tachometer.RefreshScale();
       }));
     }
 
