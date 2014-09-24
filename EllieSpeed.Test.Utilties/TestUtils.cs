@@ -78,8 +78,6 @@ namespace EllieSpeed.Test.Utilties
     {
       var data = new GPBikes.SPluginsBikeData_t
       {
-        //TrackTime = 1.57f,
-        //TrackPosition = 0.657f,
         RPM = 13500f,
         EngineTemperature = 220f,
         WaterTemperature = 85f,
