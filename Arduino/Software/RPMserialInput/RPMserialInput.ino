@@ -37,14 +37,18 @@ void loop()
 }
 
 // format of string:
-//    RPM,shift,gear
+//    RPMval,shift,gear
 //    [int],[bool],[int]
 //
-//  RPM = engine RPM [0, 15500]
-//  shift = true (1) to turn on shift light
-//  gear = current gear, 0 to turn on neutral light
+//  RPMval = engine RPM as a value [0, 255]
+//            This will be sent directly to the tachometer
+//            via the PWM pin.  The host PC is responsible
+//            for mapping engine RPM to [0, 255].
+//  shift  = true (1) to turn on shift light
+//  gear   = current gear [0, 6]
+//            0 to turn on neutral light
 // eg:
-//    9250,1,3
+//    180,1,3
 void ProcessSerial()
 {
   const char Separator = ',';
@@ -67,10 +71,7 @@ void ProcessSerial()
   Serial.println(shift);
   Serial.println(gear);
 
-  // TODO  calibrate RPM --> [0, 255]
-  // convert to [0, 255]
-  analogWrite(RpmPin, rpm);
-  
+  analogWrite(RpmPin, rpm);  
   digitalWrite(ShiftPin, shift ? HIGH : LOW);
   digitalWrite(NeutralGearPin, !gear ? HIGH : LOW);
 }
