@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EllieSpeed.Plugin", "EllieSpeed.Plugin\EllieSpeed.Plugin.vcxproj", "{39EEA429-10D2-421E-95F3-D902315B6ACA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.Plugin.Test", "EllieSpeed.Plugin.Test\EllieSpeed.Plugin.Test.csproj", "{33CB6B1E-0A4C-4DD3-9EDA-D1EB85D58A86}"
@@ -38,6 +40,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.Tachometer", "EllieSpeed.Tachometer\EllieSpeed.Tachometer.csproj", "{F834E431-3E18-4409-A270-84F1B6981586}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.Tachometer.Test", "EllieSpeed.Tachometer.Test\EllieSpeed.Tachometer.Test.csproj", "{FED97DC3-4D25-4D85-BDED-DFFC14A47131}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RPM", "Arduino\Software\RPM\RPM.vcxproj", "{CACACCFF-DDD9-43A8-8755-694111FCB3F9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RPMserialInput", "Arduino\Software\RPMserialInput\RPMserialInput.vcxproj", "{1FC3F263-5AFA-4F7B-A159-8A834D740E86}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RPMsinusoid", "Arduino\Software\RPMsinusoid\RPMsinusoid.vcxproj", "{C34503E1-53B2-46BC-BF22-C6C090D2A44A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -279,6 +287,48 @@ Global
 		{FED97DC3-4D25-4D85-BDED-DFFC14A47131}.Release|Win32.ActiveCfg = Release|x86
 		{FED97DC3-4D25-4D85-BDED-DFFC14A47131}.Release|x86.ActiveCfg = Release|x86
 		{FED97DC3-4D25-4D85-BDED-DFFC14A47131}.Release|x86.Build.0 = Release|x86
+		{CACACCFF-DDD9-43A8-8755-694111FCB3F9}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{CACACCFF-DDD9-43A8-8755-694111FCB3F9}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{CACACCFF-DDD9-43A8-8755-694111FCB3F9}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{CACACCFF-DDD9-43A8-8755-694111FCB3F9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CACACCFF-DDD9-43A8-8755-694111FCB3F9}.Debug|Win32.Build.0 = Debug|Win32
+		{CACACCFF-DDD9-43A8-8755-694111FCB3F9}.Debug|x86.ActiveCfg = Debug|Win32
+		{CACACCFF-DDD9-43A8-8755-694111FCB3F9}.Debug|x86.Build.0 = Debug|Win32
+		{CACACCFF-DDD9-43A8-8755-694111FCB3F9}.Release|Any CPU.ActiveCfg = Release|Win32
+		{CACACCFF-DDD9-43A8-8755-694111FCB3F9}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{CACACCFF-DDD9-43A8-8755-694111FCB3F9}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{CACACCFF-DDD9-43A8-8755-694111FCB3F9}.Release|Win32.ActiveCfg = Release|Win32
+		{CACACCFF-DDD9-43A8-8755-694111FCB3F9}.Release|Win32.Build.0 = Release|Win32
+		{CACACCFF-DDD9-43A8-8755-694111FCB3F9}.Release|x86.ActiveCfg = Release|Win32
+		{CACACCFF-DDD9-43A8-8755-694111FCB3F9}.Release|x86.Build.0 = Release|Win32
+		{1FC3F263-5AFA-4F7B-A159-8A834D740E86}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{1FC3F263-5AFA-4F7B-A159-8A834D740E86}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{1FC3F263-5AFA-4F7B-A159-8A834D740E86}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{1FC3F263-5AFA-4F7B-A159-8A834D740E86}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1FC3F263-5AFA-4F7B-A159-8A834D740E86}.Debug|Win32.Build.0 = Debug|Win32
+		{1FC3F263-5AFA-4F7B-A159-8A834D740E86}.Debug|x86.ActiveCfg = Debug|Win32
+		{1FC3F263-5AFA-4F7B-A159-8A834D740E86}.Debug|x86.Build.0 = Debug|Win32
+		{1FC3F263-5AFA-4F7B-A159-8A834D740E86}.Release|Any CPU.ActiveCfg = Release|Win32
+		{1FC3F263-5AFA-4F7B-A159-8A834D740E86}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{1FC3F263-5AFA-4F7B-A159-8A834D740E86}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{1FC3F263-5AFA-4F7B-A159-8A834D740E86}.Release|Win32.ActiveCfg = Release|Win32
+		{1FC3F263-5AFA-4F7B-A159-8A834D740E86}.Release|Win32.Build.0 = Release|Win32
+		{1FC3F263-5AFA-4F7B-A159-8A834D740E86}.Release|x86.ActiveCfg = Release|Win32
+		{1FC3F263-5AFA-4F7B-A159-8A834D740E86}.Release|x86.Build.0 = Release|Win32
+		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Debug|Win32.Build.0 = Debug|Win32
+		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Debug|x86.ActiveCfg = Debug|Win32
+		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Debug|x86.Build.0 = Debug|Win32
+		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Release|Any CPU.ActiveCfg = Release|Win32
+		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Release|Win32.ActiveCfg = Release|Win32
+		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Release|Win32.Build.0 = Release|Win32
+		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Release|x86.ActiveCfg = Release|Win32
+		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
