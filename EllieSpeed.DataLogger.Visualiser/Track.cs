@@ -40,7 +40,7 @@ namespace EllieSpeed.DataLogger.Visualiser
         pane.XAxis.Title.IsVisible = pane.YAxis.Title.IsVisible = false;
         pane.YAxis.IsVisible = pane.Y2Axis.IsVisible = false;
         pane.Title.IsVisible = true;
-        pane.Title.Text = Logger.BikeEvents.First().TrackName;
+        pane.Title.Text = Logger.BikeEvents.FirstOrDefault() != null ? Logger.BikeEvents.First().TrackName : string.Empty;
 
         // Fill the axis background with a gradient
         pane.Chart.Fill = new Fill(Color.White, Color.LightGray, 45.0f);
