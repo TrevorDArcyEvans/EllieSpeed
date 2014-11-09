@@ -26,7 +26,7 @@ namespace EllieSpeed.DataLogger.Visualiser
       this()
     {
       Logger = logger;
-      Text = title;
+      Load += (s, e) => { Text = title; };
     }
 
     private void OnLoad(object sender, EventArgs e)
