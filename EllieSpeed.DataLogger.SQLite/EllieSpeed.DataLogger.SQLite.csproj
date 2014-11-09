@@ -66,7 +66,6 @@
     <None Include="..\EllieSpeed.snk">
       <Link>EllieSpeed.snk</Link>
     </None>
-    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EllieSpeed.Broadcast\EllieSpeed.Broadcast.csproj">
