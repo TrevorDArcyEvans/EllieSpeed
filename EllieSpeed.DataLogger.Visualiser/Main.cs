@@ -115,5 +115,13 @@ namespace EllieSpeed.DataLogger.Visualiser
     {
       FileCloseMenuItem.Enabled = ActiveMdiChild != null;
     }
+
+    private void CloseAllMenuItem_Click(object sender, EventArgs e)
+    {
+      foreach (var child in MdiChildren)
+      {
+        child.Close();
+      }
+    }
   }
 }

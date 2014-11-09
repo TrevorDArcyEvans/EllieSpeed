@@ -48,6 +48,7 @@ namespace EllieSpeed.DataLogger.Visualiser
       this.WindowTileHorizontalMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.WindowTileVerticalMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.WindowArrangeIconsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.CloseAllMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.ViewDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.ViewTrackMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,7 +128,8 @@ namespace EllieSpeed.DataLogger.Visualiser
             this.WindowCascadeMenuItem,
             this.WindowTileHorizontalMenuItem,
             this.WindowTileVerticalMenuItem,
-            this.WindowArrangeIconsMenuItem});
+            this.WindowArrangeIconsMenuItem,
+            this.CloseAllMenuItem});
       this.WindowMenuItem.Name = "WindowMenuItem";
       this.WindowMenuItem.Size = new System.Drawing.Size(63, 20);
       this.WindowMenuItem.Text = "&Window";
@@ -135,30 +137,37 @@ namespace EllieSpeed.DataLogger.Visualiser
       // WindowCascadeMenuItem
       // 
       this.WindowCascadeMenuItem.Name = "WindowCascadeMenuItem";
-      this.WindowCascadeMenuItem.Size = new System.Drawing.Size(151, 22);
+      this.WindowCascadeMenuItem.Size = new System.Drawing.Size(152, 22);
       this.WindowCascadeMenuItem.Text = "&Cascade";
       this.WindowCascadeMenuItem.Click += new System.EventHandler(this.WindowCascade_Click);
       // 
       // WindowTileHorizontalMenuItem
       // 
       this.WindowTileHorizontalMenuItem.Name = "WindowTileHorizontalMenuItem";
-      this.WindowTileHorizontalMenuItem.Size = new System.Drawing.Size(151, 22);
+      this.WindowTileHorizontalMenuItem.Size = new System.Drawing.Size(152, 22);
       this.WindowTileHorizontalMenuItem.Text = "Tile &Horizontal";
       this.WindowTileHorizontalMenuItem.Click += new System.EventHandler(this.WindowTileHorizontal_Click);
       // 
       // WindowTileVerticalMenuItem
       // 
       this.WindowTileVerticalMenuItem.Name = "WindowTileVerticalMenuItem";
-      this.WindowTileVerticalMenuItem.Size = new System.Drawing.Size(151, 22);
+      this.WindowTileVerticalMenuItem.Size = new System.Drawing.Size(152, 22);
       this.WindowTileVerticalMenuItem.Text = "Tile &Vertical";
       this.WindowTileVerticalMenuItem.Click += new System.EventHandler(this.WindowTileVertical_Click);
       // 
       // WindowArrangeIconsMenuItem
       // 
       this.WindowArrangeIconsMenuItem.Name = "WindowArrangeIconsMenuItem";
-      this.WindowArrangeIconsMenuItem.Size = new System.Drawing.Size(151, 22);
+      this.WindowArrangeIconsMenuItem.Size = new System.Drawing.Size(152, 22);
       this.WindowArrangeIconsMenuItem.Text = "&Arrange Icons";
       this.WindowArrangeIconsMenuItem.Click += new System.EventHandler(this.WindowArrangeIcons_Click);
+      // 
+      // CloseAllMenuItem
+      // 
+      this.CloseAllMenuItem.Name = "CloseAllMenuItem";
+      this.CloseAllMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.CloseAllMenuItem.Text = "Close &All";
+      this.CloseAllMenuItem.Click += new System.EventHandler(this.CloseAllMenuItem_Click);
       // 
       // viewToolStripMenuItem
       // 
@@ -287,6 +296,7 @@ namespace EllieSpeed.DataLogger.Visualiser
     private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem ViewDataMenuItem;
     private System.Windows.Forms.ToolStripMenuItem ViewTrackMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem CloseAllMenuItem;
   }
 }
 
