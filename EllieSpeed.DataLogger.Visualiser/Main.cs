@@ -34,7 +34,7 @@ namespace EllieSpeed.DataLogger.Visualiser
                  {
                    MdiParent = this
                  };
-      var trackMenuItem = ViewTrackMenuItem.DropDownItems.Add(title);
+      var trackMenuItem = ViewTrackMenuItem.DropDownItems.Add(title, track.Icon.ToBitmap());
       trackMenuItem.Tag = track;
       trackMenuItem.Click += DataMenuItem_Click<Track>;
       track.FormClosed += (s, ev) => Form_Closed(ViewTrackMenuItem, track);
@@ -44,7 +44,7 @@ namespace EllieSpeed.DataLogger.Visualiser
                     {
                       MdiParent = this
                     };
-      var dataMenuItem = ViewDataMenuItem.DropDownItems.Add(title);
+      var dataMenuItem = ViewDataMenuItem.DropDownItems.Add(title, vis.Icon.ToBitmap());
       dataMenuItem.Tag = vis;
       dataMenuItem.Click += DataMenuItem_Click<Visualiser>;
       vis.FormClosed += (s, ev) => Form_Closed(ViewDataMenuItem, vis);
