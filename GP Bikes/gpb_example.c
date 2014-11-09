@@ -57,8 +57,12 @@ typedef struct
 	float m_fRearBrake;												/* 0 to 1 */
 	float m_fClutch;												/* 0 to 1. 0 = Fully engaged */
 	float m_afWheelSpeed[2];										/* meters/second. 0 = front; 1 = rear */
+	float m_fSteerTorque;											/* Nm */
 	int m_iPitLimiter;												/* 1 = pit limiter is activated */
-	char m_szEngineMapping[100];
+	int m_iECUMode;													/* 0 = engine mapping; 1 = traction control; 2 = engine braking */
+	char m_szEngineMapping[3];
+	int m_iTractionControl;
+	int m_iEngineBraking;
 } SPluginsBikeData_t;
 
 typedef struct
@@ -82,7 +86,7 @@ __declspec(dllexport) char *GetModID()
 
 __declspec(dllexport) int GetModDataVersion()
 {
-	return 2;
+	return 3;
 }
 
 __declspec(dllexport) int GetInterfaceVersion()
@@ -323,11 +327,11 @@ __declspec(dllexport) void Draw(int *_piNumQuads,void **_ppQuad,int *_piNumStrin
 
 typedef struct
 {
-	int m_iType;
-	float m_fLength;
-	float m_fRadius;
-	float m_fAngle;
-	float m_afStart[2];
+	int m_iType;					/* 0 = straight; 1 = curve */
+	float m_fLength;				/* meters */
+	float m_fRadius;				/* curve radius in meters. < 0 for left curves; 0 for straights */
+	float m_fAngle;					/* start angle in degrees. 0 = north */
+	float m_afStart[2];				/* start position in meters */
 } SPluginsTrackSegment_t;
 
 /* This function is optional */
