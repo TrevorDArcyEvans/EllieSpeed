@@ -42,7 +42,7 @@
     <AssemblyOriginatorKeyFile>..\EllieSpeed.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>motorbike_32x32.ico</ApplicationIcon>
+    <ApplicationIcon>chart_line_32x32.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -179,6 +179,7 @@
     <None Include="Resources\windows_32x32.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="chart_line_32x32.ico" />
     <Content Include="motorbike_32x32.ico" />
     <None Include="Resources\motorbike_128x128.png" />
     <None Include="Resources\chart_line_128x128.png" />
