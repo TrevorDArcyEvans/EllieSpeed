@@ -43,19 +43,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>C:\Program Files\GP Bikes\gpbikes\plugins\</OutDir>
+    <OutDir>c:\Program Files %28x86%29\GP Bikes\gpbikes\plugins\</OutDir>
     <TargetExt>.dlo</TargetExt>
     <IncludePath>$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <ReferencePath>$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;C:\Program Files\GP Bikes\gpbikes\plugins;</ReferencePath>
+    <ReferencePath>$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;C:\Program Files (x86)\GP Bikes\gpbikes\plugins;</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>C:\Program Files\GP Bikes\gpbikes\plugins\</OutDir>
+    <OutDir>c:\Program Files %28x86%29\GP Bikes\gpbikes\plugins\</OutDir>
     <TargetExt>.dlo</TargetExt>
     <IncludePath>$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <ReferencePath>$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;C:\Program Files\GP Bikes\gpbikes\plugins;</ReferencePath>
+    <ReferencePath>$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;C:\Program Files (x86)\GP Bikes\gpbikes\plugins;</ReferencePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

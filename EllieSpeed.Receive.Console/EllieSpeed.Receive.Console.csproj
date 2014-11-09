@@ -11,7 +11,8 @@
     <RootNamespace>EllieSpeed.Receive.Console</RootNamespace>
     <AssemblyName>EllieSpeed.Receive.Console</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -19,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Program Files\GP Bikes\gpbikes\plugins\</OutputPath>
+    <OutputPath>..\..\..\Program Files (x86)\GP Bikes\gpbikes\plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,7 +29,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\Program Files\GP Bikes\gpbikes\plugins\</OutputPath>
+    <OutputPath>..\..\..\Program Files (x86)\GP Bikes\gpbikes\plugins\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -72,6 +73,7 @@
     <None Include="..\EllieSpeed.snk">
       <Link>EllieSpeed.snk</Link>
     </None>
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\free-vector-icon-console-clip-art_116913_Icon_Console_clip_art_medium.ico" />
