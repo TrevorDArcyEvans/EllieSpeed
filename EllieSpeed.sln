@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EllieSpeed.Plugin", "EllieSpeed.Plugin\EllieSpeed.Plugin.vcxproj", "{39EEA429-10D2-421E-95F3-D902315B6ACA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EllieSpeed.Plugin.DataLogger", "EllieSpeed.Plugin.DataLogger\EllieSpeed.Plugin.DataLogger.vcxproj", "{39EEA429-10D2-421E-95F3-D902315B6ACA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.Plugin.Test", "EllieSpeed.Plugin.Test\EllieSpeed.Plugin.Test.csproj", "{33CB6B1E-0A4C-4DD3-9EDA-D1EB85D58A86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.Plugin.DataLogger.Test", "EllieSpeed.Plugin.DataLogger.Test\EllieSpeed.Plugin.DataLogger.Test.csproj", "{33CB6B1E-0A4C-4DD3-9EDA-D1EB85D58A86}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EllieSpeed.Broadcast", "EllieSpeed.Broadcast\EllieSpeed.Broadcast.csproj", "{180EA89E-CB8D-4889-B70E-4F5A77B219ED}"
 EndProject
@@ -46,6 +46,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RPMserialInput", "Arduino\Software\RPMserialInput\RPMserialInput.vcxproj", "{1FC3F263-5AFA-4F7B-A159-8A834D740E86}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RPMsinusoid", "Arduino\Software\RPMsinusoid\RPMsinusoid.vcxproj", "{C34503E1-53B2-46BC-BF22-C6C090D2A44A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EllieSpeed.Plugin.Input", "EllieSpeed.Plugin.Input\EllieSpeed.Plugin.Input.vcxproj", "{71F25589-1B6F-41FB-A003-16DB620035CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -329,6 +331,20 @@ Global
 		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Release|Win32.Build.0 = Release|Win32
 		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Release|x86.ActiveCfg = Release|Win32
 		{C34503E1-53B2-46BC-BF22-C6C090D2A44A}.Release|x86.Build.0 = Release|Win32
+		{71F25589-1B6F-41FB-A003-16DB620035CC}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{71F25589-1B6F-41FB-A003-16DB620035CC}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{71F25589-1B6F-41FB-A003-16DB620035CC}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{71F25589-1B6F-41FB-A003-16DB620035CC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{71F25589-1B6F-41FB-A003-16DB620035CC}.Debug|Win32.Build.0 = Debug|Win32
+		{71F25589-1B6F-41FB-A003-16DB620035CC}.Debug|x86.ActiveCfg = Debug|Win32
+		{71F25589-1B6F-41FB-A003-16DB620035CC}.Debug|x86.Build.0 = Debug|Win32
+		{71F25589-1B6F-41FB-A003-16DB620035CC}.Release|Any CPU.ActiveCfg = Release|Win32
+		{71F25589-1B6F-41FB-A003-16DB620035CC}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{71F25589-1B6F-41FB-A003-16DB620035CC}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{71F25589-1B6F-41FB-A003-16DB620035CC}.Release|Win32.ActiveCfg = Release|Win32
+		{71F25589-1B6F-41FB-A003-16DB620035CC}.Release|Win32.Build.0 = Release|Win32
+		{71F25589-1B6F-41FB-A003-16DB620035CC}.Release|x86.ActiveCfg = Release|Win32
+		{71F25589-1B6F-41FB-A003-16DB620035CC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
