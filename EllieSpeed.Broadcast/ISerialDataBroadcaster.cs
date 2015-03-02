@@ -6,7 +6,6 @@
 //  www.EllieSpeed.com
 //
 
-
 namespace EllieSpeed.Broadcast
 {
   public interface ISerialDataBroadcaster
