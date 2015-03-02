@@ -90,27 +90,67 @@ EXTERN_DLL_EXPORT int GetControllerData(int _iID, SControllerData_t *_psData)
   return 0;
 }
 
+#include <msclr\lock.h>
+
 public ref class DataReceiver : EllieSpeed::Broadcast::ISerialDataBroadcaster
 {
 public:
-  DataReceiver();
+  DataReceiver(String^ portName);
   ~DataReceiver();
   virtual void OnSerialData(EllieSpeed::Broadcast::SerialDataEventArgs^ data);
 
+  void Reset();
+  int GetNumControllers();
+  int GetControllerInfo(int iIndex, SControllerInfo_t* psInfo);
+  int GetControllerData(int iID, SControllerData_t* psData);
+
 private:
+  Object^ mLock;
   EllieSpeed::Arduino::ArduinoReceiver^ mReceiver;
+  String^ mLastData;
 };
 
-DataReceiver::DataReceiver()
+DataReceiver::DataReceiver(String^ portName)
 {
-  mReceiver = gcnew EllieSpeed::Arduino::ArduinoReceiver("COM4", this);
+  mLock = gcnew Object();
+  mReceiver = gcnew EllieSpeed::Arduino::ArduinoReceiver(portName, this);
 }
 
 DataReceiver::~DataReceiver()
 {
-  mReceiver->Dispose();
+  mReceiver = nullptr;
 }
 
 void DataReceiver::OnSerialData(EllieSpeed::Broadcast::SerialDataEventArgs^ data)
 {
+  msclr::lock lock(mLock);
+
+  mLastData = data->Data;
+}
+
+void DataReceiver::Reset()
+{
+}
+
+int DataReceiver::GetNumControllers()
+{
+  return 0;
+}
+
+int DataReceiver::GetControllerInfo(int iIndex, SControllerInfo_t* psInfo)
+{
+  msclr::lock lock(mLock);
+
+  strcpy(psInfo->m_szName, "EllieSpeed Bike Controller");
+  strcpy(psInfo->m_szUUID, "EllieSpeed BC001");
+  psInfo->m_iID = 42;
+
+  return 0;
+}
+
+int DataReceiver::GetControllerData(int iID, SControllerData_t* psData)
+{
+  msclr::lock lock(mLock);
+
+  return 0;
 }
