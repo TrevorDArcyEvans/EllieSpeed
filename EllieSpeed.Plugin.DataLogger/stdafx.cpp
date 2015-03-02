@@ -1,8 +1,9 @@
-// stdafx.cpp : source file that includes just the standard includes
-// EllieSpeed.Plugin.pch will be the pre-compiled header
-// stdafx.obj will contain the pre-compiled type information
+//
+//  Copyright (C) 2014 EllieWare
+//
+//  All rights reserved
+//
+//  www.EllieWare.com
+//
 
 #include "stdafx.h"
-
-// TODO: reference any additional headers you need in STDAFX.H
-// and not in this file
