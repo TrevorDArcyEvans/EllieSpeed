@@ -30,5 +30,7 @@ private:
   Object^ mLock;
   EllieSpeed::Arduino::ArduinoReceiver^ mReceiver;
   String^ mLastData;
+
+  static const int ControllerID = 20060220;
 };
 
