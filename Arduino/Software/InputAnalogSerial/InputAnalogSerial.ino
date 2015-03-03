@@ -28,5 +28,5 @@ void loop()
   // print out the value you read:
   Serial.println(sensorValue);
 
-  delay(1);        // delay in between reads for stability
+  delay(100);        // delay in between reads for stability
 }
