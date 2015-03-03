@@ -62,8 +62,6 @@ namespace EllieSpeed.Arduino.Receiver.Console
 
   internal class ConsoleBroadcaster : ISerialDataBroadcaster, IDisposable
   {
-    private int mLastValue = -1;
-
     public void OnSerialData(SerialDataEventArgs data)
     {
       if (string.IsNullOrEmpty(data.Data))
@@ -71,14 +69,7 @@ namespace EllieSpeed.Arduino.Receiver.Console
         return;
       }
 
-      var value = int.Parse(data.Data);
-      if (Math.Abs(mLastValue - value) > 2)
-      {
-        System.Console.WriteLine(@"{0:0000}", value);
-        System.Console.Out.Flush();
-        //Debug.WriteLine(@"{0:0000}", value);
-        mLastValue = value;
-      }
+      System.Console.WriteLine(data.Data);
     }
 
     public void Dispose()
