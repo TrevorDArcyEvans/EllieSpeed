@@ -16,7 +16,7 @@ using NUnit.Framework;
 namespace EllieSpeed.Arduino.Test
 {
   [TestFixture]
-  public class Arduino_Test
+  public class ArduinoTest
   {
     // Virtual COM ports must be first setup in com0com:
     //
