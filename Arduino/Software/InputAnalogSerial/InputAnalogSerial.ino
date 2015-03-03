@@ -39,8 +39,6 @@ void loop()
   // print out the value you read:
   Serial.print(STX);
   Serial.print(sensorValue);
-  Serial.print(RS);
-  Serial.print(2*sensorValue);
   Serial.print(ETX);
 
   // delay in between reads for stability
