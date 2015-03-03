@@ -33,7 +33,16 @@ namespace EllieSpeed.Arduino
 
     private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
     {
-      mBroadcaster.OnSerialData(new SerialDataEventArgs(mPort.ReadLine()));
+      const string STX = "\x02";
+      const string ETX = "\x03";
+      const string RS = "$";
+
+      var data = mPort.ReadTo(ETX);
+      var dataArray = data.Split(new[] { STX }, StringSplitOptions.RemoveEmptyEntries);
+      foreach (var thisData in dataArray)
+      {
+        mBroadcaster.OnSerialData(new SerialDataEventArgs(thisData));
+      }
     }
 
     public void Dispose()

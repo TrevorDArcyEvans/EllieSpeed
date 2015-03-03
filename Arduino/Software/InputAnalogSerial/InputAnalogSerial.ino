@@ -7,6 +7,17 @@
  This example code is in the public domain.
  */
 
+//ASCII-Code 02, text representation of the STX code
+const String STX = "\x02";
+
+//ASCII-Code 03, text representation of the ETX code
+const String ETX = "\x03";
+
+//Used as RS code
+const String RS = "$";
+
+const int UpdateRateHz = 20;
+
 // the setup routine runs once when you press reset:
 void setup()
 {
@@ -26,7 +37,12 @@ void loop()
   int sensorValue = analogRead(A0);
 
   // print out the value you read:
-  Serial.println(sensorValue);
+  Serial.print(STX);
+  Serial.print(sensorValue);
+  Serial.print(RS);
+  Serial.print(2*sensorValue);
+  Serial.print(ETX);
 
-  delay(100);        // delay in between reads for stability
+  // delay in between reads for stability
+  delay(1000 / UpdateRateHz);
 }
