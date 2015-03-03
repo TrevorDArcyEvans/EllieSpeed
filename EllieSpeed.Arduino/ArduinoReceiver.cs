@@ -7,6 +7,7 @@
 //
 
 using System;
+using System.IO;
 using System.IO.Ports;
 using System.Text;
 using EllieSpeed.Broadcast;
@@ -27,7 +28,14 @@ namespace EllieSpeed.Arduino
                       Encoding = Encoding.Default
                     };
       mPort.DataReceived += Port_DataReceived;
-      mPort.Open();
+      try
+      {
+        mPort.Open();
+      }
+      catch (IOException)
+      {
+        // swallow exception if Arduino not present
+      }
       mBroadcaster = broadcaster;
     }
 
