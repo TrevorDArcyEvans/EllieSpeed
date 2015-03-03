@@ -16,6 +16,10 @@ namespace EllieSpeed.Arduino
 {
   public class ArduinoReceiver : IDisposable
   {
+    public const string STX = "\x02";
+    public const string ETX = "\x03";
+    public const string RS = "$";
+
     public bool Disposed { get; private set; }
 
     private readonly SerialPort mPort;
@@ -41,10 +45,6 @@ namespace EllieSpeed.Arduino
 
     private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
     {
-      const string STX = "\x02";
-      const string ETX = "\x03";
-      const string RS = "$";
-
       var data = mPort.ReadTo(ETX);
       var dataArray = data.Split(new[] { STX }, StringSplitOptions.RemoveEmptyEntries);
       foreach (var thisData in dataArray)
