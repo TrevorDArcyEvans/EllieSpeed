@@ -28,7 +28,11 @@ Reflection::Assembly^ LoadFromSameFolder(Object^ sender, ResolveEventArgs^ args)
   String^ assemblyPath = Path::Combine(folderPath, assyName->Name + ".dll");
   if (File::Exists(assemblyPath) == false)
   {
-    return nullptr;
+    assemblyPath = Path::Combine(folderPath, assyName->Name + ".exe");
+    if (File::Exists(assemblyPath) == false)
+    {
+      return nullptr;
+    }
   }
 
   Assembly^ assembly = Assembly::LoadFrom(assemblyPath);
