@@ -43,8 +43,8 @@ int DataReceiver::GetNumControllers()
 
 int DataReceiver::GetControllerInfo(int iIndex, SControllerInfo_t* psInfo)
 {
-  strcpy(psInfo->m_szName, "EllieSpeed Bike Controller");
-  strcpy(psInfo->m_szUUID, "EllieSpeed BC001");
+  strcpy_s(psInfo->m_szName, "EllieSpeed Bike Controller");
+  strcpy_s(psInfo->m_szUUID, "EllieSpeed BC001");
   psInfo->m_iID = ControllerID;
 
   // Arduino has 10 bit analog input [0, 1023]
