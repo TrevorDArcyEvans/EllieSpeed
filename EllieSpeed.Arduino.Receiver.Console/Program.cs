@@ -10,7 +10,6 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-using EllieSpeed.Broadcast;
 
 namespace EllieSpeed.Arduino.Receiver.Console
 {
@@ -56,23 +55,6 @@ namespace EllieSpeed.Arduino.Receiver.Console
       System.Console.WriteLine();
       System.Console.WriteLine(@"  Example:");
       System.Console.WriteLine(@"    " + exeName + " COM4");
-    }
-  }
-
-  internal class ConsoleBroadcaster : ISerialDataBroadcaster, IDisposable
-  {
-    public void OnSerialData(SerialDataEventArgs data)
-    {
-      if (string.IsNullOrEmpty(data.Data))
-      {
-        return;
-      }
-
-      System.Console.WriteLine(data.Data);
-    }
-
-    public void Dispose()
-    {
     }
   }
 }
