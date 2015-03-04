@@ -7,6 +7,7 @@
 //
 
 using System;
+using System.Configuration;
 using System.IO;
 using System.IO.Ports;
 using System.Text;
@@ -41,6 +42,21 @@ namespace EllieSpeed.Arduino
         // swallow exception if Arduino not present
       }
       mBroadcaster = broadcaster;
+    }
+
+    private ArduinoReceiver()
+    {
+    }
+
+    public static string ArduinoPort
+    {
+      get
+      {
+        var cfg = ConfigurationManager.OpenExeConfiguration(new ArduinoReceiver().GetType().Assembly.Location);
+        var appSettings = (AppSettingsSection)cfg.GetSection("appSettings");
+
+        return appSettings.Settings["ArduinoPort"].Value;
+      }
     }
 
     private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)

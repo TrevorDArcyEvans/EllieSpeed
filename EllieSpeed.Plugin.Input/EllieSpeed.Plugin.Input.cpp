@@ -60,8 +60,7 @@ EXTERN_DLL_EXPORT int Version()
 /* called when software is started. If return value is not 0, the plugin is disabled */
 EXTERN_DLL_EXPORT int Startup()
 {
-  // TODO   read COM port out of config file
-  Globals::DataReceiver = gcnew DataReceiver("COM4");
+  Globals::DataReceiver = gcnew DataReceiver(EllieSpeed::Arduino::ArduinoReceiver::ArduinoPort);
 
   return 0;
 }
