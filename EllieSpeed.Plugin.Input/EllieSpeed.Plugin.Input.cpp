@@ -26,10 +26,10 @@ Reflection::Assembly^ LoadFromSameFolder(Object^ sender, ResolveEventArgs^ args)
   String^ folderPath = Path::GetDirectoryName(Assembly::GetExecutingAssembly()->Location);
   AssemblyName^ assyName = gcnew AssemblyName(args->Name);
   String^ assemblyPath = Path::Combine(folderPath, assyName->Name + ".dll");
-  if (File::Exists(assemblyPath) == false)
+  if (!File::Exists(assemblyPath))
   {
     assemblyPath = Path::Combine(folderPath, assyName->Name + ".exe");
-    if (File::Exists(assemblyPath) == false)
+    if (!File::Exists(assemblyPath))
     {
       return nullptr;
     }
