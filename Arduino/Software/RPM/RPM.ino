@@ -5,6 +5,13 @@ const int RPMpin = 9;
 // the setup routine runs once when you press reset:
 void setup()
 {
+  Serial.begin(9600);
+  while (!Serial)
+  {
+    // wait for serial port to connect. Needed for Leonardo only
+    NULL;
+  }
+
   // initialize the digital pin as an output.
   pinMode(RPMpin, OUTPUT);
 }
