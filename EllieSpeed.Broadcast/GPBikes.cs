@@ -249,5 +249,68 @@ namespace EllieSpeed.Broadcast
       [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.R4)]
       public float[] Start;
     }
+
+
+    [Serializable]
+    [StructLayout(LayoutKind.Sequential)]
+    public struct SControllerInfo_t
+    {
+      [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
+      public string Name;
+
+      /* universally unique identifier */
+      [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 37)]
+      public string UUID;
+
+      /* internal unique ID */
+      public int ID;
+
+      /* number of axis */
+      public byte NumAxis;
+
+      /* min, max and center value of each axis */
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 18, ArraySubType = UnmanagedType.I2)]
+      public short[] AxisRange;
+
+      /* number of sliders */
+      public byte NumSliders;
+
+      /* max value of each slider */
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.I2)]
+      public short[] SliderRange;
+
+      /* number of buttons */
+      public byte NumButtons;
+
+      /* number of POVs */
+      public byte NumPOV;
+
+      /* number of dials */
+      public byte NumDials;
+
+      /* max value of dials */
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)]
+      public byte[] DialRange;
+    }
+
+    [Serializable]
+    [StructLayout(LayoutKind.Sequential)]
+    public struct SControllerData_t
+    {
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.I2)]
+      public short[] Axis;
+
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6, ArraySubType = UnmanagedType.I2)]
+      public short[] Slider;
+
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
+      public byte[] Button;
+
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2, ArraySubType = UnmanagedType.I1)]
+      public byte[] POV;
+
+      [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)]
+      public byte[] Dial;
+    }
   }
 }
