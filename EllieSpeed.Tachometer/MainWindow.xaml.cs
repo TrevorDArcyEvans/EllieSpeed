@@ -29,7 +29,7 @@ namespace EllieSpeed.Tachometer
       mReceiver.OnRunTelemetry += Receiver_OnRunTelemetry;
     }
 
-    void Receiver_OnEventInit(object sender, Broadcast.DataEventArgs<Broadcast.GPBikes.SPluginsBikeEvent_t> e)
+    void Receiver_OnEventInit(object sender, Broadcast.DataEventArgs<GPBikes.SPluginsBikeEvent_t> e)
     {
       Dispatcher.Invoke((Action)(() =>
       {
@@ -44,7 +44,7 @@ namespace EllieSpeed.Tachometer
       }));
     }
 
-    void Receiver_OnRunTelemetry(object sender, Broadcast.DataEventArgs<Broadcast.GPBikes.SPluginsBikeDataEx_t> e)
+    void Receiver_OnRunTelemetry(object sender, Broadcast.DataEventArgs<GPBikes.SPluginsBikeDataEx_t> e)
     {
       Dispatcher.Invoke((Action)(() =>
       {
