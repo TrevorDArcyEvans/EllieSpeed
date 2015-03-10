@@ -55,7 +55,6 @@
     <Compile Include="Broadcast.cs" />
     <Compile Include="Broadcaster.cs" />
     <Compile Include="DataEventArgs.cs" />
-    <Compile Include="GPBikes.cs" />
     <Compile Include="IBikeDataBroadcaster.cs" />
     <Compile Include="ISerialDataBroadcaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +68,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EllieSpeed.GPBikes\EllieSpeed.GPBikes.csproj">
+      <Project>{974811e2-a46c-488b-bfe7-0f3479f9e9dd}</Project>
+      <Name>EllieSpeed.GPBikes</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

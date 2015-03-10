@@ -65,6 +65,10 @@
       <Project>{B1BCC89E-5046-48C1-8B83-7799824DA37D}</Project>
       <Name>EllieSpeed.DataLogger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EllieSpeed.GPBikes\EllieSpeed.GPBikes.csproj">
+      <Project>{974811E2-A46C-488B-BFE7-0F3479F9E9DD}</Project>
+      <Name>EllieSpeed.GPBikes</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\EllieSpeed.snk">

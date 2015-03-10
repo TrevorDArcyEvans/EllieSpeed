@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D94FD666-1082-443E-9A1D-F1FB7AB16D12}</ProjectGuid>
+    <ProjectGuid>{974811E2-A46C-488B-BFE7-0F3479F9E9DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EllieSpeed.DataLogger.Test</RootNamespace>
-    <AssemblyName>EllieSpeed.DataLogger.Test</AssemblyName>
+    <RootNamespace>EllieSpeed.GPBikes</RootNamespace>
+    <AssemblyName>EllieSpeed.GPBikes</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -17,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Program Files (x86)\GP Bikes\gpbikes\plugins\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\Program Files (x86)\GP Bikes\gpbikes\plugins\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,12 +36,8 @@
     <AssemblyOriginatorKeyFile>..\EllieSpeed.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,35 +48,13 @@
     <Compile Include="..\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
-    <Compile Include="SQLiteLogger_Test.cs" />
+    <Compile Include="GPBikes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\EllieSpeed.snk">
       <Link>EllieSpeed.snk</Link>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EllieSpeed.Broadcast\EllieSpeed.Broadcast.csproj">
-      <Project>{180EA89E-CB8D-4889-B70E-4F5A77B219ED}</Project>
-      <Name>EllieSpeed.Broadcast</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EllieSpeed.DataLogger\EllieSpeed.DataLogger.csproj">
-      <Project>{B1BCC89E-5046-48C1-8B83-7799824DA37D}</Project>
-      <Name>EllieSpeed.DataLogger</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EllieSpeed.GPBikes\EllieSpeed.GPBikes.csproj">
-      <Project>{974811E2-A46C-488B-BFE7-0F3479F9E9DD}</Project>
-      <Name>EllieSpeed.GPBikes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EllieSpeed.Test.Utilties\EllieSpeed.Test.Utilties.csproj">
-      <Project>{0FDAE05E-FAB3-4D9E-A26F-4BDC9A0276B4}</Project>
-      <Name>EllieSpeed.Test.Utilties</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EllieSpeed.Utilities\EllieSpeed.Utilities.csproj">
-      <Project>{3CFF1EBD-E509-4B14-B0F0-371DFF5ED75F}</Project>
-      <Name>EllieSpeed.Utilities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
