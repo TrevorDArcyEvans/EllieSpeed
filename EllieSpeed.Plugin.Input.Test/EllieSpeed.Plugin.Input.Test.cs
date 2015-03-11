@@ -112,6 +112,7 @@ namespace EllieSpeed.Plugin.Input.Test
       GetControllerInfo(0, ptr);
 
       // TODO   verify
+      var exp = DataReceiver.GetDefaultControllerInfo();
     }
 
     [Test]
@@ -132,6 +133,7 @@ namespace EllieSpeed.Plugin.Input.Test
       GetControllerData(DataReceiver.ControllerID, ptr);
 
       // TODO   verify
+      var exp = DataReceiver.GetDummyControllerData();
     }
   }
 }
