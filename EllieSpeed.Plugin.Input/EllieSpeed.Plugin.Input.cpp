@@ -114,7 +114,7 @@ EXTERN_DLL_EXPORT int GetControllerInfo(int iIndex, SControllerInfo_t* psInfo)
   {
     for (int j = 0; j < 3; j++)
     {
-      psInfo->m_aaiAxisRange[i][j] = info->AxisRange[6*i + j];
+      psInfo->m_aaiAxisRange[i][j] = info->AxisRange[3*i + j];
     }
   }
 
