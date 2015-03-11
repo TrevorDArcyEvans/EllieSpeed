@@ -7,9 +7,8 @@
 //
 
 using System;
-using EllieSpeed.Broadcast;
 
-namespace EllieSpeed.Arduino
+namespace EllieSpeed.Common
 {
   [Serializable]
   public class SerialDataEventArgs : DataEventArgs<string>
