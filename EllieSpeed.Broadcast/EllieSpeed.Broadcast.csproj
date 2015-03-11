@@ -56,9 +56,7 @@
     <Compile Include="Broadcaster.cs" />
     <Compile Include="DataEventArgs.cs" />
     <Compile Include="IBikeDataBroadcaster.cs" />
-    <Compile Include="ISerialDataBroadcaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SerialDataEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\EllieSpeed.snk">

@@ -52,7 +52,6 @@
     <Compile Include="BikeDataReceiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiverBase.cs" />
-    <Compile Include="SerialDataReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EllieSpeed.Broadcast\EllieSpeed.Broadcast.csproj">

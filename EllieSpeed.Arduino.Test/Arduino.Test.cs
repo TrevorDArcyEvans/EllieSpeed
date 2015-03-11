@@ -31,20 +31,18 @@ namespace EllieSpeed.Arduino.Test
     [Test]
     public void ReceiverConstructor_Completes()
     {
-      var mockBroadcaster = new Mock<ISerialDataBroadcaster>();
-      using (new ArduinoReceiver(ReceiveCOMPort, mockBroadcaster.Object))
+      using (new ArduinoReceiver(ReceiveCOMPort))
       {
       }
     }
 
     [Test]
-    [ExpectedException(typeof(UnauthorizedAccessException))]
+    [ExpectedException(typeof(ArgumentException))]
     public void SecondReceiverConstructor_ThrowsException()
     {
-      var mockBroadcaster = new Mock<ISerialDataBroadcaster>();
-      using (new ArduinoReceiver(ReceiveCOMPort, mockBroadcaster.Object))
+      using (new ArduinoReceiver(ReceiveCOMPort))
       {
-        using (new ArduinoReceiver(ReceiveCOMPort, mockBroadcaster.Object))
+        using (new ArduinoReceiver(ReceiveCOMPort))
         {
         }
       }
@@ -86,29 +84,23 @@ namespace EllieSpeed.Arduino.Test
     {
       const string Message = "Hello, world!";
 
-      using (var broadcaster = new Broadcaster())
+      using (var rec = new ArduinoReceiver(ReceiveCOMPort))
       {
-        using (new ArduinoReceiver(ReceiveCOMPort, broadcaster))
+        var msgReceived = false;
+        rec.OnSerialData += (sender, args) =>
         {
-          var msgReceived = false;
-          using (var rec = new SerialDataReceiver(Broadcaster.BroadcastPort))
-          {
-            rec.OnSerialDataReceived += (sender, args) =>
-            {
-              msgReceived = true;
-              Assert.AreEqual(args.Data, Message);
-            };
+          msgReceived = true;
+          Assert.AreEqual(args.Data, Message);
+        };
 
-            using (var send = new ArduinoSender(SendCOMPort))
-            {
-              send.Send(Message);
-            }
+        using (var send = new ArduinoSender(SendCOMPort))
+        {
+          send.Send(Message);
+        }
 
-            while (!msgReceived)
-            {
-              Thread.Sleep(100);
-            }
-          }
+        while (!msgReceived)
+        {
+          Thread.Sleep(100);
         }
       }
     }

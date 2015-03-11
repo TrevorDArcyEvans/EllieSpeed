@@ -7,8 +7,8 @@
 //
 
 #include "stdafx.h"
-#include "DataReceiver.h"
 #using <mscorlib.dll>
+#using "EllieSpeed.GPBikes.dll"
 
 using namespace System;
 using namespace System::IO;
@@ -18,7 +18,7 @@ using namespace System::Runtime::InteropServices;
 public ref class Globals
 {
 public:
-  static DataReceiver^ DataReceiver;
+  static EllieSpeed::GPBikes::DataReceiver^ DataReceiver;
 };
 
 Reflection::Assembly^ LoadFromSameFolder(Object^ sender, ResolveEventArgs^ args)
@@ -60,14 +60,15 @@ EXTERN_DLL_EXPORT int Version()
 /* called when software is started. If return value is not 0, the plugin is disabled */
 EXTERN_DLL_EXPORT int Startup()
 {
-  Globals::DataReceiver = gcnew DataReceiver(EllieSpeed::Arduino::ArduinoReceiver::ArduinoPort);
+  Globals::DataReceiver = gcnew EllieSpeed::GPBikes::DataReceiver();
 
-  return 0;
+  return Globals::DataReceiver->Startup();
 }
 
 /* called when software is closed */
 EXTERN_DLL_EXPORT void Shutdown()
 {
+  Globals::DataReceiver->Shutdown();
   Globals::DataReceiver = nullptr;
 }
 
@@ -92,11 +93,13 @@ EXTERN_DLL_EXPORT int GetNumControllers()
 /* _iIndex is the 0 based controller index. _psInfo must be filled with controller info */
 EXTERN_DLL_EXPORT int GetControllerInfo(int iIndex, SControllerInfo_t* psInfo)
 {
-  return Globals::DataReceiver->GetControllerInfo(iIndex, psInfo);
+  //return Globals::DataReceiver->GetControllerInfo(iIndex, psInfo);
+  return 0;
 }
 
 /* _iID is the unique controller ID. _psData must be filled with controller data */
 EXTERN_DLL_EXPORT int GetControllerData(int iID, SControllerData_t* psData)
 {
-  return Globals::DataReceiver->GetControllerData(iID, psData);
+  //return Globals::DataReceiver->GetControllerData(iID, psData);
+  return 0;
 }

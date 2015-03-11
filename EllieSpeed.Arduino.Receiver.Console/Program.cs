@@ -6,17 +6,13 @@
 //  www.EllieSpeed.com
 //
 
-using System;
 using System.IO;
 using System.Reflection;
-using System.Threading;
 
 namespace EllieSpeed.Arduino.Receiver.Console
 {
   class Program
   {
-    static readonly Mutex ArduinoMutex = new Mutex(true, "{D79F57F2-CDEF-4CB2-A25F-DC7BF0CBAE3F}");
-
     private static void Main(string[] args)
     {
       if (args.Length != 1 || args[0].Contains(@"?"))
@@ -25,25 +21,20 @@ namespace EllieSpeed.Arduino.Receiver.Console
         return;
       }
 
-      if (ArduinoMutex.WaitOne(TimeSpan.Zero, true))
+      using (var rec = new ArduinoReceiver(args[0]))
       {
-        using (var broadcast = new ConsoleBroadcaster())
-        {
-          using (new ArduinoReceiver(args[0], broadcast))
-          {
-            System.Console.WriteLine(@"Listening for Arduino data on " + args[0]);
-            System.Console.WriteLine();
-            System.Console.WriteLine(@"Press any key to exit");
-            System.Console.ReadKey();
-          }
-        }
+        rec.OnSerialData += OnSerialData;
 
-        ArduinoMutex.ReleaseMutex();
+        System.Console.WriteLine(@"Listening for Arduino data on " + args[0]);
+        System.Console.WriteLine();
+        System.Console.WriteLine(@"Press any key to exit");
+        System.Console.ReadKey();
       }
-      else
-      {
-        System.Console.WriteLine("Only one instance at a time!");
-      }
+    }
+
+    private static void OnSerialData(object sender, Broadcast.SerialDataEventArgs e)
+    {
+      System.Console.WriteLine(e.Data);
     }
 
     private static void Usage()
