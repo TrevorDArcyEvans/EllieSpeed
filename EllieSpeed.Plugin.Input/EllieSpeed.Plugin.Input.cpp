@@ -7,6 +7,8 @@
 //
 
 #include "stdafx.h"
+#include <AtlConv.h>
+#include <vcclr.h>
 #using <mscorlib.dll>
 #using "EllieSpeed.GPBikes.dll"
 
@@ -90,16 +92,80 @@ EXTERN_DLL_EXPORT int GetNumControllers()
   return Globals::DataReceiver->GetNumControllers();
 }
 
-/* _iIndex is the 0 based controller index. _psInfo must be filled with controller info */
+/* iIndex is the 0 based controller index. psInfo must be filled with controller info */
 EXTERN_DLL_EXPORT int GetControllerInfo(int iIndex, SControllerInfo_t* psInfo)
 {
-  //return Globals::DataReceiver->GetControllerInfo(iIndex, psInfo);
+  USES_CONVERSION;
+
+  EllieSpeed::GPBikes::SControllerInfo_t^ info = Globals::DataReceiver->GetControllerInfo(iIndex);
+
+  pin_ptr<const wchar_t> name = PtrToStringChars(info->Name);
+  const wchar_t *constName = name;
+  strcpy_s(psInfo->m_szName, W2A(constName));
+
+  pin_ptr<const wchar_t> uuid = PtrToStringChars(info->UUID);
+  const wchar_t *constUuid = uuid;
+  strcpy_s(psInfo->m_szUUID, W2A(constUuid));
+
+  psInfo->m_iID = info->ID;
+
+  psInfo->m_iNumAxis = info->NumAxis;
+  for (int i = 0; i < 6; i++)
+  {
+    for (int j = 0; j < 3; j++)
+    {
+      psInfo->m_aaiAxisRange[i][j] = info->AxisRange[6*i + j];
+    }
+  }
+
+  psInfo->m_iNumSliders = info->NumSliders;
+  for (int i = 0; i < 6; i++)
+  {
+    psInfo->m_aiSliderRange[i] = info->SliderRange[i];
+  }
+
+  psInfo->m_iNumButtons = info->NumButtons;
+  psInfo->m_iNumPOV = info->NumPOV;
+
+  psInfo->m_iNumDials = info->NumDials;
+  for (int i = 0; i < 8; i++)
+  {
+    psInfo->m_aiDialRange[i] = info->DialRange[i];
+  }
+
   return 0;
 }
 
-/* _iID is the unique controller ID. _psData must be filled with controller data */
+/* iID is the unique controller ID. psData must be filled with controller data */
 EXTERN_DLL_EXPORT int GetControllerData(int iID, SControllerData_t* psData)
 {
-  //return Globals::DataReceiver->GetControllerData(iID, psData);
+  EllieSpeed::GPBikes::SControllerData_t^ data = Globals::DataReceiver->GetControllerData(iID);
+
+  for (int i = 0; i < 6; i++)
+  {
+    psData->m_aiAxis[i] = data->Axis[i];
+  }
+
+  for (int i = 0; i < 6; i++)
+  {
+    psData->m_aiSlider[i] = data->Slider[i];
+  }
+
+  for (int i = 0; i < 32; i++)
+  {
+    psData->m_aiButton[i] = data->Button[i];
+  }
+
+  for (int i = 0; i < 2; i++)
+  {
+    psData->m_aiPOV[i] = data->POV[i];
+  }
+
+  for (int i = 0; i < 8; i++)
+  {
+    psData->m_aiDial[i] = data->Dial[i];
+  }
+
   return 0;
 }
+

@@ -62,6 +62,10 @@
       <Project>{180EA89E-CB8D-4889-B70E-4F5A77B219ED}</Project>
       <Name>EllieSpeed.Broadcast</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EllieSpeed.Common\EllieSpeed.Common.csproj">
+      <Project>{F8CFF83F-C0D0-4DFD-B8CC-1D646A06A45E}</Project>
+      <Name>EllieSpeed.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\EllieSpeed.snk">

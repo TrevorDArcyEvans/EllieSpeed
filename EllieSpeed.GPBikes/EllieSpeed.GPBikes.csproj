@@ -52,6 +52,16 @@
       <Link>EllieSpeed.snk</Link>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EllieSpeed.Arduino\EllieSpeed.Arduino.csproj">
+      <Project>{e9baba9b-b8f9-418a-8440-a2570ac21441}</Project>
+      <Name>EllieSpeed.Arduino</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EllieSpeed.Common\EllieSpeed.Common.csproj">
+      <Project>{f8cff83f-c0d0-4dfd-b8cc-1d646a06a45e}</Project>
+      <Name>EllieSpeed.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

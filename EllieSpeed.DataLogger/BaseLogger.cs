@@ -9,6 +9,7 @@
 using System;
 using System.Linq;
 using EllieSpeed.Broadcast;
+using EllieSpeed.Common;
 using EllieSpeed.Receive;
 
 namespace EllieSpeed.DataLogger

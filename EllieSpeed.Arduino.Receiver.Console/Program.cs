@@ -8,6 +8,7 @@
 
 using System.IO;
 using System.Reflection;
+using EllieSpeed.Common;
 
 namespace EllieSpeed.Arduino.Receiver.Console
 {
