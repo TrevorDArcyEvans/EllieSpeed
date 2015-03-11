@@ -35,7 +35,7 @@ namespace EllieSpeed.GPBikes
       mReceiver.OnSerialData += OnSerialData;
     }
 
-    private void OnSerialData(object sender, SerialDataEventArgs e)
+    public void OnSerialData(object sender, SerialDataEventArgs e)
     {
       lock (mLock)
       {
