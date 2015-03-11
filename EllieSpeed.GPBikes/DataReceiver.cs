@@ -27,7 +27,7 @@ namespace EllieSpeed.GPBikes
                                                           };
     private readonly object mLock = new object();
 
-    private const int ControllerID = 20060220;
+    public const int ControllerID = 20060220;
 
     public DataReceiver()
     {
