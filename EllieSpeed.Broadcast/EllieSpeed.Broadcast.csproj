@@ -54,7 +54,6 @@
     </Compile>
     <Compile Include="Broadcast.cs" />
     <Compile Include="Broadcaster.cs" />
-    <Compile Include="DataEventArgs.cs" />
     <Compile Include="IBikeDataBroadcaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

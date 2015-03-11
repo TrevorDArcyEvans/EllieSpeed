@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="ArduinoReceiver.cs" />
     <Compile Include="ArduinoSender.cs" />
+    <Compile Include="DataEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerialDataEventArgs.cs" />
   </ItemGroup>
@@ -62,12 +63,6 @@
       <Link>EllieSpeed.snk</Link>
     </None>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EllieSpeed.Broadcast\EllieSpeed.Broadcast.csproj">
-      <Project>{180EA89E-CB8D-4889-B70E-4F5A77B219ED}</Project>
-      <Name>EllieSpeed.Broadcast</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Arduino-128.ico" />

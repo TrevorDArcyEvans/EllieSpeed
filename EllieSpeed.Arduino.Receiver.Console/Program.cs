@@ -32,7 +32,7 @@ namespace EllieSpeed.Arduino.Receiver.Console
       }
     }
 
-    private static void OnSerialData(object sender, Broadcast.SerialDataEventArgs e)
+    private static void OnSerialData(object sender, SerialDataEventArgs e)
     {
       System.Console.WriteLine(e.Data);
     }

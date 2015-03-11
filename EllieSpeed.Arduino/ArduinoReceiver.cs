@@ -12,7 +12,6 @@ using System.IO;
 using System.IO.Ports;
 using System.Text;
 using System.Threading;
-using EllieSpeed.Broadcast;
 
 namespace EllieSpeed.Arduino
 {
