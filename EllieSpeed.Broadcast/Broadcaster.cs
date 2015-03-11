@@ -16,7 +16,7 @@ using System.Text;
 
 namespace EllieSpeed.Broadcast
 {
-  public class Broadcaster : IBikeDataBroadcaster, ISerialDataBroadcaster, IDisposable
+  public class Broadcaster : IBikeDataBroadcaster, IDisposable
   {
     public bool Disposed { get; private set; }
 
@@ -66,12 +66,6 @@ namespace EllieSpeed.Broadcast
         bf.Serialize(ms, obj);
         return ms.ToArray();
       }
-    }
-
-    public void OnSerialData(SerialDataEventArgs data)
-    {
-      var msg = ObjectToByteArray(data);
-      SendMessage(msg);
     }
 
     public void OnStartup()

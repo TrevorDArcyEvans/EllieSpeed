@@ -15,7 +15,7 @@ using EllieSpeed.Receive;
 using EllieSpeed.Test.Utilties;
 using NUnit.Framework;
 
-namespace EllieSpeed.Plugin.Test
+namespace EllieSpeed.Plugin.DataLogger.Test
 {
   [TestFixture]
   public class EllieSpeed_Plugin_Test
@@ -23,73 +23,73 @@ namespace EllieSpeed.Plugin.Test
     #region Plugin Exports
 
     /// Return Type: int
-    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "GetDataRate")]
+    [DllImportAttribute("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "GetDataRate")]
     public static extern int GetDataRate();
 
     /// Return Type: char*
-    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "GetModID")]
+    [DllImportAttribute("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "GetModID")]
     public static extern IntPtr GetModID();
 
     /// Return Type: int
-    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "GetModDataVersion")]
+    [DllImportAttribute("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "GetModDataVersion")]
     public static extern int GetModDataVersion();
 
     /// Return Type: int
-    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "GetInterfaceVersion")]
+    [DllImportAttribute("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "GetInterfaceVersion")]
     public static extern int GetInterfaceVersion();
 
     /// Return Type: int
     /// szSavePath: char*
     /* called when software is started */
-    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "Startup")]
+    [DllImportAttribute("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "Startup")]
     public static extern int Startup(IntPtr szSavePath);
 
     /// Return Type: void
     /* called when software is closed */
-    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "Shutdown")]
+    [DllImportAttribute("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "Shutdown")]
     public static extern void Shutdown();
 
     /// Return Type: void
     /// pData: void*
     /// iDataSize: int
     /* called when event is initialized */
-    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "EventInit")]
+    [DllImportAttribute("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "EventInit")]
     public static extern void EventInit(IntPtr pData, int iDataSize);
 
     /// Return Type: void
     /// pData: void*
     /// iDataSize: int
     /* called when bike goes to track */
-    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "RunInit")]
+    [DllImportAttribute("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "RunInit")]
     public static extern void RunInit(IntPtr pData, int iDataSize);
 
     /// Return Type: void
     /* called when bike leaves the track */
-    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "RunDeinit")]
+    [DllImportAttribute("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "RunDeinit")]
     public static extern void RunDeinit();
 
     /// Return Type: void
     /* called when simulation is started / resumed */
-    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "RunStart")]
+    [DllImportAttribute("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "RunStart")]
     public static extern void RunStart();
 
     /// Return Type: void
     /* called when simulation is paused */
-    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "RunStop")]
+    [DllImportAttribute("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "RunStop")]
     public static extern void RunStop();
 
     /// Return Type: void
     /// pData: void*
     /// iDataSize: int
     /* called when a new lap is recorded. This function is optional */
-    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "RunLap")]
+    [DllImportAttribute("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "RunLap")]
     public static extern void RunLap(IntPtr pData, int iDataSize);
 
     /// Return Type: void
     /// pData: void*
     /// iDataSize: int
     /* called when a split is crossed. This function is optional */
-    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "RunSplit")]
+    [DllImportAttribute("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "RunSplit")]
     public static extern void RunSplit(IntPtr pData, int iDataSize);
 
     /// Return Type: void
@@ -98,7 +98,7 @@ namespace EllieSpeed.Plugin.Test
     /// fTime: float
     /// fPos: float
     /* fTime is the ontrack time, in seconds. fPos is the position on centerline, from 0 to 1 */
-    [DllImportAttribute("EllieSpeed.Plugin.dlo", EntryPoint = "RunTelemetry")]
+    [DllImportAttribute("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "RunTelemetry")]
     public static extern void RunTelemetry(IntPtr pData, int iDataSize, float fTime, float fPos);
 
     /// Return Type: void
@@ -106,7 +106,7 @@ namespace EllieSpeed.Plugin.Test
     /// pasSegment: SPluginsTrackSegment_t*
     /// pRaceData: void*
     /* This function is optional */
-    [DllImport("EllieSpeed.Plugin.dlo", EntryPoint = "TrackCenterline")]
+    [DllImport("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "TrackCenterline")]
     public static extern void TrackCenterline(int iNumSegments, [MarshalAs(UnmanagedType.LPArray)] GPBikes.SPluginsTrackSegment_t[] pasSegment, IntPtr pRaceData);
 
     #endregion

@@ -52,12 +52,15 @@
     <Compile Include="BikeDataReceiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiverBase.cs" />
-    <Compile Include="SerialDataReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EllieSpeed.Broadcast\EllieSpeed.Broadcast.csproj">
       <Project>{180EA89E-CB8D-4889-B70E-4F5A77B219ED}</Project>
       <Name>EllieSpeed.Broadcast</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EllieSpeed.Common\EllieSpeed.Common.csproj">
+      <Project>{F8CFF83F-C0D0-4DFD-B8CC-1D646A06A45E}</Project>
+      <Name>EllieSpeed.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\EllieSpeed.GPBikes\EllieSpeed.GPBikes.csproj">
       <Project>{974811E2-A46C-488B-BFE7-0F3479F9E9DD}</Project>

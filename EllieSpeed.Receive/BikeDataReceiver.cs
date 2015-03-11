@@ -9,6 +9,7 @@
 using System;
 using System.Text;
 using EllieSpeed.Broadcast;
+using EllieSpeed.Common;
 
 namespace EllieSpeed.Receive
 {

@@ -8,7 +8,7 @@
 
 using System;
 
-namespace EllieSpeed.Broadcast
+namespace EllieSpeed.Common
 {
   [Serializable]
   public class SerialDataEventArgs : DataEventArgs<string>
