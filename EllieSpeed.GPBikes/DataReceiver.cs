@@ -28,6 +28,7 @@ namespace EllieSpeed.GPBikes
       mReceiver.OnSerialData += OnSerialData;
     }
 
+    // public for unit testing
     public void OnSerialData(object sender, SerialDataEventArgs e)
     {
       lock (mLock)
