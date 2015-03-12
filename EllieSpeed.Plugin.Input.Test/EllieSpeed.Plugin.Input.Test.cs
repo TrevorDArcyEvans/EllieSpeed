@@ -111,8 +111,20 @@ namespace EllieSpeed.Plugin.Input.Test
 
       GetControllerInfo(0, ptr);
 
-      // TODO   verify
+      var infoOut = (SControllerInfo_t)Marshal.PtrToStructure(ptr, typeof(SControllerInfo_t));
+
       var exp = DataReceiver.GetDefaultControllerInfo();
+      Assert.AreEqual(infoOut.Name, exp.Name);
+      Assert.AreEqual(infoOut.UUID, exp.UUID);
+      Assert.AreEqual(infoOut.ID, exp.ID);
+      Assert.AreEqual(infoOut.NumAxis, exp.NumAxis);
+      Assert.AreEqual(infoOut.AxisRange, exp.AxisRange);
+      Assert.AreEqual(infoOut.NumSliders, exp.NumSliders);
+      Assert.AreEqual(infoOut.SliderRange, exp.SliderRange);
+      Assert.AreEqual(infoOut.NumButtons, exp.NumButtons);
+      Assert.AreEqual(infoOut.NumPOV, exp.NumPOV);
+      Assert.AreEqual(infoOut.NumDials, exp.NumDials);
+      Assert.AreEqual(infoOut.DialRange, exp.DialRange);
     }
 
     [Test]
@@ -132,8 +144,14 @@ namespace EllieSpeed.Plugin.Input.Test
 
       GetControllerData(DataReceiver.ControllerID, ptr);
 
-      // TODO   verify
+      var dataOut = (SControllerData_t)Marshal.PtrToStructure(ptr, typeof(SControllerData_t));
+
       var exp = DataReceiver.GetDummyControllerData();
+      Assert.AreEqual(dataOut.Axis, exp.Axis);
+      Assert.AreEqual(dataOut.Slider, exp.Slider);
+      Assert.AreEqual(dataOut.Button, exp.Button);
+      Assert.AreEqual(dataOut.POV, exp.POV);
+      Assert.AreEqual(dataOut.Dial, exp.Dial);
     }
   }
 }
