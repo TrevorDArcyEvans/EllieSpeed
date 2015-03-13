@@ -11,6 +11,8 @@ using System.Runtime.InteropServices;
 
 namespace EllieSpeed.GPBikes
 {
+  #region Output
+
   [Serializable]
   [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
   public struct SPluginsBikeEvent_t
@@ -248,9 +250,12 @@ namespace EllieSpeed.GPBikes
     public float[] Start;
   }
 
+  #endregion
+
+  #region Input
 
   [Serializable]
-  [StructLayout(LayoutKind.Sequential)]
+  [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
   public struct SControllerInfo_t
   {
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
@@ -310,4 +315,6 @@ namespace EllieSpeed.GPBikes
     [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.I1)]
     public byte[] Dial;
   }
+
+  #endregion
 }
