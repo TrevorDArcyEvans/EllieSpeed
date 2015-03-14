@@ -31,11 +31,46 @@ namespace EllieSpeed.GPBikes
     // public for unit testing
     public void OnSerialData(object sender, SerialDataEventArgs e)
     {
+      var AxisOffset = 0;
+      var SliderOffset = AxisOffset + mLastData.Axis.Length;
+      var ButtonOffset = SliderOffset + mLastData.Slider.Length;
+      var POVOffset = ButtonOffset + mLastData.Button.Length;
+      var DialOffset = POVOffset + mLastData.POV.Length;
+
       lock (mLock)
       {
         var data = e.Data.Split(new[] { ArduinoReceiver.RS, ArduinoReceiver.ETX }, StringSplitOptions.RemoveEmptyEntries);
 
-        // TODO   crack data and convert to input
+        // crack data and convert to input
+        // Axis x6
+        for (var i = 0; i < mLastData.Axis.Length; i++)
+        {
+          mLastData.Axis[i] = short.Parse(data[AxisOffset + i]);
+        }
+
+        // Slider x6
+        for (var i = 0; i < mLastData.Slider.Length; i++)
+        {
+          mLastData.Slider[i] = short.Parse(data[SliderOffset + i]);
+        }
+
+        // Button x32
+        for (var i = 0; i < mLastData.Button.Length; i++)
+        {
+          mLastData.Button[i] = ToByte(int.Parse(data[ButtonOffset + i]));
+        }
+
+        // POV x2
+        for (var i = 0; i < mLastData.POV.Length; i++)
+        {
+          mLastData.POV[i] = ToByte(int.Parse(data[POVOffset + i]));
+        }
+
+        // Dial x8
+        for (var i = 0; i < mLastData.Dial.Length; i++)
+        {
+          mLastData.Dial[i] = ToByte(int.Parse(data[DialOffset + i]));
+        }
       }
     }
 
@@ -162,6 +197,11 @@ namespace EllieSpeed.GPBikes
                     },
       };
       return retval;
+    }
+
+    public static byte ToByte(int arduinoAnalogRead)
+    {
+      return (byte)((arduinoAnalogRead - 0) / (1023 - 0) * (255 - 0) + 0);
     }
   }
 }
