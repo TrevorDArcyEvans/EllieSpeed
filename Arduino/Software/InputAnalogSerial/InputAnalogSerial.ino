@@ -30,15 +30,97 @@ void setup()
   }
 }
 
+void ProcessAxis()
+{
+  // Axis x6 short
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+}
+
+void ProcessSlider()
+{
+  // Slider x6 short
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+}
+
+void ProcessButton()
+{
+  // Button x32 byte
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+}
+
+void ProcessPOV()
+{
+  // POV x2 byte
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+}
+
+void ProcessDial()
+{
+  // Dial x8 byte
+  Serial.print(analogRead(A0)); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+  Serial.print(0); Serial.print(RS);
+}
+
 // the loop routine runs over and over again forever:
 void loop()
 {
-  // read the input on analog pin 0:
-  int sensorValue = analogRead(A0);
-
   // print out the value you read:
   Serial.print(STX);
-  Serial.print(sensorValue);
+
+  ProcessAxis();
+  ProcessSlider();
+  ProcessButton();
+  ProcessPOV();
+  ProcessDial();
+
   Serial.print(ETX);
 
   // delay in between reads for stability
