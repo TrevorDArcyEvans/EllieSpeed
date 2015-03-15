@@ -15,7 +15,7 @@ namespace EllieSpeed.GPBikes
 {
   public class DataReceiver
   {
-    private readonly ArduinoMessenger mReceiver;
+    private readonly ArduinoMessenger mMessenger = new ArduinoMessenger(ArduinoMessenger.ArduinoPort);
     private readonly SControllerData_t mLastData = GetDummyControllerData();
     private readonly object mLock = new object();
 
@@ -23,8 +23,7 @@ namespace EllieSpeed.GPBikes
 
     public DataReceiver()
     {
-      mReceiver = new ArduinoMessenger(ArduinoMessenger.ArduinoPort);
-      mReceiver.OnSerialData += OnSerialData;
+      mMessenger.OnSerialData += OnSerialData;
     }
 
     // public for unit testing
@@ -87,7 +86,7 @@ namespace EllieSpeed.GPBikes
     /* called when software is closed */
     public void Shutdown()
     {
-      mReceiver.Dispose();
+      mMessenger.Dispose();
     }
 
     /* called every rendering frame. This function is optional */
