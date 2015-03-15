@@ -7,8 +7,6 @@
 //
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using EllieSpeed.Arduino;
 using EllieSpeed.Common;
 
@@ -40,6 +38,11 @@ namespace EllieSpeed.GPBikes
       lock (mLock)
       {
         var data = e.Data.Split(new[] { ArduinoReceiver.RS, ArduinoReceiver.ETX }, StringSplitOptions.RemoveEmptyEntries);
+        if (data.Length != mLastData.Axis.Length + mLastData.Slider.Length + mLastData.Button.Length + mLastData.POV.Length + mLastData.Dial.Length)
+        {
+          // incomplete data read
+          return;
+        }
 
         // crack data and convert to input
         // Axis x6
@@ -74,29 +77,35 @@ namespace EllieSpeed.GPBikes
       }
     }
 
+    /* called when software is started. If return value is not 0, the plugin is disabled */
     public int Startup()
     {
-      return 1;
+      return 0;
     }
 
+    /* called when software is closed */
     public void Shutdown()
     {
       mReceiver.Dispose();
     }
 
+    /* called every rendering frame. This function is optional */
     public void Update()
     {
     }
 
+    /* called when a control is queried */
     public void Reset()
     {
     }
 
+    /* called every few seconds to support hot plugging. The return value is the number of active controllers */
     public int GetNumControllers()
     {
       return 1;
     }
 
+    /* iIndex is the 0 based controller index. psInfo must be filled with controller info */
     public SControllerInfo_t GetControllerInfo(int iIndex)
     {
       if (iIndex != 0)
@@ -117,24 +126,25 @@ namespace EllieSpeed.GPBikes
         ID = ControllerID,
 
         // max number of axes = 6
-        NumAxis = 0,
+        NumAxis = 1,
         AxisRange = new short[18]
         {
           // min, max and center value of each axis
-          0, 0, 0,
-          0, 0, 0,
-          0, 0, 0,
-          0, 0, 0,
-          0, 0, 0,
-          0, 0, 0
+          0, 1023, 512,
+          0, 1023, 512,
+          0, 1023, 512,
+          0, 1023, 512,
+          0, 1023, 512,
+          0, 1023, 512
         },
 
         // max number of sliders = 6
-        NumSliders = 1,
+        NumSliders = 0,
         SliderRange = new short[6]
         {
           // max value of each slider
-          1024, 0, 0, 0, 0, 0
+          // Arduino is 10 bit analog input [0,1023]
+          1023, 1023, 1023, 1023, 1023, 1023
         },
 
         // max number of buttons = 32
@@ -148,12 +158,15 @@ namespace EllieSpeed.GPBikes
         DialRange = new byte[8]
         {
           // max value of dials
-          0, 0, 0, 0, 0, 0, 0, 0
+          // Arduino is 10 bit analog input [0,1023]
+          // but is mapped to [0, 255] in ToByte()
+          255, 255, 255, 255, 255, 255, 255, 255
         }
       };
       return retval;
     }
 
+    /* iID is the unique controller ID. psData must be filled with controller data */
     public SControllerData_t GetControllerData(int iID)
     {
       if (iID != ControllerID)
