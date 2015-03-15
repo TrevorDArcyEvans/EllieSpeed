@@ -8,21 +8,20 @@
 
 using System;
 using System.Configuration;
-using EllieSpeed.Arduino;
 using EllieSpeed.Common;
 using EllieSpeed.Common.GPBikes;
 
 namespace EllieSpeed.GPBikes
 {
-  public class DataReceiver
+  public class Messenger
   {
-    private readonly Messenger mMessenger = new Messenger(Messenger.ArduinoPort);
+    private readonly Arduino.Messenger mMessenger = new Arduino.Messenger(Arduino.Messenger.ArduinoPort);
     private readonly SControllerData_t mLastData = GetDummyControllerData();
     private readonly object mLock = new object();
 
     public const int ControllerID = 20060220;
 
-    public DataReceiver()
+    public Messenger()
     {
       mMessenger.OnSerialData += OnSerialData;
     }
@@ -38,7 +37,7 @@ namespace EllieSpeed.GPBikes
 
       lock (mLock)
       {
-        var data = e.Data.Split(new[] { Messenger.RS, Messenger.ETX }, StringSplitOptions.RemoveEmptyEntries);
+        var data = e.Data.Split(new[] { Arduino.Messenger.RS, Arduino.Messenger.ETX }, StringSplitOptions.RemoveEmptyEntries);
         if (data.Length != mLastData.Axis.Length + mLastData.Slider.Length + mLastData.Button.Length + mLastData.POV.Length + mLastData.Dial.Length)
         {
           // incomplete data read
@@ -120,7 +119,7 @@ namespace EllieSpeed.GPBikes
     // public for unit testing
     public static SControllerInfo_t GetDefaultControllerInfo()
     {
-      var cfg = ConfigurationManager.OpenExeConfiguration(typeof(DataReceiver).Assembly.Location);
+      var cfg = ConfigurationManager.OpenExeConfiguration(typeof(Messenger).Assembly.Location);
       var appSettings = (AppSettingsSection)cfg.GetSection("appSettings");
       var retval = new SControllerInfo_t
       {

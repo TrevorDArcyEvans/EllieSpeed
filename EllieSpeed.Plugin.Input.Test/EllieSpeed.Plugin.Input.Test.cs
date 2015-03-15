@@ -114,7 +114,7 @@ namespace EllieSpeed.Plugin.Input.Test
 
       var infoOut = (SControllerInfo_t)Marshal.PtrToStructure(ptr, typeof(SControllerInfo_t));
 
-      var exp = DataReceiver.GetDefaultControllerInfo();
+      var exp = Messenger.GetDefaultControllerInfo();
       Assert.AreEqual(infoOut.Name, exp.Name);
       Assert.AreEqual(infoOut.UUID, exp.UUID);
       Assert.AreEqual(infoOut.ID, exp.ID);
@@ -143,11 +143,11 @@ namespace EllieSpeed.Plugin.Input.Test
       var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(data));
       Marshal.StructureToPtr(data, ptr, true);
 
-      GetControllerData(DataReceiver.ControllerID, ptr);
+      GetControllerData(Messenger.ControllerID, ptr);
 
       var dataOut = (SControllerData_t)Marshal.PtrToStructure(ptr, typeof(SControllerData_t));
 
-      var exp = DataReceiver.GetDummyControllerData();
+      var exp = Messenger.GetDummyControllerData();
       Assert.AreEqual(dataOut.Axis, exp.Axis);
       Assert.AreEqual(dataOut.Slider, exp.Slider);
       Assert.AreEqual(dataOut.Button, exp.Button);

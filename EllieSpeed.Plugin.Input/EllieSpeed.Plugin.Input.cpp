@@ -21,7 +21,7 @@ using namespace System::Runtime::InteropServices;
 public ref class Globals
 {
 public:
-  static EllieSpeed::GPBikes::DataReceiver^ DataReceiver;
+  static EllieSpeed::GPBikes::Messenger^ Messenger;
 };
 
 Reflection::Assembly^ LoadFromSameFolder(Object^ sender, ResolveEventArgs^ args)
@@ -63,34 +63,34 @@ EXTERN_DLL_EXPORT int Version()
 /* called when software is started. If return value is not 0, the plugin is disabled */
 EXTERN_DLL_EXPORT int Startup()
 {
-  Globals::DataReceiver = gcnew EllieSpeed::GPBikes::DataReceiver();
+  Globals::Messenger = gcnew EllieSpeed::GPBikes::Messenger();
 
-  return Globals::DataReceiver->Startup();
+  return Globals::Messenger->Startup();
 }
 
 /* called when software is closed */
 EXTERN_DLL_EXPORT void Shutdown()
 {
-  Globals::DataReceiver->Shutdown();
-  Globals::DataReceiver = nullptr;
+  Globals::Messenger->Shutdown();
+  Globals::Messenger = nullptr;
 }
 
 /* called every rendering frame. This function is optional */
 EXTERN_DLL_EXPORT void Update()
 {
-  Globals::DataReceiver->Update();
+  Globals::Messenger->Update();
 }
 
 /* called when a control is queried */
 EXTERN_DLL_EXPORT void Reset()
 {
-  Globals::DataReceiver->Reset();
+  Globals::Messenger->Reset();
 }
 
 /* called every few seconds to support hot plugging. The return value is the number of active controllers */
 EXTERN_DLL_EXPORT int GetNumControllers()
 {
-  return Globals::DataReceiver->GetNumControllers();
+  return Globals::Messenger->GetNumControllers();
 }
 
 /* iIndex is the 0 based controller index. psInfo must be filled with controller info */
@@ -98,7 +98,7 @@ EXTERN_DLL_EXPORT int GetControllerInfo(int iIndex, SControllerInfo_t* psInfo)
 {
   USES_CONVERSION;
 
-  EllieSpeed::Common::GPBikes::SControllerInfo_t^ info = Globals::DataReceiver->GetControllerInfo(iIndex);
+  EllieSpeed::Common::GPBikes::SControllerInfo_t^ info = Globals::Messenger->GetControllerInfo(iIndex);
 
   pin_ptr<const wchar_t> name = PtrToStringChars(info->Name);
   const wchar_t *constName = name;
@@ -140,7 +140,7 @@ EXTERN_DLL_EXPORT int GetControllerInfo(int iIndex, SControllerInfo_t* psInfo)
 /* iID is the unique controller ID. psData must be filled with controller data */
 EXTERN_DLL_EXPORT int GetControllerData(int iID, SControllerData_t* psData)
 {
-  EllieSpeed::Common::GPBikes::SControllerData_t^ data = Globals::DataReceiver->GetControllerData(iID);
+  EllieSpeed::Common::GPBikes::SControllerData_t^ data = Globals::Messenger->GetControllerData(iID);
 
   for (int i = 0; i < 6; i++)
   {
