@@ -79,11 +79,18 @@ namespace EllieSpeed.Arduino
         return;
       }
 
-      var data = mPort.ReadTo(ETX);
-      var dataArray = data.Split(new[] { STX }, StringSplitOptions.RemoveEmptyEntries);
-      foreach (var thisData in dataArray)
+      try
       {
-        OnSerialData(this, new SerialDataEventArgs(thisData));
+        var data = mPort.ReadTo(ETX);
+        var dataArray = data.Split(new[] { STX }, StringSplitOptions.RemoveEmptyEntries);
+        foreach (var thisData in dataArray)
+        {
+          OnSerialData(this, new SerialDataEventArgs(thisData));
+        }
+      }
+      catch (IOException)
+      {
+        // happens when shutting down
       }
     }
 
