@@ -22,7 +22,7 @@ namespace EllieSpeed.Arduino.Receiver.Console
         return;
       }
 
-      using (var msg = new ArduinoMessenger(args[0]))
+      using (var msg = new Messenger(args[0]))
       {
         msg.OnSerialData += OnSerialData;
 

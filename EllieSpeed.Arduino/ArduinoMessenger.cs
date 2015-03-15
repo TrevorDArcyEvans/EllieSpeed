@@ -16,7 +16,7 @@ using EllieSpeed.Common;
 
 namespace EllieSpeed.Arduino
 {
-  public class ArduinoMessenger : IDisposable
+  public class Messenger : IDisposable
   {
     public const string STX = "\x02";
     public const string ETX = "\x03";
@@ -31,7 +31,7 @@ namespace EllieSpeed.Arduino
     private readonly SerialPort mPort;
     private readonly Mutex mArduinoMutex;
 
-    public ArduinoMessenger(string portName)
+    public Messenger(string portName)
     {
       mArduinoMutex = new Mutex(true, ArduinoMutexRoot + portName);
       if (mArduinoMutex.WaitOne(TimeSpan.Zero, true))
@@ -61,7 +61,7 @@ namespace EllieSpeed.Arduino
     {
       get
       {
-        var cfg = ConfigurationManager.OpenExeConfiguration(typeof(ArduinoMessenger).Assembly.Location);
+        var cfg = ConfigurationManager.OpenExeConfiguration(typeof(Messenger).Assembly.Location);
         var appSettings = (AppSettingsSection)cfg.GetSection("appSettings");
 
         return appSettings.Settings["ArduinoPort"].Value;

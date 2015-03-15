@@ -28,7 +28,7 @@ namespace EllieSpeed.Arduino.Test
     [Test]
     public void ReceiverConstructor_Completes()
     {
-      using (new ArduinoMessenger(ReceiveCOMPort))
+      using (new Messenger(ReceiveCOMPort))
       {
       }
     }
@@ -37,9 +37,9 @@ namespace EllieSpeed.Arduino.Test
     [ExpectedException(typeof(ArgumentException))]
     public void SecondReceiverConstructor_ThrowsException()
     {
-      using (new ArduinoMessenger(ReceiveCOMPort))
+      using (new Messenger(ReceiveCOMPort))
       {
-        using (new ArduinoMessenger(ReceiveCOMPort))
+        using (new Messenger(ReceiveCOMPort))
         {
         }
       }
@@ -48,7 +48,7 @@ namespace EllieSpeed.Arduino.Test
     [Test]
     public void SenderConstructor_Completes()
     {
-      using (new ArduinoMessenger(SendCOMPort))
+      using (new Messenger(SendCOMPort))
       {
       }
     }
@@ -57,9 +57,9 @@ namespace EllieSpeed.Arduino.Test
     [ExpectedException(typeof(UnauthorizedAccessException))]
     public void SecondSenderConstructor_ThrowsException()
     {
-      using (new ArduinoMessenger(SendCOMPort))
+      using (new Messenger(SendCOMPort))
       {
-        using (new ArduinoMessenger(SendCOMPort))
+        using (new Messenger(SendCOMPort))
         {
         }
       }
@@ -69,7 +69,7 @@ namespace EllieSpeed.Arduino.Test
     [Timeout(5000)]
     public void SenderSend_Completes()
     {
-      using (var send = new ArduinoMessenger(SendCOMPort))
+      using (var send = new Messenger(SendCOMPort))
       {
         send.Send("Hello, world!");
       }
@@ -81,7 +81,7 @@ namespace EllieSpeed.Arduino.Test
     {
       const string Message = "Hello, world!";
 
-      using (var rec = new ArduinoMessenger(ReceiveCOMPort))
+      using (var rec = new Messenger(ReceiveCOMPort))
       {
         var msgReceived = false;
         rec.OnSerialData += (sender, args) =>
@@ -90,7 +90,7 @@ namespace EllieSpeed.Arduino.Test
           Assert.AreEqual(args.Data, Message);
         };
 
-        using (var send = new ArduinoMessenger(SendCOMPort))
+        using (var send = new Messenger(SendCOMPort))
         {
           send.Send(Message);
         }

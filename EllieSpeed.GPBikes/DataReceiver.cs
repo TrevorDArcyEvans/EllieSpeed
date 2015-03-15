@@ -16,7 +16,7 @@ namespace EllieSpeed.GPBikes
 {
   public class DataReceiver
   {
-    private readonly ArduinoMessenger mMessenger = new ArduinoMessenger(ArduinoMessenger.ArduinoPort);
+    private readonly Messenger mMessenger = new Messenger(Messenger.ArduinoPort);
     private readonly SControllerData_t mLastData = GetDummyControllerData();
     private readonly object mLock = new object();
 
@@ -38,7 +38,7 @@ namespace EllieSpeed.GPBikes
 
       lock (mLock)
       {
-        var data = e.Data.Split(new[] { ArduinoMessenger.RS, ArduinoMessenger.ETX }, StringSplitOptions.RemoveEmptyEntries);
+        var data = e.Data.Split(new[] { Messenger.RS, Messenger.ETX }, StringSplitOptions.RemoveEmptyEntries);
         if (data.Length != mLastData.Axis.Length + mLastData.Slider.Length + mLastData.Button.Length + mLastData.POV.Length + mLastData.Dial.Length)
         {
           // incomplete data read
