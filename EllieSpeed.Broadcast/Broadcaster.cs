@@ -27,7 +27,7 @@ namespace EllieSpeed.Broadcast
     {
       get
       {
-        var cfg = ConfigurationManager.OpenExeConfiguration(new Broadcaster(string.Empty).GetType().Assembly.Location);
+        var cfg = ConfigurationManager.OpenExeConfiguration(typeof(Broadcaster).Assembly.Location);
         var appSettings = (AppSettingsSection)cfg.GetSection("appSettings");
 
         return int.Parse(appSettings.Settings["BroadcastPort"].Value);
@@ -43,9 +43,6 @@ namespace EllieSpeed.Broadcast
                       };
     }
 
-    private Broadcaster(string requiredForStaticContext)
-    {
-    }
 
     private void SendMessage(byte[] msg)
     {

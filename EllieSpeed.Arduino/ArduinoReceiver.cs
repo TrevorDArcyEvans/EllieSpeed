@@ -57,15 +57,11 @@ namespace EllieSpeed.Arduino
       }
     }
 
-    private ArduinoReceiver()
-    {
-    }
-
     public static string ArduinoPort
     {
       get
       {
-        var cfg = ConfigurationManager.OpenExeConfiguration(new ArduinoReceiver().GetType().Assembly.Location);
+        var cfg = ConfigurationManager.OpenExeConfiguration(typeof(ArduinoReceiver).Assembly.Location);
         var appSettings = (AppSettingsSection)cfg.GetSection("appSettings");
 
         return appSettings.Settings["ArduinoPort"].Value;
