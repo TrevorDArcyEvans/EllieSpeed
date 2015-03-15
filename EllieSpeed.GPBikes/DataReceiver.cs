@@ -7,6 +7,7 @@
 //
 
 using System;
+using System.Configuration;
 using EllieSpeed.Arduino;
 using EllieSpeed.Common;
 
@@ -119,6 +120,8 @@ namespace EllieSpeed.GPBikes
     // public for unit testing
     public static SControllerInfo_t GetDefaultControllerInfo()
     {
+      var cfg = ConfigurationManager.OpenExeConfiguration(typeof(DataReceiver).Assembly.Location);
+      var appSettings = (AppSettingsSection)cfg.GetSection("appSettings");
       var retval = new SControllerInfo_t
       {
         Name = "EllieSpeed Bike Simulator",
@@ -126,7 +129,7 @@ namespace EllieSpeed.GPBikes
         ID = ControllerID,
 
         // max number of axes = 6
-        NumAxis = 1,
+        NumAxis = byte.Parse(appSettings.Settings["NumAxis"].Value),
         AxisRange = new short[18]
         {
           // min, max and center value of each axis
@@ -139,7 +142,7 @@ namespace EllieSpeed.GPBikes
         },
 
         // max number of sliders = 6
-        NumSliders = 0,
+        NumSliders = byte.Parse(appSettings.Settings["NumSliders"].Value),
         SliderRange = new short[6]
         {
           // max value of each slider
@@ -148,13 +151,13 @@ namespace EllieSpeed.GPBikes
         },
 
         // max number of buttons = 32
-        NumButtons = 0,
+        NumButtons = byte.Parse(appSettings.Settings["NumButtons"].Value),
 
         // max POV = 2
-        NumPOV = 0,
+        NumPOV = byte.Parse(appSettings.Settings["NumPOV"].Value),
 
         // max number of dials = 8
-        NumDials = 0,
+        NumDials = byte.Parse(appSettings.Settings["NumDials"].Value),
         DialRange = new byte[8]
         {
           // max value of dials
