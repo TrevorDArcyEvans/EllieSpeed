@@ -49,6 +49,7 @@
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
     <Compile Include="DataEventArgs.cs" />
+    <Compile Include="GPBikes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerialDataEventArgs.cs" />
   </ItemGroup>

@@ -8,9 +8,6 @@
 
 using System;
 using System.Threading;
-using EllieSpeed.Broadcast;
-using EllieSpeed.Receive;
-using Moq;
 using NUnit.Framework;
 
 namespace EllieSpeed.Arduino.Test

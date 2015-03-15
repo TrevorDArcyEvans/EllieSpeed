@@ -41,12 +41,6 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\AssemblyInfoCommon.cs">
@@ -67,9 +61,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EllieSpeed.GPBikes\EllieSpeed.GPBikes.csproj">
-      <Project>{974811e2-a46c-488b-bfe7-0f3479f9e9dd}</Project>
-      <Name>EllieSpeed.GPBikes</Name>
+    <ProjectReference Include="..\EllieSpeed.Common\EllieSpeed.Common.csproj">
+      <Project>{f8cff83f-c0d0-4dfd-b8cc-1d646a06a45e}</Project>
+      <Name>EllieSpeed.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,7 +7,6 @@
 //
 
 using System;
-using EllieSpeed.Broadcast;
 using EllieSpeed.DataLogger;
 using NUnit.Framework;
 

@@ -15,6 +15,7 @@ using namespace System::Reflection;
 using namespace System::Runtime::InteropServices;
 
 #using "EllieSpeed.Broadcast.dll"
+#using "EllieSpeed.Common.dll"
 
 EllieSpeed::Broadcast::IBikeDataBroadcaster^ CreateBroadcaster()
 {

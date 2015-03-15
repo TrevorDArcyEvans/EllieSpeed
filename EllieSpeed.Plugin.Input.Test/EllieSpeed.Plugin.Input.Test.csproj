@@ -58,6 +58,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EllieSpeed.Common\EllieSpeed.Common.csproj">
+      <Project>{F8CFF83F-C0D0-4DFD-B8CC-1D646A06A45E}</Project>
+      <Name>EllieSpeed.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EllieSpeed.GPBikes\EllieSpeed.GPBikes.csproj">
       <Project>{974811E2-A46C-488B-BFE7-0F3479F9E9DD}</Project>
       <Name>EllieSpeed.GPBikes</Name>

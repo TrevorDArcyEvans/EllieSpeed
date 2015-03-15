@@ -61,6 +61,10 @@
       <Project>{180EA89E-CB8D-4889-B70E-4F5A77B219ED}</Project>
       <Name>EllieSpeed.Broadcast</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EllieSpeed.Common\EllieSpeed.Common.csproj">
+      <Project>{f8cff83f-c0d0-4dfd-b8cc-1d646a06a45e}</Project>
+      <Name>EllieSpeed.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EllieSpeed.DataLogger\EllieSpeed.DataLogger.csproj">
       <Project>{B1BCC89E-5046-48C1-8B83-7799824DA37D}</Project>
       <Name>EllieSpeed.DataLogger</Name>

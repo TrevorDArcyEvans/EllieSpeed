@@ -11,6 +11,7 @@
 #include <vcclr.h>
 #using <mscorlib.dll>
 #using "EllieSpeed.GPBikes.dll"
+#using "EllieSpeed.Common.dll"
 
 using namespace System;
 using namespace System::IO;
