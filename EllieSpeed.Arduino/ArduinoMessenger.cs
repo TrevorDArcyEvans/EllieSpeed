@@ -31,7 +31,7 @@ namespace EllieSpeed.Arduino
     private readonly SerialPort mPort;
     private readonly Mutex mArduinoMutex;
 
-    public ArduinoReceiver(string portName)
+    public ArduinoMessenger(string portName)
     {
       mArduinoMutex = new Mutex(true, ArduinoMutexRoot + portName);
       if (mArduinoMutex.WaitOne(TimeSpan.Zero, true))
@@ -61,7 +61,7 @@ namespace EllieSpeed.Arduino
     {
       get
       {
-        var cfg = ConfigurationManager.OpenExeConfiguration(typeof(ArduinoReceiver).Assembly.Location);
+        var cfg = ConfigurationManager.OpenExeConfiguration(typeof(ArduinoMessenger).Assembly.Location);
         var appSettings = (AppSettingsSection)cfg.GetSection("appSettings");
 
         return appSettings.Settings["ArduinoPort"].Value;
