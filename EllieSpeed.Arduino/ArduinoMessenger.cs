@@ -16,7 +16,7 @@ using EllieSpeed.Common;
 
 namespace EllieSpeed.Arduino
 {
-  public class ArduinoReceiver : IDisposable
+  public class ArduinoMessenger : IDisposable
   {
     public const string STX = "\x02";
     public const string ETX = "\x03";
@@ -65,6 +65,14 @@ namespace EllieSpeed.Arduino
         var appSettings = (AppSettingsSection)cfg.GetSection("appSettings");
 
         return appSettings.Settings["ArduinoPort"].Value;
+      }
+    }
+
+    public void Send(string msg)
+    {
+      if (mPort.IsOpen)
+      {
+        mPort.Write(msg);
       }
     }
 

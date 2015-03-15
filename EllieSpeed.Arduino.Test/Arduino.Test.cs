@@ -31,7 +31,7 @@ namespace EllieSpeed.Arduino.Test
     [Test]
     public void ReceiverConstructor_Completes()
     {
-      using (new ArduinoReceiver(ReceiveCOMPort))
+      using (new ArduinoMessenger(ReceiveCOMPort))
       {
       }
     }
@@ -40,9 +40,9 @@ namespace EllieSpeed.Arduino.Test
     [ExpectedException(typeof(ArgumentException))]
     public void SecondReceiverConstructor_ThrowsException()
     {
-      using (new ArduinoReceiver(ReceiveCOMPort))
+      using (new ArduinoMessenger(ReceiveCOMPort))
       {
-        using (new ArduinoReceiver(ReceiveCOMPort))
+        using (new ArduinoMessenger(ReceiveCOMPort))
         {
         }
       }
@@ -51,7 +51,7 @@ namespace EllieSpeed.Arduino.Test
     [Test]
     public void SenderConstructor_Completes()
     {
-      using (new ArduinoSender(SendCOMPort))
+      using (new ArduinoMessenger(SendCOMPort))
       {
       }
     }
@@ -60,9 +60,9 @@ namespace EllieSpeed.Arduino.Test
     [ExpectedException(typeof(UnauthorizedAccessException))]
     public void SecondSenderConstructor_ThrowsException()
     {
-      using (new ArduinoSender(SendCOMPort))
+      using (new ArduinoMessenger(SendCOMPort))
       {
-        using (new ArduinoSender(SendCOMPort))
+        using (new ArduinoMessenger(SendCOMPort))
         {
         }
       }
@@ -72,7 +72,7 @@ namespace EllieSpeed.Arduino.Test
     [Timeout(5000)]
     public void SenderSend_Completes()
     {
-      using (var send = new ArduinoSender(SendCOMPort))
+      using (var send = new ArduinoMessenger(SendCOMPort))
       {
         send.Send("Hello, world!");
       }
@@ -84,7 +84,7 @@ namespace EllieSpeed.Arduino.Test
     {
       const string Message = "Hello, world!";
 
-      using (var rec = new ArduinoReceiver(ReceiveCOMPort))
+      using (var rec = new ArduinoMessenger(ReceiveCOMPort))
       {
         var msgReceived = false;
         rec.OnSerialData += (sender, args) =>
@@ -93,7 +93,7 @@ namespace EllieSpeed.Arduino.Test
           Assert.AreEqual(args.Data, Message);
         };
 
-        using (var send = new ArduinoSender(SendCOMPort))
+        using (var send = new ArduinoMessenger(SendCOMPort))
         {
           send.Send(Message);
         }

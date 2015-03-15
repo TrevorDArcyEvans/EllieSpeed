@@ -22,9 +22,9 @@ namespace EllieSpeed.Arduino.Receiver.Console
         return;
       }
 
-      using (var rec = new ArduinoReceiver(args[0]))
+      using (var msg = new ArduinoMessenger(args[0]))
       {
-        rec.OnSerialData += OnSerialData;
+        msg.OnSerialData += OnSerialData;
 
         System.Console.WriteLine(@"Listening for Arduino data on " + args[0]);
         System.Console.WriteLine();

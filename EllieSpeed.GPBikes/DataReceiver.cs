@@ -15,7 +15,7 @@ namespace EllieSpeed.GPBikes
 {
   public class DataReceiver
   {
-    private readonly ArduinoReceiver mReceiver;
+    private readonly ArduinoMessenger mReceiver;
     private readonly SControllerData_t mLastData = GetDummyControllerData();
     private readonly object mLock = new object();
 
@@ -23,7 +23,7 @@ namespace EllieSpeed.GPBikes
 
     public DataReceiver()
     {
-      mReceiver = new ArduinoReceiver(ArduinoReceiver.ArduinoPort);
+      mReceiver = new ArduinoMessenger(ArduinoMessenger.ArduinoPort);
       mReceiver.OnSerialData += OnSerialData;
     }
 
@@ -38,7 +38,7 @@ namespace EllieSpeed.GPBikes
 
       lock (mLock)
       {
-        var data = e.Data.Split(new[] { ArduinoReceiver.RS, ArduinoReceiver.ETX }, StringSplitOptions.RemoveEmptyEntries);
+        var data = e.Data.Split(new[] { ArduinoMessenger.RS, ArduinoMessenger.ETX }, StringSplitOptions.RemoveEmptyEntries);
         if (data.Length != mLastData.Axis.Length + mLastData.Slider.Length + mLastData.Button.Length + mLastData.POV.Length + mLastData.Dial.Length)
         {
           // incomplete data read
