@@ -66,6 +66,10 @@
       <Project>{f8cff83f-c0d0-4dfd-b8cc-1d646a06a45e}</Project>
       <Name>EllieSpeed.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EllieSpeed.Receive\EllieSpeed.Receive.csproj">
+      <Project>{6501d7fc-e71a-4bf9-a585-56126183883b}</Project>
+      <Name>EllieSpeed.Receive</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

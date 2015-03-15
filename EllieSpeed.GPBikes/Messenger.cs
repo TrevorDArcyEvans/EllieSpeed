@@ -10,20 +10,60 @@ using System;
 using System.Configuration;
 using EllieSpeed.Common;
 using EllieSpeed.Common.GPBikes;
+using EllieSpeed.Receive;
 
 namespace EllieSpeed.GPBikes
 {
   public class Messenger
   {
-    private readonly Arduino.Messenger mMessenger = new Arduino.Messenger(Arduino.Messenger.ArduinoPort);
+    private readonly Arduino.Messenger mArduinoMessenger = new Arduino.Messenger(Arduino.Messenger.ArduinoPort);
     private readonly SControllerData_t mLastData = GetDummyControllerData();
     private readonly object mLock = new object();
+
+    private SPluginsBikeEvent_t mBikeEvent;
+    private readonly BikeDataReceiver mBikeDataReceiver = new BikeDataReceiver(Broadcast.Broadcaster.BroadcastPort);
 
     public const int ControllerID = 20060220;
 
     public Messenger()
     {
-      mMessenger.OnSerialData += OnSerialData;
+      mArduinoMessenger.OnSerialData += OnSerialData;
+      mBikeDataReceiver.OnEventInit += OnEventInit;
+      mBikeDataReceiver.OnRunTelemetry += OnRunTelemetry;
+    }
+
+    // public for unit testing
+    public void OnEventInit(object sender, DataEventArgs<SPluginsBikeEvent_t> e)
+    {
+      mBikeEvent = e.Data;
+    }
+
+    // public for unit testing
+    public void OnRunTelemetry(object sender, DataEventArgs<SPluginsBikeDataEx_t> dataEventArgs)
+    {
+      // from:
+      //    EllieSpeed.Arduino.Messenger.ino
+      //      ProcessSerialInput()
+      //
+      // format of string:
+      //    RPMval,shift,gear
+      //    [int],[bool],[int]
+      //
+      //  RPMval = engine RPM as a value [0, 255]
+      //            This will be sent directly to the tachometer
+      //            via the PWM pin.  The host PC is responsible
+      //            for mapping engine RPM to [0, 255].
+      //  shift  = true (1) to turn on shift light
+      //  gear   = current gear [0, 6]
+      //            0 to turn on neutral light
+      // eg:
+      //    180,1,3
+
+      var data = dataEventArgs.Data.BikeData;
+      var rpmVal = (byte)(mBikeEvent.MaxRPM / data.RPM * byte.MaxValue);
+      var shouldShift = data.RPM > mBikeEvent.ShiftRPM ? 1 : 0;
+
+      mArduinoMessenger.Send(string.Format("{0},{1},{2}", rpmVal, shouldShift, data.Gear));
     }
 
     // public for unit testing
@@ -86,7 +126,8 @@ namespace EllieSpeed.GPBikes
     /* called when software is closed */
     public void Shutdown()
     {
-      mMessenger.Dispose();
+      mArduinoMessenger.Dispose();
+      mBikeDataReceiver.Dispose();
     }
 
     /* called every rendering frame. This function is optional */
@@ -214,6 +255,7 @@ namespace EllieSpeed.GPBikes
       return retval;
     }
 
+    // public for unit testing
     public static byte ToByte(int arduinoAnalogRead)
     {
       return (byte)((arduinoAnalogRead - 0) / (1023 - 0) * (255 - 0) + 0);
