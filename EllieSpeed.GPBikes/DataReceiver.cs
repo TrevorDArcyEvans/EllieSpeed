@@ -10,6 +10,7 @@ using System;
 using System.Configuration;
 using EllieSpeed.Arduino;
 using EllieSpeed.Common;
+using EllieSpeed.Common.GPBikes;
 
 namespace EllieSpeed.GPBikes
 {

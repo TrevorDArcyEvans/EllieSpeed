@@ -10,6 +10,7 @@ using System;
 using System.Linq;
 using EllieSpeed.Broadcast;
 using EllieSpeed.Common;
+using EllieSpeed.Common.GPBikes;
 using EllieSpeed.Receive;
 
 namespace EllieSpeed.DataLogger
@@ -46,7 +47,7 @@ namespace EllieSpeed.DataLogger
     {
     }
 
-    private void OnEventInit(object sender, DataEventArgs<GPBikes.SPluginsBikeEvent_t> e)
+    private void OnEventInit(object sender, DataEventArgs<SPluginsBikeEvent_t> e)
     {
       var data = e.Data;
       var dbObj = new BikeEvent
@@ -72,7 +73,7 @@ namespace EllieSpeed.DataLogger
       mLogger.SaveChanges();
     }
 
-    private void OnRunInit(object sender, DataEventArgs<GPBikes.SPluginsBikeSession_t> e)
+    private void OnRunInit(object sender, DataEventArgs<SPluginsBikeSession_t> e)
     {
       var data = e.Data;
       var dbObj = new BikeSession
@@ -100,7 +101,7 @@ namespace EllieSpeed.DataLogger
     {
     }
 
-    private void OnRunLap(object sender, DataEventArgs<GPBikes.SPluginsBikeLap_t> e)
+    private void OnRunLap(object sender, DataEventArgs<SPluginsBikeLap_t> e)
     {
       var data = e.Data;
       var dbObj = new BikeLap
@@ -114,7 +115,7 @@ namespace EllieSpeed.DataLogger
       mLogger.SaveChanges();
     }
 
-    private void OnRunSplit(object sender, DataEventArgs<GPBikes.SPluginsBikeSplit_t> e)
+    private void OnRunSplit(object sender, DataEventArgs<SPluginsBikeSplit_t> e)
     {
       var data = e.Data;
       var dbObj = new BikeSplit
@@ -128,7 +129,7 @@ namespace EllieSpeed.DataLogger
       mLogger.SaveChanges();
     }
 
-    private void OnRunTelemetry(object sender, DataEventArgs<GPBikes.SPluginsBikeDataEx_t> e)
+    private void OnRunTelemetry(object sender, DataEventArgs<SPluginsBikeDataEx_t> e)
     {
       var data = e.Data;
       var dbObj = new BikeData
@@ -183,7 +184,7 @@ namespace EllieSpeed.DataLogger
       mLogger.SaveChanges();
     }
 
-    private void OnTrackCenterline(object sender, DataEventArgs<GPBikes.SPluginsTrackSegment_t[]> e)
+    private void OnTrackCenterline(object sender, DataEventArgs<SPluginsTrackSegment_t[]> e)
     {
       var data = e.Data;
       var dbObjs = from ts in data

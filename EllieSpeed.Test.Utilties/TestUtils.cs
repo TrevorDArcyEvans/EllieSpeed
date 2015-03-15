@@ -7,6 +7,7 @@
 //
 
 using System;
+using EllieSpeed.Common.GPBikes;
 using EllieSpeed.DataLogger;
 using NUnit.Framework;
 
@@ -14,9 +15,9 @@ namespace EllieSpeed.Test.Utilties
 {
   public class TestUtils
   {
-    public static GPBikes.SPluginsBikeEvent_t CreateBikeEvent()
+    public static SPluginsBikeEvent_t CreateBikeEvent()
     {
-      var data = new GPBikes.SPluginsBikeEvent_t
+      var data = new SPluginsBikeEvent_t
       {
         RiderName = "trevorde",
         BikeID = "VFR 400",
@@ -38,9 +39,9 @@ namespace EllieSpeed.Test.Utilties
       return data;
     }
 
-    public static GPBikes.SPluginsBikeSession_t CreateBikeSession()
+    public static SPluginsBikeSession_t CreateBikeSession()
     {
-      var data = new GPBikes.SPluginsBikeSession_t
+      var data = new SPluginsBikeSession_t
       {
         Session = 4,
         Conditions = 2,
@@ -51,9 +52,9 @@ namespace EllieSpeed.Test.Utilties
       return data;
     }
 
-    public static GPBikes.SPluginsBikeLap_t CreateBikeLap()
+    public static SPluginsBikeLap_t CreateBikeLap()
     {
-      var data = new GPBikes.SPluginsBikeLap_t
+      var data = new SPluginsBikeLap_t
       {
         LapTime = 66000,
         Best = 1,
@@ -62,9 +63,9 @@ namespace EllieSpeed.Test.Utilties
       return data;
     }
 
-    public static GPBikes.SPluginsBikeSplit_t CreateBikeSplit()
+    public static SPluginsBikeSplit_t CreateBikeSplit()
     {
-      var data = new GPBikes.SPluginsBikeSplit_t
+      var data = new SPluginsBikeSplit_t
       {
         Split = 3,
         SplitTime = 66000,
@@ -73,9 +74,9 @@ namespace EllieSpeed.Test.Utilties
       return data;
     }
 
-    public static GPBikes.SPluginsBikeData_t CreateBikeData()
+    public static SPluginsBikeData_t CreateBikeData()
     {
-      var data = new GPBikes.SPluginsBikeData_t
+      var data = new SPluginsBikeData_t
       {
         RPM = 13500f,
         EngineTemperature = 220f,
@@ -124,9 +125,9 @@ namespace EllieSpeed.Test.Utilties
       return data;
     }
 
-    public static GPBikes.SPluginsBikeDataEx_t CreateBikeDataEx()
+    public static SPluginsBikeDataEx_t CreateBikeDataEx()
     {
-      var data = new GPBikes.SPluginsBikeDataEx_t
+      var data = new SPluginsBikeDataEx_t
       {
         TrackTime = 1.57f,
         TrackPosition = 0.657f,
@@ -136,10 +137,10 @@ namespace EllieSpeed.Test.Utilties
       return data;
     }
 
-    public static GPBikes.SPluginsTrackSegment_t CreateTrackSegment()
+    public static SPluginsTrackSegment_t CreateTrackSegment()
     {
       var rand = new Random();
-      var data = new GPBikes.SPluginsTrackSegment_t
+      var data = new SPluginsTrackSegment_t
       {
         Start = new[]
                 {
@@ -155,7 +156,7 @@ namespace EllieSpeed.Test.Utilties
       return data;
     }
 
-    public static void AssertAreEqual(GPBikes.SPluginsBikeEvent_t recData, GPBikes.SPluginsBikeEvent_t data)
+    public static void AssertAreEqual(SPluginsBikeEvent_t recData, SPluginsBikeEvent_t data)
     {
       Assert.AreEqual(recData.RiderName, data.RiderName);
       Assert.AreEqual(recData.BikeID, data.BikeID);
@@ -174,7 +175,7 @@ namespace EllieSpeed.Test.Utilties
       Assert.AreEqual(recData.TrackLength, data.TrackLength);
     }
 
-    public static void AssertAreEqual(BikeEvent recData, GPBikes.SPluginsBikeEvent_t data)
+    public static void AssertAreEqual(BikeEvent recData, SPluginsBikeEvent_t data)
     {
       Assert.AreEqual(recData.RiderName, data.RiderName);
       Assert.AreEqual(recData.BikeID, data.BikeID);
@@ -193,7 +194,7 @@ namespace EllieSpeed.Test.Utilties
       Assert.AreEqual(recData.TrackLength, data.TrackLength);
     }
 
-    public static void AssertAreEqual(GPBikes.SPluginsBikeSession_t recData, GPBikes.SPluginsBikeSession_t data)
+    public static void AssertAreEqual(SPluginsBikeSession_t recData, SPluginsBikeSession_t data)
     {
       Assert.AreEqual(recData.Session, data.Session);
       Assert.AreEqual(recData.Conditions, data.Conditions);
@@ -202,7 +203,7 @@ namespace EllieSpeed.Test.Utilties
       Assert.AreEqual(recData.SetupFileName, data.SetupFileName);
     }
 
-    public static void AssertAreEqual(BikeSession recData, GPBikes.SPluginsBikeSession_t data)
+    public static void AssertAreEqual(BikeSession recData, SPluginsBikeSession_t data)
     {
       Assert.AreEqual(recData.Session, data.Session);
       Assert.AreEqual(recData.Conditions, data.Conditions);
@@ -211,35 +212,35 @@ namespace EllieSpeed.Test.Utilties
       Assert.AreEqual(recData.SetupFileName, data.SetupFileName);
     }
 
-    public static void AssertAreEqual(GPBikes.SPluginsBikeLap_t recData, GPBikes.SPluginsBikeLap_t data)
+    public static void AssertAreEqual(SPluginsBikeLap_t recData, SPluginsBikeLap_t data)
     {
       Assert.AreEqual(recData.LapTime, data.LapTime);
       Assert.AreEqual(recData.Best, data.Best);
       Assert.AreEqual(recData.LapNum, data.LapNum);
     }
 
-    public static void AssertAreEqual(BikeLap recData, GPBikes.SPluginsBikeLap_t data)
+    public static void AssertAreEqual(BikeLap recData, SPluginsBikeLap_t data)
     {
       Assert.AreEqual(recData.LapTime, data.LapTime);
       Assert.AreEqual(recData.Best, data.Best);
       Assert.AreEqual(recData.LapNum, data.LapNum);
     }
 
-    public static void AssertAreEqual(GPBikes.SPluginsBikeSplit_t recData, GPBikes.SPluginsBikeSplit_t data)
+    public static void AssertAreEqual(SPluginsBikeSplit_t recData, SPluginsBikeSplit_t data)
     {
       Assert.AreEqual(recData.Split, data.Split);
       Assert.AreEqual(recData.SplitTime, data.SplitTime);
       Assert.AreEqual(recData.BestDiff, data.BestDiff);
     }
 
-    public static void AssertAreEqual(BikeSplit recData, GPBikes.SPluginsBikeSplit_t data)
+    public static void AssertAreEqual(BikeSplit recData, SPluginsBikeSplit_t data)
     {
       Assert.AreEqual(recData.Split, data.Split);
       Assert.AreEqual(recData.SplitTime, data.SplitTime);
       Assert.AreEqual(recData.BestDiff, data.BestDiff);
     }
 
-    public static void AssertAreEqual(GPBikes.SPluginsBikeData_t recData, GPBikes.SPluginsBikeData_t data)
+    public static void AssertAreEqual(SPluginsBikeData_t recData, SPluginsBikeData_t data)
     {
       //Assert.AreEqual(recData.TrackTime, data.TrackTime);
       //Assert.AreEqual(recData.TrackPosition, data.TrackPosition);
@@ -296,7 +297,7 @@ namespace EllieSpeed.Test.Utilties
       Assert.AreEqual(recData.EngineMapping, data.EngineMapping);
     }
 
-    public static void AssertAreEqual(BikeData recData, GPBikes.SPluginsBikeData_t data)
+    public static void AssertAreEqual(BikeData recData, SPluginsBikeData_t data)
     {
       Assert.AreEqual(recData.RPM, data.RPM);
       Assert.AreEqual(recData.EngineTemperature, data.EngineTemperature);
@@ -351,7 +352,7 @@ namespace EllieSpeed.Test.Utilties
       Assert.AreEqual(recData.EngineMapping, data.EngineMapping);
     }
 
-    public static void AssertAreEqual(GPBikes.SPluginsTrackSegment_t recData, GPBikes.SPluginsTrackSegment_t data)
+    public static void AssertAreEqual(SPluginsTrackSegment_t recData, SPluginsTrackSegment_t data)
     {
       Assert.AreEqual(recData.Type, data.Type);
       Assert.AreEqual(recData.Length, data.Length);
@@ -361,7 +362,7 @@ namespace EllieSpeed.Test.Utilties
       Assert.AreEqual(recData.Start[1], data.Start[1]);
     }
 
-    public static void AssertAreEqual(TrackSegment recData, GPBikes.SPluginsTrackSegment_t data)
+    public static void AssertAreEqual(TrackSegment recData, SPluginsTrackSegment_t data)
     {
       Assert.AreEqual(recData.Type, data.Type);
       Assert.AreEqual(recData.Length, data.Length);
@@ -371,7 +372,7 @@ namespace EllieSpeed.Test.Utilties
       Assert.AreEqual(recData.Start2, data.Start[1]);
     }
 
-    public static void AssertAreEqual(BikeData recData, GPBikes.SPluginsBikeDataEx_t data)
+    public static void AssertAreEqual(BikeData recData, SPluginsBikeDataEx_t data)
     {
       Assert.AreEqual(recData.TrackTime, data.TrackTime);
       Assert.AreEqual(recData.TrackPosition, data.TrackPosition);

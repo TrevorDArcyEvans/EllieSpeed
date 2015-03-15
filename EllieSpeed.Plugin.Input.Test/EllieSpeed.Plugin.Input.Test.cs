@@ -8,6 +8,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using EllieSpeed.Common.GPBikes;
 using EllieSpeed.GPBikes;
 using NUnit.Framework;
 

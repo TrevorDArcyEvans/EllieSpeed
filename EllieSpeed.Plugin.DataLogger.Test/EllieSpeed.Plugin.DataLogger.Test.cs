@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading;
 using EllieSpeed.Broadcast;
+using EllieSpeed.Common.GPBikes;
 using EllieSpeed.Receive;
 using EllieSpeed.Test.Utilties;
 using NUnit.Framework;
@@ -107,7 +108,7 @@ namespace EllieSpeed.Plugin.DataLogger.Test
     /// pRaceData: void*
     /* This function is optional */
     [DllImport("EllieSpeed.Plugin.DataLogger.dlo", EntryPoint = "TrackCenterline")]
-    public static extern void TrackCenterline(int iNumSegments, [MarshalAs(UnmanagedType.LPArray)] GPBikes.SPluginsTrackSegment_t[] pasSegment, IntPtr pRaceData);
+    public static extern void TrackCenterline(int iNumSegments, [MarshalAs(UnmanagedType.LPArray)] SPluginsTrackSegment_t[] pasSegment, IntPtr pRaceData);
 
     #endregion
 
@@ -186,7 +187,7 @@ namespace EllieSpeed.Plugin.DataLogger.Test
       var msgReceived = false;
       using (var rec = new BikeDataReceiver(BroadcastPort))
       {
-        var recData = new GPBikes.SPluginsBikeEvent_t();
+        var recData = new SPluginsBikeEvent_t();
         rec.OnEventInit += (sender, args) =>
         {
           msgReceived = true;
@@ -215,7 +216,7 @@ namespace EllieSpeed.Plugin.DataLogger.Test
       var msgReceived = false;
       using (var rec = new BikeDataReceiver(BroadcastPort))
       {
-        var recData = new GPBikes.SPluginsBikeSession_t();
+        var recData = new SPluginsBikeSession_t();
         rec.OnRunInit += (sender, args) =>
         {
           msgReceived = true;
@@ -298,7 +299,7 @@ namespace EllieSpeed.Plugin.DataLogger.Test
       var msgReceived = false;
       using (var rec = new BikeDataReceiver(BroadcastPort))
       {
-        var recData = new GPBikes.SPluginsBikeLap_t();
+        var recData = new SPluginsBikeLap_t();
         rec.OnRunLap += (sender, args) =>
         {
           msgReceived = true;
@@ -327,7 +328,7 @@ namespace EllieSpeed.Plugin.DataLogger.Test
       var msgReceived = false;
       using (var rec = new BikeDataReceiver(BroadcastPort))
       {
-        var recData = new GPBikes.SPluginsBikeSplit_t();
+        var recData = new SPluginsBikeSplit_t();
         rec.OnRunSplit += (sender, args) =>
         {
           msgReceived = true;
@@ -357,7 +358,7 @@ namespace EllieSpeed.Plugin.DataLogger.Test
       var msgReceived = false;
       using (var rec = new BikeDataReceiver(BroadcastPort))
       {
-        var recData = new GPBikes.SPluginsBikeDataEx_t();
+        var recData = new SPluginsBikeDataEx_t();
         rec.OnRunTelemetry += (sender, args) =>
         {
           msgReceived = true;
@@ -381,7 +382,7 @@ namespace EllieSpeed.Plugin.DataLogger.Test
     {
       const int NumTrackSegs = 10;
 
-      var data = new List<GPBikes.SPluginsTrackSegment_t>(NumTrackSegs);
+      var data = new List<SPluginsTrackSegment_t>(NumTrackSegs);
 
       for (var i = 0; i < NumTrackSegs; i++)
       {
@@ -392,7 +393,7 @@ namespace EllieSpeed.Plugin.DataLogger.Test
       var msgReceived = false;
       using (var rec = new BikeDataReceiver(BroadcastPort))
       {
-        var recData = new GPBikes.SPluginsTrackSegment_t[2];
+        var recData = new SPluginsTrackSegment_t[2];
         rec.OnTrackCenterline += (sender, args) =>
         {
           msgReceived = true;

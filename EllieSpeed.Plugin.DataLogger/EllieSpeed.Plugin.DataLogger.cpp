@@ -104,7 +104,7 @@ EXTERN_DLL_EXPORT void EventInit(void *pData, int iDataSize)
   SPluginsBikeEvent_t *psEventData = static_cast<SPluginsBikeEvent_t*>(pData);
 
   // convert to managed data
-  EllieSpeed::GPBikes::SPluginsBikeEvent_t data;
+  EllieSpeed::Common::GPBikes::SPluginsBikeEvent_t data;
   data.RiderName = Marshal::PtrToStringAnsi((IntPtr)psEventData->m_szRiderName);
   data.BikeID = Marshal::PtrToStringAnsi((IntPtr)psEventData->m_szBikeID);
   data.BikeName = Marshal::PtrToStringAnsi((IntPtr)psEventData->m_szBikeName);
@@ -132,7 +132,7 @@ EXTERN_DLL_EXPORT void RunInit(void *pData, int iDataSize)
   SPluginsBikeSession_t *psSessionData = static_cast<SPluginsBikeSession_t*>(pData);
 
   // convert to managed data
-  EllieSpeed::GPBikes::SPluginsBikeSession_t data;
+  EllieSpeed::Common::GPBikes::SPluginsBikeSession_t data;
   data.Session = psSessionData->m_iSession;
   data.Conditions = psSessionData->m_iConditions;
   data.AirTemperature = psSessionData->m_fAirTemperature;
@@ -167,7 +167,7 @@ EXTERN_DLL_EXPORT void RunLap(void *pData, int iDataSize)
   SPluginsBikeLap_t *psLapData = static_cast<SPluginsBikeLap_t*>(pData);
 
   // convert to managed data
-  EllieSpeed::GPBikes::SPluginsBikeLap_t data;
+  EllieSpeed::Common::GPBikes::SPluginsBikeLap_t data;
   data.LapTime = psLapData->m_iLapTime;
   data.Best = psLapData->m_iBest;
   data.LapNum = psLapData->m_iLapNum;
@@ -182,7 +182,7 @@ EXTERN_DLL_EXPORT void RunSplit(void *pData, int iDataSize)
   SPluginsBikeSplit_t *psSplitData = static_cast<SPluginsBikeSplit_t*>(pData);
 
   // convert to managed data
-  EllieSpeed::GPBikes::SPluginsBikeSplit_t data;
+  EllieSpeed::Common::GPBikes::SPluginsBikeSplit_t data;
   data.Split = psSplitData->m_iSplit;
   data.SplitTime = psSplitData->m_iSplitTime;
   data.BestDiff = psSplitData->m_iBestDiff;
@@ -197,7 +197,7 @@ EXTERN_DLL_EXPORT void RunTelemetry(void *pData, int iDataSize, float fTime, flo
   SPluginsBikeData_t *psBikeData = static_cast<SPluginsBikeData_t*>(pData);
 
   // convert to managed data
-  EllieSpeed::GPBikes::SPluginsBikeDataEx_t data;
+  EllieSpeed::Common::GPBikes::SPluginsBikeDataEx_t data;
   data.TrackTime = fTime;
   data.TrackPosition = fPos;
   data.BikeData.RPM = psBikeData->m_fRPM;
@@ -254,7 +254,7 @@ EXTERN_DLL_EXPORT void RunTelemetry(void *pData, int iDataSize, float fTime, flo
 EXTERN_DLL_EXPORT void TrackCenterline(int iNumSegments, SPluginsTrackSegment_t *pasSegment, void *pRaceData)
 {
   // convert to managed data
-  array<EllieSpeed::GPBikes::SPluginsTrackSegment_t>^ data = gcnew array<EllieSpeed::GPBikes::SPluginsTrackSegment_t>(iNumSegments);
+  array<EllieSpeed::Common::GPBikes::SPluginsTrackSegment_t>^ data = gcnew array<EllieSpeed::Common::GPBikes::SPluginsTrackSegment_t>(iNumSegments);
 
   for (int i = 0; i < iNumSegments; i++)
   {

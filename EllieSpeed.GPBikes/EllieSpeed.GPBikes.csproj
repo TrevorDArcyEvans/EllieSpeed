@@ -58,6 +58,10 @@
       <Project>{e9baba9b-b8f9-418a-8440-a2570ac21441}</Project>
       <Name>EllieSpeed.Arduino</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EllieSpeed.Broadcast\EllieSpeed.Broadcast.csproj">
+      <Project>{180ea89e-cb8d-4889-b70e-4f5a77b219ed}</Project>
+      <Name>EllieSpeed.Broadcast</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EllieSpeed.Common\EllieSpeed.Common.csproj">
       <Project>{f8cff83f-c0d0-4dfd-b8cc-1d646a06a45e}</Project>
       <Name>EllieSpeed.Common</Name>

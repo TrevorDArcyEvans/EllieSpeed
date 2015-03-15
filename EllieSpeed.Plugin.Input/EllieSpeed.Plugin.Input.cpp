@@ -98,7 +98,7 @@ EXTERN_DLL_EXPORT int GetControllerInfo(int iIndex, SControllerInfo_t* psInfo)
 {
   USES_CONVERSION;
 
-  EllieSpeed::GPBikes::SControllerInfo_t^ info = Globals::DataReceiver->GetControllerInfo(iIndex);
+  EllieSpeed::Common::GPBikes::SControllerInfo_t^ info = Globals::DataReceiver->GetControllerInfo(iIndex);
 
   pin_ptr<const wchar_t> name = PtrToStringChars(info->Name);
   const wchar_t *constName = name;
@@ -140,7 +140,7 @@ EXTERN_DLL_EXPORT int GetControllerInfo(int iIndex, SControllerInfo_t* psInfo)
 /* iID is the unique controller ID. psData must be filled with controller data */
 EXTERN_DLL_EXPORT int GetControllerData(int iID, SControllerData_t* psData)
 {
-  EllieSpeed::GPBikes::SControllerData_t^ data = Globals::DataReceiver->GetControllerData(iID);
+  EllieSpeed::Common::GPBikes::SControllerData_t^ data = Globals::DataReceiver->GetControllerData(iID);
 
   for (int i = 0; i < 6; i++)
   {

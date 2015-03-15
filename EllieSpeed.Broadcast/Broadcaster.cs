@@ -13,6 +13,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using EllieSpeed.Common.GPBikes;
 
 namespace EllieSpeed.Broadcast
 {
@@ -77,13 +78,13 @@ namespace EllieSpeed.Broadcast
       SendMessage(msg);
     }
 
-    public void OnEventInit(GPBikes.SPluginsBikeEvent_t data)
+    public void OnEventInit(SPluginsBikeEvent_t data)
     {
       var msg = ObjectToByteArray(data);
       SendMessage(msg);
     }
 
-    public void OnRunInit(GPBikes.SPluginsBikeSession_t data)
+    public void OnRunInit(SPluginsBikeSession_t data)
     {
       var msg = ObjectToByteArray(data);
       SendMessage(msg);
@@ -107,25 +108,25 @@ namespace EllieSpeed.Broadcast
       SendMessage(msg);
     }
 
-    public void OnRunLap(GPBikes.SPluginsBikeLap_t data)
+    public void OnRunLap(SPluginsBikeLap_t data)
     {
       var msg = ObjectToByteArray(data);
       SendMessage(msg);
     }
 
-    public void OnRunSplit(GPBikes.SPluginsBikeSplit_t data)
+    public void OnRunSplit(SPluginsBikeSplit_t data)
     {
       var msg = ObjectToByteArray(data);
       SendMessage(msg);
     }
 
-    public void OnRunTelemetry(GPBikes.SPluginsBikeDataEx_t data)
+    public void OnRunTelemetry(SPluginsBikeDataEx_t data)
     {
       var msg = ObjectToByteArray(data);
       SendMessage(msg);
     }
 
-    public void OnTrackCenterline(GPBikes.SPluginsTrackSegment_t[] data)
+    public void OnTrackCenterline(SPluginsTrackSegment_t[] data)
     {
       var msg = ObjectToByteArray(data);
       SendMessage(msg);

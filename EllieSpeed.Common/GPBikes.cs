@@ -9,7 +9,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace EllieSpeed.GPBikes
+namespace EllieSpeed.Common.GPBikes
 {
   #region Output
 
