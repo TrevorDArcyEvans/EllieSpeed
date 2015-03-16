@@ -73,6 +73,10 @@
       <Project>{974811e2-a46c-488b-bfe7-0f3479f9e9dd}</Project>
       <Name>EllieSpeed.GPBikes</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EllieSpeed.Test.Utilties\EllieSpeed.Test.Utilties.csproj">
+      <Project>{0FDAE05E-FAB3-4D9E-A26F-4BDC9A0276B4}</Project>
+      <Name>EllieSpeed.Test.Utilties</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

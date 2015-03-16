@@ -7,12 +7,14 @@
 //
 
 using EllieSpeed.Common;
+using EllieSpeed.Common.GPBikes;
+using EllieSpeed.Test.Utilties;
 using NUnit.Framework;
 
 namespace EllieSpeed.GPBikes.Test
 {
   [TestFixture]
-  public class DataReceiver_Test
+  public class Messenger_Test
   {
     private const string Data =
       // Axis x6
@@ -107,6 +109,24 @@ namespace EllieSpeed.GPBikes.Test
       Assert.AreEqual(conData.Dial[5], Messenger.ToByte(42));
       Assert.AreEqual(conData.Dial[6], Messenger.ToByte(43));
       Assert.AreEqual(conData.Dial[7], Messenger.ToByte(44));
+    }
+
+    [Test]
+    public void OnEventInit_Completes()
+    {
+      var rec = new Messenger();
+
+      rec.OnEventInit(this, new DataEventArgs<SPluginsBikeEvent_t>(TestUtils.CreateBikeEvent()));
+    }
+
+    [Test]
+    public void OnRunTelemetry_Completes()
+    {
+      var rec = new Messenger();
+
+      rec.OnEventInit(this, new DataEventArgs<SPluginsBikeEvent_t>(TestUtils.CreateBikeEvent()));
+
+      rec.OnRunTelemetry(this, new DataEventArgs<SPluginsBikeDataEx_t>(TestUtils.CreateBikeDataEx()));
     }
 
     [Test]
