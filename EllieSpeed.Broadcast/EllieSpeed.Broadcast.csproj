@@ -55,10 +55,10 @@
     <None Include="..\EllieSpeed.snk">
       <Link>EllieSpeed.snk</Link>
     </None>
-    <Content Include="EllieSpeed.Broadcast.dll.config">
+    <None Include="EllieSpeed.Broadcast.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EllieSpeed.Common\EllieSpeed.Common.csproj">
