@@ -60,7 +60,7 @@ namespace EllieSpeed.GPBikes
       //    180,1,3
 
       var data = dataEventArgs.Data.BikeData;
-      var rpmVal = (byte)(mBikeEvent.MaxRPM / data.RPM * byte.MaxValue);
+      var rpmVal = (byte)(data.RPM / mBikeEvent.MaxRPM * byte.MaxValue);
       var shouldShift = data.RPM > mBikeEvent.ShiftRPM ? 1 : 0;
 
       mArduinoMessenger.Send(string.Format("{0},{1},{2}", rpmVal, shouldShift, data.Gear));
