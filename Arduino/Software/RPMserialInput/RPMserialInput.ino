@@ -1,3 +1,5 @@
+#include <arduino.h>
+
 //  http://bildr.org/2011/03/high-power-control-with-arduino-and-tip120/
 // PWM pin connected to base of transistor
 const int RpmPin = 9;
@@ -7,6 +9,8 @@ const int ShiftPin = 10;
 
 // TODO  wire neutral light
 const int NeutralGearPin = 11;
+
+void ProcessSerial();
 
 // the setup routine runs once when you press reset
 void setup()
@@ -18,7 +22,7 @@ void setup()
     // wait for serial port to connect. Needed for Leonardo only
     NULL;
   }
-  
+
   // initialize the digital pins as an output.
   pinMode(RpmPin, OUTPUT);
   pinMode(ShiftPin, OUTPUT);
@@ -32,7 +36,7 @@ void loop()
   {
     ProcessSerial();
   }
-  
+
   delay(1);
 }
 
@@ -53,7 +57,7 @@ void ProcessSerial()
 {
   const char Separator = ',';
   const char Terminator = '\n';
-  
+
   String bikeInfo = Serial.readStringUntil(Terminator);
 
   int firstSepIdx = bikeInfo.indexOf(Separator);
@@ -71,7 +75,7 @@ void ProcessSerial()
   Serial.println(shift);
   Serial.println(gear);
 
-  analogWrite(RpmPin, rpm);  
+  analogWrite(RpmPin, rpm);
   digitalWrite(ShiftPin, shift ? HIGH : LOW);
   digitalWrite(NeutralGearPin, !gear ? HIGH : LOW);
 }
