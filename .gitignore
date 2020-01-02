@@ -156,3 +156,6 @@ FakesAssemblies/
 #CodeBlocks
 *.depend
 *.layout
+
+.vs
+

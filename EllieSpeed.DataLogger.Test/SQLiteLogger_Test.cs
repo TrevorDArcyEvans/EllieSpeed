@@ -43,7 +43,7 @@ namespace EllieSpeed.DataLogger.Test
       mBroadcaster.Dispose();
     }
 
-    [TestFixtureTearDown]
+    [OneTimeTearDown]
     public void FixtureTearDown()
     {
       // force DataLogger to release lock on SQLite file

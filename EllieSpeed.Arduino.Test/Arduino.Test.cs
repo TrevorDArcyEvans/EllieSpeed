@@ -37,15 +37,17 @@ namespace EllieSpeed.Arduino.Test
     }
 
     [Test]
-    [ExpectedException(typeof(ArgumentException))]
     public void SecondReceiverConstructor_ThrowsException()
     {
-      using (new ArduinoReceiver(ReceiveCOMPort))
+      Assert.Throws<ArgumentException>(() =>
       {
         using (new ArduinoReceiver(ReceiveCOMPort))
         {
+          using (new ArduinoReceiver(ReceiveCOMPort))
+          {
+          }
         }
-      }
+      });
     }
 
     [Test]
@@ -57,15 +59,17 @@ namespace EllieSpeed.Arduino.Test
     }
 
     [Test]
-    [ExpectedException(typeof(UnauthorizedAccessException))]
     public void SecondSenderConstructor_ThrowsException()
     {
-      using (new ArduinoSender(SendCOMPort))
+      Assert.Throws<UnauthorizedAccessException>(() =>
       {
         using (new ArduinoSender(SendCOMPort))
         {
+          using (new ArduinoSender(SendCOMPort))
+          {
+          }
         }
-      }
+      });
     }
 
     [Test]
