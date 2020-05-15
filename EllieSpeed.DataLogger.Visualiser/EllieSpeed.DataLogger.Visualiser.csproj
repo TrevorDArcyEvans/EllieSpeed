@@ -44,6 +44,9 @@
   <PropertyGroup>
     <ApplicationIcon>chart_line_32x32.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>EllieSpeed.DataLogger.Visualiser.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
